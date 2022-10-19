@@ -46,12 +46,13 @@ public class DAOVuelosImpl implements DAOVuelos {
 
 	@Override
 	public ArrayList<DetalleVueloBean> recuperarDetalleVuelo(InstanciaVueloBean vuelo) throws Exception {
-		/** 
-		 * TODO Debe retornar una lista de clases, precios y asientos disponibles de dicho vuelo.		   
-		 *      Debe propagar una excepción si hay algún error en la consulta.    
-		 *      
-		 *      Nota: para acceder a la B.D. utilice la propiedad "conexion" que ya tiene una conexión
-		 *      establecida con el servidor de B.D. (inicializada en el constructor DAOVuelosImpl(...)).
+		/**
+		 * TODO Debe retornar una lista de clases, precios y asientos disponibles de
+		 * dicho vuelo. Debe propagar una excepción si hay algún error en la consulta.
+		 * 
+		 * Nota: para acceder a la B.D. utilice la propiedad "conexion" que ya tiene una
+		 * conexión establecida con el servidor de B.D. (inicializada en el constructor
+		 * DAOVuelosImpl(...)).
 		 */
 		//Datos estáticos de prueba. Quitar y reemplazar por código que recupera los datos reales.
 		ArrayList<DetalleVueloBean> resultado = DAOVuelosDatosPrueba.generarDetalles(vuelo);
