@@ -175,6 +175,7 @@ public class ControladorEmpleadoImpl implements ControladorEmpleado {
 			this.ventana.mostrarVuelosDisponiblesSoloIda(listaVuelos);
 		} catch (Exception e) {
 			logger.warn("Se produjo una excepción {}", e.getMessage());
+			e.printStackTrace();
 			this.ventana.informar("Hubo un problema para recuperar los vuelos disponibles (solo IDA).");
 		}
 	} 

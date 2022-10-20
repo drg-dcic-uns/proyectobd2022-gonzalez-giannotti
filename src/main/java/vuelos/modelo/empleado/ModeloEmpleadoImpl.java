@@ -3,6 +3,7 @@ package vuelos.modelo.empleado;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -103,18 +104,31 @@ public class ModeloEmpleadoImpl extends ModeloImpl implements ModeloEmpleado {
 		 * 
 		 * Reemplazar el siguiente código de prueba por los datos obtenidos desde la BD.
 		 */
-		ArrayList<UbicacionesBean> ubicaciones = new ArrayList<UbicacionesBean>();
 
-		// Datos estáticos de prueba. Quitar y reemplazar por código que recupera las
-		// ubicaciones de la B.D. en una lista de UbicacionesBean
-		DAOUbicacionesDatosPrueba.poblar();
-		ubicaciones.add(DAOUbicacionesDatosPrueba.obtenerUbicacion("bsas"));
-		ubicaciones.add(DAOUbicacionesDatosPrueba.obtenerUbicacion("chicago"));
-		ubicaciones.add(DAOUbicacionesDatosPrueba.obtenerUbicacion("barcelona"));
-		ubicaciones.add(DAOUbicacionesDatosPrueba.obtenerUbicacion("cordoba"));
-		// Fin datos estáticos de prueba.
+		String query = "SELECT * FROM ubicaciones";
 
-		return ubicaciones;
+		logger.debug("SQL Query: {}", query);
+
+		ArrayList<UbicacionesBean> toReturn = new ArrayList<UbicacionesBean>();
+
+		try {
+			Statement select = conexion.createStatement();
+			ResultSet resultset = select.executeQuery(query);
+
+			while (resultset.next()) {
+				UbicacionesBean ubic = new UbicacionesBeanImpl();
+				ubic.setCiudad(resultset.getString("ciudad"));
+				ubic.setEstado(resultset.getString("estado"));
+				ubic.setPais(resultset.getString("pais"));
+				ubic.setHuso(resultset.getInt("huso"));
+				
+				toReturn.add(ubic);
+			}
+		} catch (Exception e) {
+			throw new Exception("Error inesperado al consultar la B.D.");
+		}
+
+		return toReturn;
 	}
 
 	@Override

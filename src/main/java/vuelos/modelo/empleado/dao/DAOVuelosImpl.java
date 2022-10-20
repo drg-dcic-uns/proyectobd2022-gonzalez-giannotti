@@ -3,6 +3,7 @@ package vuelos.modelo.empleado.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -31,6 +32,7 @@ public class DAOVuelosImpl implements DAOVuelos {
 		this.conexion = conexion;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public ArrayList<InstanciaVueloBean> recuperarVuelosDisponibles(Date fechaVuelo, UbicacionesBean origen,
 			UbicacionesBean destino) throws Exception {
@@ -53,13 +55,24 @@ public class DAOVuelosImpl implements DAOVuelos {
 		String destino_ciudad = destino.getCiudad();
 		String destino_estado = destino.getEstado();
 		String destino_pais = destino.getPais();
+		
+		/*
+		 * Dos alternativas: 
+		 * 	1. con una sola consulta SQL obtenemos lo pedido y además la información de los aeropuertos de salida y llegada distinguidos.
+		 *  2. hacer varias consultas SQL, primero la que obtiene lo pedido, y luego dos más (o una sola) para obtener la informacion de los aeropuertos.
+		 *  
+		 *  Se prosigue con la primera.
+		 */
 
-		//Realizamos la consulta en la que incluímos la tabla de aeropuertos para poder armar los AeropuertoBean correspondientes al de salida y llegada del vuelo disponible
-		String query = "SELECT *" + " FROM vuelos_disponibles NATURAL JOIN aeropuertos"
+		// Realizamos la consulta en la que incluímos la tabla de aeropuertos para poder
+		// armar los AeropuertoBean correspondientes al de salida y llegada del vuelo
+		// disponible.
+		String query = "SELECT nro_vuelo, fecha, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega"
+				+ " FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2"
 				+ " WHERE (fecha='%s' AND ciudad_sale='%s' AND estado_sale='%s' AND pais_sale='%s' AND ciudad_llega='%s' AND estado_llega='%s' AND pais_llega='%s')"
 						.formatted(fechaVuelo_DBformatted, origen_ciudad, origen_estado, origen_pais, destino_ciudad,
 								destino_estado, destino_pais)
-				+ " AND codigo_aero_sale=aeropuertos.codigo;";
+				+ " AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo;";
 
 		logger.debug("SQL Query: {}", query);
 
@@ -71,53 +84,61 @@ public class DAOVuelosImpl implements DAOVuelos {
 			ResultSet resultset = select.executeQuery(query);
 
 			while (resultset.next()) {
-//				logger.debug("Se recuperó el item con nombre {} y fecha {}", resultset.getString("nombre_batalla"),
-//						resultset.getDate("fecha"));
-				
+				logger.debug("Se recuperó el item con aeropuerto de salida {}, aeropuerto de llegada {} y fecha {}", resultset.getString("nombre_aero_sale"), resultset.getString("nombre_aero_llega"), resultset.getDate("fecha"));
+
 				UbicacionesBean ubic_aero_salida = new UbicacionesBeanImpl();
 				ubic_aero_salida.setCiudad(resultset.getString("ciudad_sale"));
 				ubic_aero_salida.setEstado(resultset.getString("estado_sale"));
 				ubic_aero_salida.setPais(resultset.getString("pais_sale"));
-				
-				System.out.println("UBICACIÓN DE SALIDA QUE VA A PARAR EN EL AEROPUERTO BEAN");
-				System.out.println(ubic_aero_salida.getCiudad());
-				System.out.println(ubic_aero_salida.getEstado());
-				System.out.println(ubic_aero_salida.getPais());
-				
+
 				AeropuertoBean aero_salida = new AeropuertoBeanImpl();
 				aero_salida.setCodigo(resultset.getString("codigo_aero_sale"));
-				aero_salida.setDireccion(resultset.getString("direccion"));
+				aero_salida.setDireccion(resultset.getString("direccion_sale"));
 				aero_salida.setNombre(resultset.getString("nombre_aero_sale"));
-				aero_salida.setTelefono(resultset.getString("telefono"));
+				aero_salida.setTelefono(resultset.getString("telefono_sale"));
 				aero_salida.setUbicacion(ubic_aero_salida);
+
+				// Hacer lo mismo para la ubicacion de llegada y el aeropuerto de llegada
+				UbicacionesBean ubic_aero_llegada = new UbicacionesBeanImpl();
+				ubic_aero_llegada.setCiudad(resultset.getString("ciudad_llega"));
+				ubic_aero_llegada.setEstado(resultset.getString("estado_llega"));
+				ubic_aero_llegada.setPais(resultset.getString("pais_llega"));
+
+				AeropuertoBean aero_llegada = new AeropuertoBeanImpl();
+				aero_llegada.setCodigo(resultset.getString("codigo_aero_llega"));
+				aero_llegada.setDireccion(resultset.getString("direccion_llega"));
+				aero_llegada.setNombre(resultset.getString("nombre_aero_llega"));
+				aero_llegada.setTelefono(resultset.getString("telefono_llega"));
+				aero_llegada.setUbicacion(ubic_aero_llegada);
+
+				String[] hora_sale_arr = resultset.getString("hora_sale").split(":", 3);
+				Time hora_sale_time = new Time(Integer.parseInt(hora_sale_arr[0]), Integer.parseInt(hora_sale_arr[1]), Integer.parseInt(hora_sale_arr[2]));
 				
-				System.out.println("AEROPUERTO DE SALIDA:");
-				System.out.println(aero_salida.getCodigo());
-				System.out.println(aero_salida.getTelefono());
+				String[] hora_llega_arr = resultset.getString("hora_llega").split(":", 3);
+				Time hora_llega_time = new Time(Integer.parseInt(hora_llega_arr[0]), Integer.parseInt(hora_llega_arr[1]), Integer.parseInt(hora_llega_arr[2]));
 				
-				//Hacer lo mismo para la ubicacion de llegada y el aeropuerto de llegada
-				
-				//----------------------------------------------------
+				String[] tiempo_estimado_arr = resultset.getString("tiempo_estimado").split(":", 3);
+				Time tiempo_estimado_time = new Time(Integer.parseInt(tiempo_estimado_arr[0]), Integer.parseInt(tiempo_estimado_arr[1]), Integer.parseInt(tiempo_estimado_arr[2]));
 				
 				InstanciaVueloBean iv = new InstanciaVueloBeanImpl();
 				iv.setNroVuelo(resultset.getString("nro_vuelo"));
 				iv.setModelo(resultset.getString("modelo"));
 				iv.setDiaSalida(resultset.getString("dia_sale"));
+				iv.setHoraSalida(hora_sale_time);
+				iv.setHoraLlegada(hora_llega_time);
+				iv.setTiempoEstimado(tiempo_estimado_time);
 				iv.setAeropuertoSalida(aero_salida);
-				
-				//Todavia no funciona porque falta implementar que se pueda elegir las opciones correctas de las listas desplegables origen y destino
+				iv.setAeropuertoLlegada(aero_llegada);
+				iv.setFechaVuelo(new java.sql.Date(fechaVuelo.getDate()));
+
+				// TODO Funciona!! Pero hay que corregir la vista.
 				toReturn.add(iv);
 			}
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new Exception("Error inesperado al consultar la B.D.");
 		}
-
-		// Ej: Recupera la lista de vuelos disponibles para la fecha Thu Oct 06 23:59:09
-		// ART 2022 desde Argentina - CABA - Buenos Aires a España - Cataluña -
-		// Barcelona.
-		
-		System.out.println(toReturn.toString());
 
 		return toReturn;
 	}
