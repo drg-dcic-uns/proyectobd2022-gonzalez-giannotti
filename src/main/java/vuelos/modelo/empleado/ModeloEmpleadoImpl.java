@@ -50,39 +50,42 @@ public class ModeloEmpleadoImpl extends ModeloImpl implements ModeloEmpleado {
 	@Override
 	public boolean autenticarUsuarioAplicacion(String legajo, String password) throws Exception {
 		logger.info("Se intenta autenticar el legajo {} con password {}", legajo, password);
+
+		boolean autenticado = false;
+
+		String query = "SELECT EXISTS (SELECT legajo FROM empleados WHERE legajo = " + legajo + " AND password = md5('" + password + "')) AS existe;";
 		
-		boolean autenticar= false;
-		String sql = "SELECT EXISTS (SELECT legajo from empleados WHERE legajo = " + legajo + " AND password = md5('" + password + "')) AS existe;";
-		Statement s = null;
-		ResultSet rs=null;
-		if(legajo== null || legajo.equals("") || password==null || password.equals("")) {
-			return false;
-		}
-			try
-			{       
-				s= conexion.createStatement();
-				rs= s.executeQuery(sql);
-				rs.next();
-				autenticar = rs.getBoolean("existe");
-				if(autenticar) {
-					this.legajo= Integer.parseInt(legajo);
-				}
-				else {
-					this.legajo= null;
-				}
-				rs.close();
-				s.close();
-				return autenticar;
-			}
-			catch (SQLException ex){
-			   logger.error("SQLException: " + ex.getMessage());
-			   logger.error("SQLState: " + ex.getSQLState());
-			   logger.error("VendorError: " + ex.getErrorCode());				   
-			}	
+		logger.debug("SQL Query: {}", query);
+
+		Statement select = null;
+		ResultSet resultset = null;
+
+		if (legajo == null || legajo.equals("") || password == null || password.equals("")) {
+			autenticado = false;
+		} else {
+			try {
+				select = conexion.createStatement();
+				resultset = select.executeQuery(query);
 				
-			
-		
-		return autenticar;
+				resultset.next();
+				autenticado = resultset.getBoolean("existe");
+				
+				if (autenticado) {
+					this.legajo = Integer.parseInt(legajo);
+				} else {
+					this.legajo = null;
+				}
+				
+				resultset.close();
+				select.close();
+			} catch (SQLException ex) {
+				logger.error("SQLException: " + ex.getMessage());
+				logger.error("SQLState: " + ex.getSQLState());
+				logger.error("VendorError: " + ex.getErrorCode());
+			}
+		}
+
+		return autenticado;
 	}
 
 	/**
@@ -92,28 +95,30 @@ public class ModeloEmpleadoImpl extends ModeloImpl implements ModeloEmpleado {
 	@Override
 	public ArrayList<String> obtenerTiposDocumento() {
 		logger.info("recupera los tipos de documentos.");
-		ArrayList<String> tipos= new ArrayList<String>();
-		
-		String sql= "(Select doc_tipo from Empleados) UNION (Select doc_tipo from Pasajeros);";
-		try
-			{       
-				Statement s= conexion.createStatement();
-				ResultSet rs= s.executeQuery(sql);
-				while(rs.next()) {
-					tipos.add(rs.getString("doc_tipo"));
-				}
-				rs.close();
-				s.close();
-				return tipos;
-			}
-			catch (SQLException ex){
-			   logger.error("SQLException: " + ex.getMessage());
-			   logger.error("SQLState: " + ex.getSQLState());
-			   logger.error("VendorError: " + ex.getErrorCode());				   
-			}			
 
-		
-		return tipos; 
+		ArrayList<String> tipos = new ArrayList<String>();
+
+		String query = "(SELECT doc_tipo FROM empleados) UNION (SELECT doc_tipo FROM pasajeros);";
+
+		logger.debug("SQL Query: {}", query);
+
+		try {
+			Statement select = conexion.createStatement();
+			ResultSet resultset = select.executeQuery(query);
+
+			while (resultset.next()) {
+				tipos.add(resultset.getString("doc_tipo"));
+			}
+
+			resultset.close();
+			select.close();
+		} catch (SQLException ex) {
+			logger.error("SQLException: " + ex.getMessage());
+			logger.error("SQLState: " + ex.getSQLState());
+			logger.error("VendorError: " + ex.getErrorCode());
+		}
+
+		return tipos;
 	}
 
 	@Override
@@ -156,7 +161,7 @@ public class ModeloEmpleadoImpl extends ModeloImpl implements ModeloEmpleado {
 				ubic.setEstado(resultset.getString("estado"));
 				ubic.setPais(resultset.getString("pais"));
 				ubic.setHuso(resultset.getInt("huso"));
-				
+
 				toReturn.add(ubic);
 			}
 		} catch (Exception e) {

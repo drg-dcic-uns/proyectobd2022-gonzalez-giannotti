@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,45 +35,48 @@ public class DAOEmpleadoImpl implements DAOEmpleado {
 	 */
 	@Override
 	public EmpleadoBean recuperarEmpleado(int legajo) throws Exception {
-		logger.info("recupera el empleado que corresponde al legajo {}.", legajo);
+		logger.info("Recupera el empleado que corresponde al legajo {}.", legajo);
 
-		String sql = "SELECT * FROM empleados WHERE legajo = " + legajo + ";";
+		String query = "SELECT * FROM empleados WHERE legajo = " + legajo + ";";
+		
+		logger.debug("SQL Query: {}", query);
+		
 		EmpleadoBean empleado = null;
 		Statement select = null;
-		ResultSet rs = null;
-		
+		ResultSet resultset = null;
+
 		try {
 			select = conexion.createStatement();
-			rs = select.executeQuery(sql);
-			if(rs.next()) {
-				
-				// Si existe un empleado con el legajo indicado se crea el bean del empleado a retornar y se cargan los datos correspondientes
+			resultset = select.executeQuery(query);
+			if (resultset.next()) {
+
+				// Si existe un empleado con el legajo indicado se crea el bean del empleado a
+				// retornar y se cargan los datos correspondientes
 				empleado = new EmpleadoBeanImpl();
-				empleado.setLegajo(rs.getInt("legajo"));
-				empleado.setApellido(rs.getString("apellido"));
-				empleado.setNombre(rs.getString("nombre"));
-				empleado.setTipoDocumento(rs.getString("doc_tipo"));
-				empleado.setNroDocumento(rs.getInt("doc_nro"));
-				empleado.setDireccion(rs.getString("direccion"));
-				empleado.setTelefono(rs.getString("telefono"));
-				empleado.setPassword(rs.getString("password"));
+				empleado.setLegajo(resultset.getInt("legajo"));
+				empleado.setApellido(resultset.getString("apellido"));
+				empleado.setNombre(resultset.getString("nombre"));
+				empleado.setTipoDocumento(resultset.getString("doc_tipo"));
+				empleado.setNroDocumento(resultset.getInt("doc_nro"));
+				empleado.setDireccion(resultset.getString("direccion"));
+				empleado.setTelefono(resultset.getString("telefono"));
+				empleado.setPassword(resultset.getString("password"));
 			}
-			rs.close();
+			resultset.close();
 			select.close();
-			return empleado;
-				
-		}
-		catch (SQLException ex)
-		{			
-			if(rs != null && !rs.isClosed())
-				rs.close();
-			if(select != null && !select.isClosed())
+
+		} catch (SQLException ex) {
+			if (resultset != null && !resultset.isClosed())
+				resultset.close();
+			if (select != null && !select.isClosed())
 				select.close();
 			logger.error("SQLException: " + ex.getMessage());
 			logger.error("SQLState: " + ex.getSQLState());
 			logger.error("VendorError: " + ex.getErrorCode());
 			throw new Exception("Error inesperado al consultar la B.D.");
 		}
+		
+		return empleado;
 	}
 
 }
