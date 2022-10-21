@@ -3,15 +3,12 @@ package vuelos.modelo.empleado.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 import java.sql.SQLException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.mysql.cj.x.protobuf.MysqlxConnection.Close;
 
 import vuelos.modelo.empleado.beans.AeropuertoBean;
 import vuelos.modelo.empleado.beans.AeropuertoBeanImpl;
@@ -35,7 +32,6 @@ public class DAOVuelosImpl implements DAOVuelos {
 		this.conexion = conexion;
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public ArrayList<InstanciaVueloBean> recuperarVuelosDisponibles(Date fechaVuelo, UbicacionesBean origen,
 			UbicacionesBean destino) throws Exception {
@@ -49,10 +45,13 @@ public class DAOVuelosImpl implements DAOVuelos {
 		 * conexión establecida con el servidor de B.D. (inicializada en el constructor
 		 * DAOVuelosImpl(...)).
 		 */
+		
+		//TODO Remover los comentarios excepto aquellos que expliquen código
 
 		// funciona bien tu version pero no funciona con mi recuperarDetalle() no se
 		// porque !
 		// --> El error estaba en el seteo de la fecha del vuelo.
+		//PD: para descomentar tu código todo de una hacé CTRL + 7 en eclipse seleccionando todas las lineas que tengan //
 
 //		ArrayList<InstanciaVueloBean> resultado = new ArrayList<InstanciaVueloBean>();
 //
@@ -128,8 +127,11 @@ public class DAOVuelosImpl implements DAOVuelos {
 //		}
 //
 //		return resultado;
+		
+		//----------------Implementación de Nico----------------------
+		
 
-		String fechaVuelo_DBformatted = Fechas.convertirDateAStringDB(fechaVuelo);
+		String fechaVuelo_StringDB = Fechas.convertirDateAStringDB(fechaVuelo);
 
 		String origen_ciudad = origen.getCiudad();
 		String origen_estado = origen.getEstado();
@@ -138,9 +140,10 @@ public class DAOVuelosImpl implements DAOVuelos {
 		String destino_ciudad = destino.getCiudad();
 		String destino_estado = destino.getEstado();
 		String destino_pais = destino.getPais();
+		
 		/*
-		 * Dos alternativas: 1. con una sola consulta SQL obtenemos lo pedido y además
-		 * la información de los aeropuertos de salida y llegada distinguidos. 2. hacer
+		 * Dos alternativas: Una, con una sola consulta SQL obtenemos lo pedido y además
+		 * la información de los aeropuertos de salida y llegada distinguidos. La otra, hacer
 		 * varias consultas SQL, primero la que obtiene lo pedido, y luego dos más (o
 		 * una sola) para obtener la informacion de los aeropuertos.
 		 * 
@@ -153,7 +156,7 @@ public class DAOVuelosImpl implements DAOVuelos {
 		String query = "SELECT nro_vuelo, fecha, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega"
 				+ " FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2"
 				+ " WHERE (fecha='%s' AND ciudad_sale='%s' AND estado_sale='%s' AND pais_sale='%s' AND ciudad_llega='%s' AND estado_llega='%s' AND pais_llega='%s')"
-						.formatted(fechaVuelo_DBformatted, origen_ciudad, origen_estado, origen_pais, destino_ciudad,
+						.formatted(fechaVuelo_StringDB, origen_ciudad, origen_estado, origen_pais, destino_ciudad,
 								destino_estado, destino_pais)
 				+ " AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo GROUP BY nro_vuelo;";
 
@@ -172,29 +175,19 @@ public class DAOVuelosImpl implements DAOVuelos {
 						resultset.getString("nombre_aero_sale"), resultset.getString("nombre_aero_llega"),
 						resultset.getDate("fecha"));
 
-				UbicacionesBean ubic_aero_salida = new UbicacionesBeanImpl();
-				ubic_aero_salida.setCiudad(resultset.getString("ciudad_sale"));
-				ubic_aero_salida.setEstado(resultset.getString("estado_sale"));
-				ubic_aero_salida.setPais(resultset.getString("pais_sale"));
-
 				AeropuertoBean aero_salida = new AeropuertoBeanImpl();
 				aero_salida.setCodigo(resultset.getString("codigo_aero_sale"));
 				aero_salida.setDireccion(resultset.getString("direccion_sale"));
 				aero_salida.setNombre(resultset.getString("nombre_aero_sale"));
 				aero_salida.setTelefono(resultset.getString("telefono_sale"));
-				aero_salida.setUbicacion(ubic_aero_salida);
-
-				UbicacionesBean ubic_aero_llegada = new UbicacionesBeanImpl();
-				ubic_aero_llegada.setCiudad(resultset.getString("ciudad_llega"));
-				ubic_aero_llegada.setEstado(resultset.getString("estado_llega"));
-				ubic_aero_llegada.setPais(resultset.getString("pais_llega"));
+				aero_salida.setUbicacion(origen);
 
 				AeropuertoBean aero_llegada = new AeropuertoBeanImpl();
 				aero_llegada.setCodigo(resultset.getString("codigo_aero_llega"));
 				aero_llegada.setDireccion(resultset.getString("direccion_llega"));
 				aero_llegada.setNombre(resultset.getString("nombre_aero_llega"));
 				aero_llegada.setTelefono(resultset.getString("telefono_llega"));
-				aero_llegada.setUbicacion(ubic_aero_llegada);
+				aero_llegada.setUbicacion(destino);
 
 				InstanciaVueloBean iv = new InstanciaVueloBeanImpl();
 				iv.setNroVuelo(resultset.getString("nro_vuelo"));
@@ -231,12 +224,16 @@ public class DAOVuelosImpl implements DAOVuelos {
 	public ArrayList<DetalleVueloBean> recuperarDetalleVuelo(InstanciaVueloBean vuelo) throws Exception {
 		ArrayList<DetalleVueloBean> resultado = DAOVuelosDatosPrueba.generarDetalles(vuelo);
 		String fechaVuelo = Fechas.convertirDateAStringDB(vuelo.getFechaVuelo());
-		String sql = "SELECT clase, precio, asientos_disponibles" + " FROM vuelos_disponibles" + " WHERE nro_vuelo= '"
-				+ vuelo.getNroVuelo() + "' " + " AND fecha= '" + fechaVuelo + "' ;";
+		
+		String query = "SELECT clase, precio, asientos_disponibles "
+				+ " FROM vuelos_disponibles"
+				+ " WHERE nro_vuelo='%s' AND fecha='%s';".formatted(vuelo.getNroVuelo(), fechaVuelo);
+
+		logger.debug("SQL Query: {}", query);
 
 		try {
 			Statement select = conexion.createStatement();
-			ResultSet resultset = select.executeQuery(sql);
+			ResultSet resultset = select.executeQuery(query);
 			while (resultset.next()) {
 				DetalleVueloBeanImpl dv = new DetalleVueloBeanImpl();
 				dv.setAsientosDisponibles(resultset.getInt("asientos_disponibles"));

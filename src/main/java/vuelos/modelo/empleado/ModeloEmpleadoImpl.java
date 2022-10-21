@@ -1,13 +1,10 @@
 package vuelos.modelo.empleado;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,7 +24,6 @@ import vuelos.modelo.empleado.dao.DAOReserva;
 import vuelos.modelo.empleado.dao.DAOReservaImpl;
 import vuelos.modelo.empleado.dao.DAOVuelos;
 import vuelos.modelo.empleado.dao.DAOVuelosImpl;
-import vuelos.modelo.empleado.dao.datosprueba.DAOUbicacionesDatosPrueba;
 
 public class ModeloEmpleadoImpl extends ModeloImpl implements ModeloEmpleado {
 
@@ -53,7 +49,8 @@ public class ModeloEmpleadoImpl extends ModeloImpl implements ModeloEmpleado {
 
 		boolean autenticado = false;
 
-		String query = "SELECT EXISTS (SELECT legajo FROM empleados WHERE legajo = " + legajo + " AND password = md5('" + password + "')) AS existe;";
+		String query = "SELECT EXISTS (SELECT legajo FROM empleados WHERE legajo='%s' AND password = md5('%s')) AS existe;"
+				.formatted(legajo, password);
 		
 		logger.debug("SQL Query: {}", query);
 
@@ -133,18 +130,17 @@ public class ModeloEmpleadoImpl extends ModeloImpl implements ModeloEmpleado {
 		return dao.recuperarEmpleado(this.legajo);
 	}
 
+	/**
+	 * TODO Debe retornar una lista de UbicacionesBean con todas las ubicaciones
+	 * almacenadas en la B.D. Deberia propagar una excepción si hay algún error en
+	 * la consulta.
+	 * 
+	 */
 	@Override
 	public ArrayList<UbicacionesBean> recuperarUbicaciones() throws Exception {
 
 		logger.info("recupera las ciudades que tienen aeropuertos.");
-		/**
-		 * TODO Debe retornar una lista de UbicacionesBean con todas las ubicaciones
-		 * almacenadas en la B.D. Deberia propagar una excepción si hay algún error en
-		 * la consulta.
-		 * 
-		 * Reemplazar el siguiente código de prueba por los datos obtenidos desde la BD.
-		 */
-
+		
 		String query = "SELECT * FROM ubicaciones";
 
 		logger.debug("SQL Query: {}", query);
