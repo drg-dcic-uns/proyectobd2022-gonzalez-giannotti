@@ -6,6 +6,7 @@ import java.sql.Statement;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
+import java.sql.SQLException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
