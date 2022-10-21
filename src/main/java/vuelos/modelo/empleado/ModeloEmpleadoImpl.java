@@ -39,6 +39,14 @@ public class ModeloEmpleadoImpl extends ModeloImpl implements ModeloEmpleado {
 		logger.debug("Se crea el modelo Empleado.");
 	}
 
+	/**
+	 * TODO Código que autentica que exista un legajo de empleado y que el password
+	 * corresponda a ese legajo (recuerde que el password guardado en la BD está
+	 * encriptado con MD5) En caso exitoso deberá registrar el legajo en la
+	 * propiedad legajo y retornar true. Si la autenticación no es exitosa porque el
+	 * legajo no es válido o el password es incorrecto deberá retornar falso y si
+	 * hubo algún otro error deberá producir y propagar una excepción.
+	 */
 	@Override
 	public boolean autenticarUsuarioAplicacion(String legajo, String password) throws Exception {
 		logger.info("Se intenta autenticar el legajo {} con password {}", legajo, password);
@@ -77,6 +85,10 @@ public class ModeloEmpleadoImpl extends ModeloImpl implements ModeloEmpleado {
 		return autenticar;
 	}
 
+	/**
+	 * TODO Debe retornar una lista de strings con los tipos de documentos. Deberia
+	 * propagar una excepción si hay algún error en la consulta.
+	 */
 	@Override
 	public ArrayList<String> obtenerTiposDocumento() {
 		logger.info("recupera los tipos de documentos.");

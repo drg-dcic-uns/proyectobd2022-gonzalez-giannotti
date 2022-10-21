@@ -964,3 +964,1551 @@ Saliendo de la aplicación.
 Se cierra la conexión a la BD.
 Se intenta cerrar la conexión activa
 Eliminación de la ventana.
+Se inicia la aplicación.
+Creación de la ventana de login
+Se registran los listeners.
+Se inicia la carga de parametros para conectar con la BD.
+Recuperación de los datos para la conexión con la BD
+Se intenta leer el archivo de propiedades cfg/conexionBD.properties
+se cargó exitosamente
+Parámetros de conexión: jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires
+Se inicializa la ventana de login.
+se registra el controlador.
+se muestra la ventana.
+Intenta ingresar como Empleado con legajo , password 
+Recupera el usuario de BD para Empleado para poder conectarse con los permisos de dicho usuario.
+Ingresa a recuperar el usuarioBD y passwordBD para acceder a la BD del usuario Empleado
+usuario empleado, password empleado
+Se crea el modelo Empleado.
+Se establece la conexión a la BD.
+Parametros de conexion: url= jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires, user=empleado, pass=empleado
+Se establece la conexión con la BD
+Se intenta autenticar el legajo  con password 
+Empleado  autenticado
+Inicializacion de la ventana del Empleado
+Se registran los listeners.
+Se crea el controlador del Empleado.
+Transfiere el control al nuevo controlador
+Solicita al DAO un empleado con legajo 1
+recupera el empleado que corresponde al legajo 1.
+Se registra al empleado ApEmp9, NomEmp9 con legajo 9
+muestra la ventana
+Recuperar del modelo los destinos posibles
+recupera las ciudades que tienen aeropuertos.
+informar a la ventana los destinos posibles
+Carga los combos de ciudades con las 4 ubicaciones recuperados
+Muestra el panel de consulta/reserva de vuelos.
+Informa a la vista que puede eliminar la ventana de login.
+Eliminación de la ventana de login.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:1 fechaHasta:null Origen:Argentina - CABA - Buenos Aires Destino:USA - Illinois - Chicago.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Thu Feb 01 00:00:00 ART 2001 desde Argentina - CABA - Buenos Aires a USA - Illinois - Chicago.
+SQL Query: SELECT * FROM vuelos_disponibles NATURAL JOIN aeropuertos WHERE (fecha='2001-02-01' AND ciudad_sale='Buenos Aires' AND estado_sale='CABA' AND pais_sale='Argentina' AND ciudad_llega='Chicago' AND estado_llega='Illinois' AND pais_llega='USA') AND codigo_aero_sale=aeropuertos.codigo;
+La cantidad de vuelos recuperados es 0 
+Se solicita a la ventana mostrar la información de 0 vuelos para viaje de ida
+Carga la tabla de IDA.
+Saliendo de la aplicación.
+Se cierra la conexión a la BD.
+Se intenta cerrar la conexión activa
+Eliminación de la ventana.
+Se inicia la aplicación.
+Creación de la ventana de login
+Se registran los listeners.
+Se inicia la carga de parametros para conectar con la BD.
+Recuperación de los datos para la conexión con la BD
+Se intenta leer el archivo de propiedades cfg/conexionBD.properties
+se cargó exitosamente
+Parámetros de conexión: jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires
+Se inicializa la ventana de login.
+se registra el controlador.
+se muestra la ventana.
+Intenta ingresar como Empleado con legajo , password 
+Recupera el usuario de BD para Empleado para poder conectarse con los permisos de dicho usuario.
+Ingresa a recuperar el usuarioBD y passwordBD para acceder a la BD del usuario Empleado
+usuario empleado, password empleado
+Se crea el modelo Empleado.
+Se establece la conexión a la BD.
+Parametros de conexion: url= jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires, user=empleado, pass=empleado
+Se establece la conexión con la BD
+Se intenta autenticar el legajo  con password 
+Empleado  autenticado
+Inicializacion de la ventana del Empleado
+Se registran los listeners.
+Se crea el controlador del Empleado.
+Transfiere el control al nuevo controlador
+Solicita al DAO un empleado con legajo 1
+recupera el empleado que corresponde al legajo 1.
+Se registra al empleado ApEmp9, NomEmp9 con legajo 9
+muestra la ventana
+Recuperar del modelo los destinos posibles
+recupera las ciudades que tienen aeropuertos.
+SQL Query: SELECT * FROM ubicaciones
+informar a la ventana los destinos posibles
+Carga los combos de ciudades con las 10 ubicaciones recuperados
+Muestra el panel de consulta/reserva de vuelos.
+Informa a la vista que puede eliminar la ventana de login.
+Eliminación de la ventana de login.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:1 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Tue Feb 01 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT * FROM vuelos_disponibles NATURAL JOIN aeropuertos WHERE (fecha='2000-02-01' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=aeropuertos.codigo;
+La cantidad de vuelos recuperados es 0 
+Se solicita a la ventana mostrar la información de 0 vuelos para viaje de ida
+Carga la tabla de IDA.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:2 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Sun Jan 02 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT * FROM vuelos_disponibles NATURAL JOIN aeropuertos WHERE (fecha='2000-01-02' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=aeropuertos.codigo;
+La cantidad de vuelos recuperados es 3 
+Se solicita a la ventana mostrar la información de 3 vuelos para viaje de ida
+Carga la tabla de IDA.
+Se produjo una excepción Cannot invoke "java.sql.Time.toString()" because the return value of "vuelos.modelo.empleado.beans.InstanciaVueloBean.getHoraSalida()" is null
+Crea una ventana modal informando sobre el mensaje.
+Saliendo de la aplicación.
+Se cierra la conexión a la BD.
+Se intenta cerrar la conexión activa
+Eliminación de la ventana.
+Se inicia la aplicación.
+Creación de la ventana de login
+Se registran los listeners.
+Se inicia la carga de parametros para conectar con la BD.
+Recuperación de los datos para la conexión con la BD
+Se intenta leer el archivo de propiedades cfg/conexionBD.properties
+se cargó exitosamente
+Parámetros de conexión: jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires
+Se inicializa la ventana de login.
+se registra el controlador.
+se muestra la ventana.
+Intenta ingresar como Empleado con legajo , password 
+Recupera el usuario de BD para Empleado para poder conectarse con los permisos de dicho usuario.
+Ingresa a recuperar el usuarioBD y passwordBD para acceder a la BD del usuario Empleado
+usuario empleado, password empleado
+Se crea el modelo Empleado.
+Se establece la conexión a la BD.
+Parametros de conexion: url= jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires, user=empleado, pass=empleado
+Se establece la conexión con la BD
+Se intenta autenticar el legajo  con password 
+Empleado  autenticado
+Inicializacion de la ventana del Empleado
+Se registran los listeners.
+Se crea el controlador del Empleado.
+Transfiere el control al nuevo controlador
+Solicita al DAO un empleado con legajo 1
+recupera el empleado que corresponde al legajo 1.
+Se registra al empleado ApEmp9, NomEmp9 con legajo 9
+muestra la ventana
+Recuperar del modelo los destinos posibles
+recupera las ciudades que tienen aeropuertos.
+SQL Query: SELECT * FROM ubicaciones
+informar a la ventana los destinos posibles
+Carga los combos de ciudades con las 10 ubicaciones recuperados
+Muestra el panel de consulta/reserva de vuelos.
+Informa a la vista que puede eliminar la ventana de login.
+Eliminación de la ventana de login.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:13 fechaHasta:null Origen:Argentina - Buenos Aires - Bahia Blanca Destino:Argentina - Cordoba - Cordoba.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Thu Oct 13 00:00:00 ART 2022 desde Argentina - Buenos Aires - Bahia Blanca a Argentina - Cordoba - Cordoba.
+SQL Query: SELECT * FROM vuelos_disponibles NATURAL JOIN aeropuertos WHERE (fecha='2022-10-13' AND ciudad_sale='Bahia Blanca' AND estado_sale='Buenos Aires' AND pais_sale='Argentina' AND ciudad_llega='Cordoba' AND estado_llega='Cordoba' AND pais_llega='Argentina') AND codigo_aero_sale=aeropuertos.codigo;
+La cantidad de vuelos recuperados es 0 
+Se solicita a la ventana mostrar la información de 0 vuelos para viaje de ida
+Carga la tabla de IDA.
+Saliendo de la aplicación.
+Se cierra la conexión a la BD.
+Se intenta cerrar la conexión activa
+Eliminación de la ventana.
+Se inicia la aplicación.
+Creación de la ventana de login
+Se registran los listeners.
+Se inicia la carga de parametros para conectar con la BD.
+Recuperación de los datos para la conexión con la BD
+Se intenta leer el archivo de propiedades cfg/conexionBD.properties
+se cargó exitosamente
+Parámetros de conexión: jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires
+Se inicializa la ventana de login.
+se registra el controlador.
+se muestra la ventana.
+Intenta ingresar como Empleado con legajo , password 
+Recupera el usuario de BD para Empleado para poder conectarse con los permisos de dicho usuario.
+Ingresa a recuperar el usuarioBD y passwordBD para acceder a la BD del usuario Empleado
+usuario empleado, password empleado
+Se crea el modelo Empleado.
+Se establece la conexión a la BD.
+Parametros de conexion: url= jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires, user=empleado, pass=empleado
+Se establece la conexión con la BD
+Se intenta autenticar el legajo  con password 
+Empleado  autenticado
+Inicializacion de la ventana del Empleado
+Se registran los listeners.
+Se crea el controlador del Empleado.
+Transfiere el control al nuevo controlador
+Solicita al DAO un empleado con legajo 1
+recupera el empleado que corresponde al legajo 1.
+Se registra al empleado ApEmp9, NomEmp9 con legajo 9
+muestra la ventana
+Recuperar del modelo los destinos posibles
+recupera las ciudades que tienen aeropuertos.
+SQL Query: SELECT * FROM ubicaciones
+informar a la ventana los destinos posibles
+Carga los combos de ciudades con las 10 ubicaciones recuperados
+Muestra el panel de consulta/reserva de vuelos.
+Informa a la vista que puede eliminar la ventana de login.
+Eliminación de la ventana de login.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:1 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Tue Feb 01 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT nro_vuelo, nombre_aero_sale, hora_sale, nombre_aero_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2000-02-01' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo;
+La cantidad de vuelos recuperados es 0 
+Se solicita a la ventana mostrar la información de 0 vuelos para viaje de ida
+Carga la tabla de IDA.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:2 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Sun Jan 02 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT nro_vuelo, nombre_aero_sale, hora_sale, nombre_aero_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2000-01-02' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo;
+Se produjo una excepción Error inesperado al consultar la B.D.
+Crea una ventana modal informando sobre el mensaje.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:2 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Sun Jan 02 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT nro_vuelo, nombre_aero_sale, hora_sale, nombre_aero_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2000-01-02' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo;
+Se produjo una excepción Error inesperado al consultar la B.D.
+Crea una ventana modal informando sobre el mensaje.
+Se inicia la aplicación.
+Creación de la ventana de login
+Se registran los listeners.
+Se inicia la carga de parametros para conectar con la BD.
+Recuperación de los datos para la conexión con la BD
+Se intenta leer el archivo de propiedades cfg/conexionBD.properties
+se cargó exitosamente
+Parámetros de conexión: jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires
+Se inicializa la ventana de login.
+se registra el controlador.
+se muestra la ventana.
+Intenta ingresar como Empleado con legajo , password 
+Recupera el usuario de BD para Empleado para poder conectarse con los permisos de dicho usuario.
+Ingresa a recuperar el usuarioBD y passwordBD para acceder a la BD del usuario Empleado
+usuario empleado, password empleado
+Se crea el modelo Empleado.
+Se establece la conexión a la BD.
+Parametros de conexion: url= jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires, user=empleado, pass=empleado
+Se establece la conexión con la BD
+Se intenta autenticar el legajo  con password 
+Empleado  autenticado
+Inicializacion de la ventana del Empleado
+Se registran los listeners.
+Se crea el controlador del Empleado.
+Transfiere el control al nuevo controlador
+Solicita al DAO un empleado con legajo 1
+recupera el empleado que corresponde al legajo 1.
+Se registra al empleado ApEmp9, NomEmp9 con legajo 9
+muestra la ventana
+Recuperar del modelo los destinos posibles
+recupera las ciudades que tienen aeropuertos.
+SQL Query: SELECT * FROM ubicaciones
+informar a la ventana los destinos posibles
+Carga los combos de ciudades con las 10 ubicaciones recuperados
+Muestra el panel de consulta/reserva de vuelos.
+Informa a la vista que puede eliminar la ventana de login.
+Eliminación de la ventana de login.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:2 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Sun Jan 02 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT nro_vuelo, nombre_aero_sale, hora_sale, nombre_aero_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2000-01-02' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo;
+Se produjo una excepción Error inesperado al consultar la B.D.
+Crea una ventana modal informando sobre el mensaje.
+Se inicia la aplicación.
+Creación de la ventana de login
+Se registran los listeners.
+Se inicia la carga de parametros para conectar con la BD.
+Recuperación de los datos para la conexión con la BD
+Se intenta leer el archivo de propiedades cfg/conexionBD.properties
+se cargó exitosamente
+Parámetros de conexión: jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires
+Se inicializa la ventana de login.
+se registra el controlador.
+se muestra la ventana.
+Intenta ingresar como Empleado con legajo , password 
+Recupera el usuario de BD para Empleado para poder conectarse con los permisos de dicho usuario.
+Ingresa a recuperar el usuarioBD y passwordBD para acceder a la BD del usuario Empleado
+usuario empleado, password empleado
+Se crea el modelo Empleado.
+Se establece la conexión a la BD.
+Parametros de conexion: url= jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires, user=empleado, pass=empleado
+Se establece la conexión con la BD
+Se intenta autenticar el legajo  con password 
+Empleado  autenticado
+Inicializacion de la ventana del Empleado
+Se registran los listeners.
+Se crea el controlador del Empleado.
+Transfiere el control al nuevo controlador
+Solicita al DAO un empleado con legajo 1
+recupera el empleado que corresponde al legajo 1.
+Se registra al empleado ApEmp9, NomEmp9 con legajo 9
+muestra la ventana
+Recuperar del modelo los destinos posibles
+recupera las ciudades que tienen aeropuertos.
+SQL Query: SELECT * FROM ubicaciones
+informar a la ventana los destinos posibles
+Carga los combos de ciudades con las 10 ubicaciones recuperados
+Muestra el panel de consulta/reserva de vuelos.
+Informa a la vista que puede eliminar la ventana de login.
+Eliminación de la ventana de login.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:1 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Tue Feb 01 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT nro_vuelo, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2000-02-01' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo;
+La cantidad de vuelos recuperados es 0 
+Se solicita a la ventana mostrar la información de 0 vuelos para viaje de ida
+Carga la tabla de IDA.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:2 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Sun Jan 02 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT nro_vuelo, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2000-01-02' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo;
+Se produjo una excepción Error inesperado al consultar la B.D.
+Crea una ventana modal informando sobre el mensaje.
+Saliendo de la aplicación.
+Se cierra la conexión a la BD.
+Se intenta cerrar la conexión activa
+Eliminación de la ventana.
+Se inicia la aplicación.
+Creación de la ventana de login
+Se registran los listeners.
+Se inicia la carga de parametros para conectar con la BD.
+Recuperación de los datos para la conexión con la BD
+Se intenta leer el archivo de propiedades cfg/conexionBD.properties
+se cargó exitosamente
+Parámetros de conexión: jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires
+Se inicializa la ventana de login.
+se registra el controlador.
+se muestra la ventana.
+Intenta ingresar como Empleado con legajo , password 
+Recupera el usuario de BD para Empleado para poder conectarse con los permisos de dicho usuario.
+Ingresa a recuperar el usuarioBD y passwordBD para acceder a la BD del usuario Empleado
+usuario empleado, password empleado
+Se crea el modelo Empleado.
+Se establece la conexión a la BD.
+Parametros de conexion: url= jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires, user=empleado, pass=empleado
+Se establece la conexión con la BD
+Se intenta autenticar el legajo  con password 
+Empleado  autenticado
+Inicializacion de la ventana del Empleado
+Se registran los listeners.
+Se crea el controlador del Empleado.
+Transfiere el control al nuevo controlador
+Solicita al DAO un empleado con legajo 1
+recupera el empleado que corresponde al legajo 1.
+Se registra al empleado ApEmp9, NomEmp9 con legajo 9
+muestra la ventana
+Recuperar del modelo los destinos posibles
+recupera las ciudades que tienen aeropuertos.
+SQL Query: SELECT * FROM ubicaciones
+informar a la ventana los destinos posibles
+Carga los combos de ciudades con las 10 ubicaciones recuperados
+Muestra el panel de consulta/reserva de vuelos.
+Informa a la vista que puede eliminar la ventana de login.
+Eliminación de la ventana de login.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:1 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Tue Feb 01 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT nro_vuelo, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2000-02-01' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo;
+La cantidad de vuelos recuperados es 0 
+Se solicita a la ventana mostrar la información de 0 vuelos para viaje de ida
+Carga la tabla de IDA.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:2 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Sun Jan 02 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT nro_vuelo, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2000-01-02' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo;
+La cantidad de vuelos recuperados es 3 
+Se solicita a la ventana mostrar la información de 3 vuelos para viaje de ida
+Carga la tabla de IDA.
+Se produjo una excepción Cannot invoke "java.sql.Time.toString()" because the return value of "vuelos.modelo.empleado.beans.InstanciaVueloBean.getHoraSalida()" is null
+Crea una ventana modal informando sobre el mensaje.
+Saliendo de la aplicación.
+Se cierra la conexión a la BD.
+Se intenta cerrar la conexión activa
+Eliminación de la ventana.
+Se inicia la aplicación.
+Creación de la ventana de login
+Se registran los listeners.
+Se inicia la carga de parametros para conectar con la BD.
+Recuperación de los datos para la conexión con la BD
+Se intenta leer el archivo de propiedades cfg/conexionBD.properties
+se cargó exitosamente
+Parámetros de conexión: jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires
+Se inicializa la ventana de login.
+se registra el controlador.
+se muestra la ventana.
+Intenta ingresar como Empleado con legajo , password 
+Recupera el usuario de BD para Empleado para poder conectarse con los permisos de dicho usuario.
+Ingresa a recuperar el usuarioBD y passwordBD para acceder a la BD del usuario Empleado
+usuario empleado, password empleado
+Se crea el modelo Empleado.
+Se establece la conexión a la BD.
+Parametros de conexion: url= jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires, user=empleado, pass=empleado
+Se establece la conexión con la BD
+Se intenta autenticar el legajo  con password 
+Empleado  autenticado
+Inicializacion de la ventana del Empleado
+Se registran los listeners.
+Se crea el controlador del Empleado.
+Transfiere el control al nuevo controlador
+Solicita al DAO un empleado con legajo 1
+recupera el empleado que corresponde al legajo 1.
+Se registra al empleado ApEmp9, NomEmp9 con legajo 9
+muestra la ventana
+Recuperar del modelo los destinos posibles
+recupera las ciudades que tienen aeropuertos.
+SQL Query: SELECT * FROM ubicaciones
+informar a la ventana los destinos posibles
+Carga los combos de ciudades con las 10 ubicaciones recuperados
+Muestra el panel de consulta/reserva de vuelos.
+Informa a la vista que puede eliminar la ventana de login.
+Eliminación de la ventana de login.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:1 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Tue Feb 01 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT nro_vuelo, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2000-02-01' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo;
+La cantidad de vuelos recuperados es 0 
+Se solicita a la ventana mostrar la información de 0 vuelos para viaje de ida
+Carga la tabla de IDA.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:2 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Sun Jan 02 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT nro_vuelo, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2000-01-02' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo;
+La cantidad de vuelos recuperados es 3 
+Se solicita a la ventana mostrar la información de 3 vuelos para viaje de ida
+Carga la tabla de IDA.
+Se produjo una excepción Cannot invoke "java.sql.Time.toString()" because the return value of "vuelos.modelo.empleado.beans.InstanciaVueloBean.getHoraSalida()" is null
+Crea una ventana modal informando sobre el mensaje.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:2 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Sun Jan 02 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT nro_vuelo, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2000-01-02' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo;
+La cantidad de vuelos recuperados es 3 
+Se solicita a la ventana mostrar la información de 3 vuelos para viaje de ida
+Carga la tabla de IDA.
+Se produjo una excepción Cannot invoke "java.sql.Time.toString()" because the return value of "vuelos.modelo.empleado.beans.InstanciaVueloBean.getHoraSalida()" is null
+Crea una ventana modal informando sobre el mensaje.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:2 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Sun Jan 02 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT nro_vuelo, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2000-01-02' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo;
+La cantidad de vuelos recuperados es 3 
+Se solicita a la ventana mostrar la información de 3 vuelos para viaje de ida
+Carga la tabla de IDA.
+Se produjo una excepción Cannot invoke "java.sql.Time.toString()" because the return value of "vuelos.modelo.empleado.beans.InstanciaVueloBean.getHoraSalida()" is null
+Crea una ventana modal informando sobre el mensaje.
+Saliendo de la aplicación.
+Se cierra la conexión a la BD.
+Se intenta cerrar la conexión activa
+Eliminación de la ventana.
+Se inicia la aplicación.
+Creación de la ventana de login
+Se registran los listeners.
+Se inicia la carga de parametros para conectar con la BD.
+Recuperación de los datos para la conexión con la BD
+Se intenta leer el archivo de propiedades cfg/conexionBD.properties
+se cargó exitosamente
+Parámetros de conexión: jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires
+Se inicializa la ventana de login.
+se registra el controlador.
+se muestra la ventana.
+Intenta ingresar como Empleado con legajo , password 
+Recupera el usuario de BD para Empleado para poder conectarse con los permisos de dicho usuario.
+Ingresa a recuperar el usuarioBD y passwordBD para acceder a la BD del usuario Empleado
+usuario empleado, password empleado
+Se crea el modelo Empleado.
+Se establece la conexión a la BD.
+Parametros de conexion: url= jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires, user=empleado, pass=empleado
+Se establece la conexión con la BD
+Se intenta autenticar el legajo  con password 
+Empleado  autenticado
+Inicializacion de la ventana del Empleado
+Se registran los listeners.
+Se crea el controlador del Empleado.
+Transfiere el control al nuevo controlador
+Solicita al DAO un empleado con legajo 1
+recupera el empleado que corresponde al legajo 1.
+Se registra al empleado ApEmp9, NomEmp9 con legajo 9
+muestra la ventana
+Recuperar del modelo los destinos posibles
+recupera las ciudades que tienen aeropuertos.
+SQL Query: SELECT * FROM ubicaciones
+informar a la ventana los destinos posibles
+Carga los combos de ciudades con las 10 ubicaciones recuperados
+Muestra el panel de consulta/reserva de vuelos.
+Informa a la vista que puede eliminar la ventana de login.
+Eliminación de la ventana de login.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:1 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Tue Feb 01 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT nro_vuelo, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2000-02-01' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo;
+La cantidad de vuelos recuperados es 0 
+Se solicita a la ventana mostrar la información de 0 vuelos para viaje de ida
+Carga la tabla de IDA.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:2 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Sun Jan 02 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT nro_vuelo, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2000-01-02' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo;
+La cantidad de vuelos recuperados es 3 
+Se solicita a la ventana mostrar la información de 3 vuelos para viaje de ida
+Carga la tabla de IDA.
+Se produjo una excepción Cannot invoke "java.sql.Time.toString()" because the return value of "vuelos.modelo.empleado.beans.InstanciaVueloBean.getHoraSalida()" is null
+Crea una ventana modal informando sobre el mensaje.
+Saliendo de la aplicación.
+Se cierra la conexión a la BD.
+Se intenta cerrar la conexión activa
+Eliminación de la ventana.
+Se inicia la aplicación.
+Creación de la ventana de login
+Se registran los listeners.
+Se inicia la carga de parametros para conectar con la BD.
+Recuperación de los datos para la conexión con la BD
+Se intenta leer el archivo de propiedades cfg/conexionBD.properties
+se cargó exitosamente
+Parámetros de conexión: jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires
+Se inicializa la ventana de login.
+se registra el controlador.
+se muestra la ventana.
+Intenta ingresar como Empleado con legajo , password 
+Recupera el usuario de BD para Empleado para poder conectarse con los permisos de dicho usuario.
+Ingresa a recuperar el usuarioBD y passwordBD para acceder a la BD del usuario Empleado
+usuario empleado, password empleado
+Se crea el modelo Empleado.
+Se establece la conexión a la BD.
+Parametros de conexion: url= jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires, user=empleado, pass=empleado
+Se establece la conexión con la BD
+Se intenta autenticar el legajo  con password 
+Empleado  autenticado
+Inicializacion de la ventana del Empleado
+Se registran los listeners.
+Se crea el controlador del Empleado.
+Transfiere el control al nuevo controlador
+Solicita al DAO un empleado con legajo 1
+recupera el empleado que corresponde al legajo 1.
+Se registra al empleado ApEmp9, NomEmp9 con legajo 9
+muestra la ventana
+Recuperar del modelo los destinos posibles
+recupera las ciudades que tienen aeropuertos.
+SQL Query: SELECT * FROM ubicaciones
+informar a la ventana los destinos posibles
+Carga los combos de ciudades con las 10 ubicaciones recuperados
+Muestra el panel de consulta/reserva de vuelos.
+Informa a la vista que puede eliminar la ventana de login.
+Eliminación de la ventana de login.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:2 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Sun Jan 02 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT nro_vuelo, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2000-01-02' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo;
+La cantidad de vuelos recuperados es 3 
+Se solicita a la ventana mostrar la información de 3 vuelos para viaje de ida
+Carga la tabla de IDA.
+Se produjo una excepción Cannot invoke "vuelos.modelo.empleado.beans.AeropuertoBean.getNombre()" because the return value of "vuelos.modelo.empleado.beans.InstanciaVueloBean.getAeropuertoLlegada()" is null
+Crea una ventana modal informando sobre el mensaje.
+Se inicia la aplicación.
+Creación de la ventana de login
+Se registran los listeners.
+Se inicia la carga de parametros para conectar con la BD.
+Recuperación de los datos para la conexión con la BD
+Se intenta leer el archivo de propiedades cfg/conexionBD.properties
+se cargó exitosamente
+Parámetros de conexión: jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires
+Se inicializa la ventana de login.
+se registra el controlador.
+se muestra la ventana.
+Intenta ingresar como Empleado con legajo , password 
+Recupera el usuario de BD para Empleado para poder conectarse con los permisos de dicho usuario.
+Ingresa a recuperar el usuarioBD y passwordBD para acceder a la BD del usuario Empleado
+usuario empleado, password empleado
+Se crea el modelo Empleado.
+Se establece la conexión a la BD.
+Parametros de conexion: url= jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires, user=empleado, pass=empleado
+Se establece la conexión con la BD
+Se intenta autenticar el legajo  con password 
+Empleado  autenticado
+Inicializacion de la ventana del Empleado
+Se registran los listeners.
+Se crea el controlador del Empleado.
+Transfiere el control al nuevo controlador
+Solicita al DAO un empleado con legajo 1
+recupera el empleado que corresponde al legajo 1.
+Se registra al empleado ApEmp9, NomEmp9 con legajo 9
+muestra la ventana
+Recuperar del modelo los destinos posibles
+recupera las ciudades que tienen aeropuertos.
+SQL Query: SELECT * FROM ubicaciones
+informar a la ventana los destinos posibles
+Carga los combos de ciudades con las 10 ubicaciones recuperados
+Muestra el panel de consulta/reserva de vuelos.
+Informa a la vista que puede eliminar la ventana de login.
+Eliminación de la ventana de login.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:2 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Sun Jan 02 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT nro_vuelo, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2000-01-02' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo;
+La cantidad de vuelos recuperados es 3 
+Se solicita a la ventana mostrar la información de 3 vuelos para viaje de ida
+Carga la tabla de IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo 1 con fecha 1969-12-31 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo 1 .
+Se recuperaron 0 clases para el vuelo 1
+Carga el detalle tabla de detalle de solo IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo 1 con fecha 1969-12-31 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo 1 .
+Se recuperaron 0 clases para el vuelo 1
+Carga el detalle tabla de detalle de solo IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo 1 con fecha 1969-12-31 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo 1 .
+Se recuperaron 0 clases para el vuelo 1
+Carga el detalle tabla de detalle de solo IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo 1 con fecha 1969-12-31 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo 1 .
+Se recuperaron 0 clases para el vuelo 1
+Carga el detalle tabla de detalle de solo IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo 1 con fecha 1969-12-31 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo 1 .
+Se recuperaron 0 clases para el vuelo 1
+Carga el detalle tabla de detalle de solo IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo 1 con fecha 1969-12-31 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo 1 .
+Se recuperaron 0 clases para el vuelo 1
+Carga el detalle tabla de detalle de solo IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo 1 con fecha 1969-12-31 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo 1 .
+Se recuperaron 0 clases para el vuelo 1
+Carga el detalle tabla de detalle de solo IDA.
+Saliendo de la aplicación.
+Se cierra la conexión a la BD.
+Se intenta cerrar la conexión activa
+Eliminación de la ventana.
+Saliendo de la aplicación.
+Se cierra la conexión a la BD.
+Se intenta cerrar la conexión activa
+Eliminación de la ventana.
+Se inicia la aplicación.
+Creación de la ventana de login
+Se registran los listeners.
+Se inicia la carga de parametros para conectar con la BD.
+Recuperación de los datos para la conexión con la BD
+Se intenta leer el archivo de propiedades cfg/conexionBD.properties
+se cargó exitosamente
+Parámetros de conexión: jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires
+Se inicializa la ventana de login.
+se registra el controlador.
+se muestra la ventana.
+Intenta ingresar como Empleado con legajo , password 
+Recupera el usuario de BD para Empleado para poder conectarse con los permisos de dicho usuario.
+Ingresa a recuperar el usuarioBD y passwordBD para acceder a la BD del usuario Empleado
+usuario empleado, password empleado
+Se crea el modelo Empleado.
+Se establece la conexión a la BD.
+Parametros de conexion: url= jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires, user=empleado, pass=empleado
+Se establece la conexión con la BD
+Se intenta autenticar el legajo  con password 
+Empleado  autenticado
+Inicializacion de la ventana del Empleado
+Se registran los listeners.
+Se crea el controlador del Empleado.
+Transfiere el control al nuevo controlador
+Solicita al DAO un empleado con legajo 1
+recupera el empleado que corresponde al legajo 1.
+Se registra al empleado ApEmp9, NomEmp9 con legajo 9
+muestra la ventana
+Recuperar del modelo los destinos posibles
+recupera las ciudades que tienen aeropuertos.
+SQL Query: SELECT * FROM ubicaciones
+informar a la ventana los destinos posibles
+Carga los combos de ciudades con las 10 ubicaciones recuperados
+Muestra el panel de consulta/reserva de vuelos.
+Informa a la vista que puede eliminar la ventana de login.
+Eliminación de la ventana de login.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:2 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Sun Jan 02 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT nro_vuelo, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2000-01-02' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo;
+Se produjo una excepción Error inesperado al consultar la B.D.
+Crea una ventana modal informando sobre el mensaje.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:1 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Tue Feb 01 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT nro_vuelo, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2000-02-01' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo;
+La cantidad de vuelos recuperados es 0 
+Se solicita a la ventana mostrar la información de 0 vuelos para viaje de ida
+Carga la tabla de IDA.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:2 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Sun Jan 02 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT nro_vuelo, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2000-01-02' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo;
+Se produjo una excepción Error inesperado al consultar la B.D.
+Crea una ventana modal informando sobre el mensaje.
+Se inicia la aplicación.
+Creación de la ventana de login
+Se registran los listeners.
+Se inicia la carga de parametros para conectar con la BD.
+Recuperación de los datos para la conexión con la BD
+Se intenta leer el archivo de propiedades cfg/conexionBD.properties
+se cargó exitosamente
+Parámetros de conexión: jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires
+Se inicializa la ventana de login.
+se registra el controlador.
+se muestra la ventana.
+Intenta ingresar como Empleado con legajo , password 
+Recupera el usuario de BD para Empleado para poder conectarse con los permisos de dicho usuario.
+Ingresa a recuperar el usuarioBD y passwordBD para acceder a la BD del usuario Empleado
+usuario empleado, password empleado
+Se crea el modelo Empleado.
+Se establece la conexión a la BD.
+Parametros de conexion: url= jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires, user=empleado, pass=empleado
+Se establece la conexión con la BD
+Se intenta autenticar el legajo  con password 
+Empleado  autenticado
+Inicializacion de la ventana del Empleado
+Se registran los listeners.
+Se crea el controlador del Empleado.
+Transfiere el control al nuevo controlador
+Solicita al DAO un empleado con legajo 1
+recupera el empleado que corresponde al legajo 1.
+Se registra al empleado ApEmp9, NomEmp9 con legajo 9
+muestra la ventana
+Recuperar del modelo los destinos posibles
+recupera las ciudades que tienen aeropuertos.
+SQL Query: SELECT * FROM ubicaciones
+informar a la ventana los destinos posibles
+Carga los combos de ciudades con las 10 ubicaciones recuperados
+Muestra el panel de consulta/reserva de vuelos.
+Informa a la vista que puede eliminar la ventana de login.
+Eliminación de la ventana de login.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:1 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Tue Feb 01 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT nro_vuelo, fecha, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2000-02-01' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo;
+La cantidad de vuelos recuperados es 0 
+Se solicita a la ventana mostrar la información de 0 vuelos para viaje de ida
+Carga la tabla de IDA.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:2 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Sun Jan 02 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT nro_vuelo, fecha, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2000-01-02' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo;
+Se recuperó el item con aeropuerto de salida Adolfo Suarez Madrid-Barajas, aeropuerto de llegada Marrakech-Menara y fecha 2000-01-02
+Se recuperó el item con aeropuerto de salida Adolfo Suarez Madrid-Barajas, aeropuerto de llegada Marrakech-Menara y fecha 2000-01-02
+Se recuperó el item con aeropuerto de salida Adolfo Suarez Madrid-Barajas, aeropuerto de llegada Marrakech-Menara y fecha 2000-01-02
+La cantidad de vuelos recuperados es 3 
+Se solicita a la ventana mostrar la información de 3 vuelos para viaje de ida
+Carga la tabla de IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo 1 con fecha 1969-12-31 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo 1 .
+Se recuperaron 0 clases para el vuelo 1
+Carga el detalle tabla de detalle de solo IDA.
+Saliendo de la aplicación.
+Se cierra la conexión a la BD.
+Se intenta cerrar la conexión activa
+Eliminación de la ventana.
+Se inicia la aplicación.
+Creación de la ventana de login
+Se registran los listeners.
+Se inicia la carga de parametros para conectar con la BD.
+Recuperación de los datos para la conexión con la BD
+Se intenta leer el archivo de propiedades cfg/conexionBD.properties
+se cargó exitosamente
+Parámetros de conexión: jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires
+Se inicializa la ventana de login.
+se registra el controlador.
+se muestra la ventana.
+Intenta ingresar como Empleado con legajo , password 
+Recupera el usuario de BD para Empleado para poder conectarse con los permisos de dicho usuario.
+Ingresa a recuperar el usuarioBD y passwordBD para acceder a la BD del usuario Empleado
+usuario empleado, password empleado
+Se crea el modelo Empleado.
+Se establece la conexión a la BD.
+Parametros de conexion: url= jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires, user=empleado, pass=empleado
+Se establece la conexión con la BD
+Se intenta autenticar el legajo  con password 
+Empleado  autenticado
+Inicializacion de la ventana del Empleado
+Se registran los listeners.
+Se crea el controlador del Empleado.
+Transfiere el control al nuevo controlador
+Solicita al DAO un empleado con legajo 1
+recupera el empleado que corresponde al legajo 1.
+Se registra al empleado ApEmp9, NomEmp9 con legajo 9
+muestra la ventana
+Recuperar del modelo los destinos posibles
+recupera las ciudades que tienen aeropuertos.
+SQL Query: SELECT * FROM ubicaciones
+informar a la ventana los destinos posibles
+Carga los combos de ciudades con las 10 ubicaciones recuperados
+Muestra el panel de consulta/reserva de vuelos.
+Informa a la vista que puede eliminar la ventana de login.
+Eliminación de la ventana de login.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:2 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Sun Jan 02 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT nro_vuelo, fecha, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2000-01-02' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo;
+Se recuperó el item con aeropuerto de salida Adolfo Suarez Madrid-Barajas, aeropuerto de llegada Marrakech-Menara y fecha 2000-01-02
+Se recuperó el item con aeropuerto de salida Adolfo Suarez Madrid-Barajas, aeropuerto de llegada Marrakech-Menara y fecha 2000-01-02
+Se recuperó el item con aeropuerto de salida Adolfo Suarez Madrid-Barajas, aeropuerto de llegada Marrakech-Menara y fecha 2000-01-02
+La cantidad de vuelos recuperados es 3 
+Se solicita a la ventana mostrar la información de 3 vuelos para viaje de ida
+Carga la tabla de IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo 1 con fecha 1969-12-31 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo 1 .
+Se recuperaron 0 clases para el vuelo 1
+Carga el detalle tabla de detalle de solo IDA.
+Saliendo de la aplicación.
+Se cierra la conexión a la BD.
+Se intenta cerrar la conexión activa
+Eliminación de la ventana.
+Se inicia la aplicación.
+Creación de la ventana de login
+Se registran los listeners.
+Se inicia la carga de parametros para conectar con la BD.
+Recuperación de los datos para la conexión con la BD
+Se intenta leer el archivo de propiedades cfg/conexionBD.properties
+se cargó exitosamente
+Parámetros de conexión: jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires
+Se inicializa la ventana de login.
+se registra el controlador.
+se muestra la ventana.
+Intenta ingresar como Empleado con legajo , password 
+Recupera el usuario de BD para Empleado para poder conectarse con los permisos de dicho usuario.
+Ingresa a recuperar el usuarioBD y passwordBD para acceder a la BD del usuario Empleado
+usuario empleado, password empleado
+Se crea el modelo Empleado.
+Se establece la conexión a la BD.
+Parametros de conexion: url= jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires, user=empleado, pass=empleado
+Error al crear la conexión con la base de datos.
+SQLException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+SQLState: 08S01
+VendorError: 0
+No se pudo conectar a la BD.
+Crea una ventana modal informando: Error en la conexión con la BD..
+Intenta ingresar como Empleado con legajo , password 
+Recupera el usuario de BD para Empleado para poder conectarse con los permisos de dicho usuario.
+Ingresa a recuperar el usuarioBD y passwordBD para acceder a la BD del usuario Empleado
+usuario empleado, password empleado
+Se crea el modelo Empleado.
+Se establece la conexión a la BD.
+Parametros de conexion: url= jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires, user=empleado, pass=empleado
+Se establece la conexión con la BD
+Se intenta autenticar el legajo  con password 
+Hubo un error en la autenticación.
+Crea una ventana modal informando: El usuario o contraseña ingresados son incorrectos..
+Intenta ingresar como Empleado con legajo 101, password emp101
+Recupera el usuario de BD para Empleado para poder conectarse con los permisos de dicho usuario.
+Ingresa a recuperar el usuarioBD y passwordBD para acceder a la BD del usuario Empleado
+usuario empleado, password empleado
+Se crea el modelo Empleado.
+Se establece la conexión a la BD.
+Parametros de conexion: url= jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires, user=empleado, pass=empleado
+Se establece la conexión con la BD
+Se intenta autenticar el legajo 101 con password emp101
+Empleado 101 autenticado
+Inicializacion de la ventana del Empleado
+Se registran los listeners.
+Se crea el controlador del Empleado.
+Transfiere el control al nuevo controlador
+Solicita al DAO un empleado con legajo 101
+recupera el empleado que corresponde al legajo 101.
+Se registra al empleado Apellido_Emp101, Nombre_Emp101 con legajo 101
+muestra la ventana
+Recuperar del modelo los destinos posibles
+recupera las ciudades que tienen aeropuertos.
+SQL Query: SELECT * FROM ubicaciones
+informar a la ventana los destinos posibles
+Carga los combos de ciudades con las 5 ubicaciones recuperados
+Muestra el panel de consulta/reserva de vuelos.
+Informa a la vista que puede eliminar la ventana de login.
+Eliminación de la ventana de login.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:2 fechaHasta:null Origen:Argentina - Buenos Aires - Buenos Aires Destino:Argentina - Cordoba - Cordoba.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Sat Jan 02 00:00:00 ART 2923 desde Argentina - Buenos Aires - Buenos Aires a Argentina - Cordoba - Cordoba.
+La cantidad de vuelos recuperados es 0 
+Se solicita a la ventana mostrar la información de 0 vuelos para viaje de ida
+Carga la tabla de IDA.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:2 fechaHasta:null Origen:Argentina - Buenos Aires - Buenos Aires Destino:Argentina - Cordoba - Cordoba.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Mon Jan 02 00:00:00 ART 2023 desde Argentina - Buenos Aires - Buenos Aires a Argentina - Cordoba - Cordoba.
+La cantidad de vuelos recuperados es 9 
+Se solicita a la ventana mostrar la información de 9 vuelos para viaje de ida
+Carga la tabla de IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo BC1 con fecha 2023-01-02 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo BC1 .
+Se recuperaron 9 clases para el vuelo BC1
+Carga el detalle tabla de detalle de solo IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo BC1 con fecha 2023-01-02 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo BC1 .
+Se recuperaron 9 clases para el vuelo BC1
+Carga el detalle tabla de detalle de solo IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo BC1 con fecha 2023-01-02 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo BC1 .
+Se recuperaron 9 clases para el vuelo BC1
+Carga el detalle tabla de detalle de solo IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo BC1 con fecha 2023-01-02 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo BC1 .
+Se recuperaron 9 clases para el vuelo BC1
+Carga el detalle tabla de detalle de solo IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo BC1 con fecha 2023-01-02 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo BC1 .
+Se recuperaron 9 clases para el vuelo BC1
+Carga el detalle tabla de detalle de solo IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo BC1 con fecha 2023-01-02 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo BC1 .
+Se recuperaron 9 clases para el vuelo BC1
+Carga el detalle tabla de detalle de solo IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo BC1 con fecha 2023-01-02 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo BC1 .
+Se recuperaron 9 clases para el vuelo BC1
+Carga el detalle tabla de detalle de solo IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo BC1 con fecha 2023-01-02 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo BC1 .
+Se recuperaron 9 clases para el vuelo BC1
+Carga el detalle tabla de detalle de solo IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo BC1 con fecha 2023-01-02 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo BC1 .
+Se recuperaron 9 clases para el vuelo BC1
+Carga el detalle tabla de detalle de solo IDA.
+se selecciono una clase o se cambio la seleccion de vuelo y se actualizaron las clases (deseleccion)
+Se actualiza el detalle seleccionada para un vuelo de Solo Ida.
+se selecciono una clase o se cambio la seleccion de vuelo y se actualizaron las clases (deseleccion)
+Se actualiza el detalle seleccionada para un vuelo de Solo Ida.
+se selecciono una clase o se cambio la seleccion de vuelo y se actualizaron las clases (deseleccion)
+Se actualiza el detalle seleccionada para un vuelo de Solo Ida.
+Saliendo de la aplicación.
+Se cierra la conexión a la BD.
+Se intenta cerrar la conexión activa
+Eliminación de la ventana.
+Se inicia la aplicación.
+Creación de la ventana de login
+Se registran los listeners.
+Se inicia la carga de parametros para conectar con la BD.
+Recuperación de los datos para la conexión con la BD
+Se intenta leer el archivo de propiedades cfg/conexionBD.properties
+se cargó exitosamente
+Parámetros de conexión: jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires
+Se inicializa la ventana de login.
+se registra el controlador.
+se muestra la ventana.
+Intenta ingresar como Empleado con legajo 101, password emp101
+Recupera el usuario de BD para Empleado para poder conectarse con los permisos de dicho usuario.
+Ingresa a recuperar el usuarioBD y passwordBD para acceder a la BD del usuario Empleado
+usuario empleado, password empleado
+Se crea el modelo Empleado.
+Se establece la conexión a la BD.
+Parametros de conexion: url= jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires, user=empleado, pass=empleado
+Se establece la conexión con la BD
+Se intenta autenticar el legajo 101 con password emp101
+Hubo un error en la autenticación.
+Crea una ventana modal informando: El usuario o contraseña ingresados son incorrectos..
+Intenta ingresar como Empleado con legajo 101, password emp101
+Recupera el usuario de BD para Empleado para poder conectarse con los permisos de dicho usuario.
+Ingresa a recuperar el usuarioBD y passwordBD para acceder a la BD del usuario Empleado
+usuario empleado, password empleado
+Se crea el modelo Empleado.
+Se establece la conexión a la BD.
+Parametros de conexion: url= jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires, user=empleado, pass=empleado
+Se establece la conexión con la BD
+Se intenta autenticar el legajo 101 con password emp101
+Hubo un error en la autenticación.
+Crea una ventana modal informando: El usuario o contraseña ingresados son incorrectos..
+Intenta ingresar como Empleado con legajo 1032, password 1234
+Recupera el usuario de BD para Empleado para poder conectarse con los permisos de dicho usuario.
+Ingresa a recuperar el usuarioBD y passwordBD para acceder a la BD del usuario Empleado
+usuario empleado, password empleado
+Se crea el modelo Empleado.
+Se establece la conexión a la BD.
+Parametros de conexion: url= jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires, user=empleado, pass=empleado
+Se establece la conexión con la BD
+Se intenta autenticar el legajo 1032 con password 1234
+Empleado 1032 autenticado
+Inicializacion de la ventana del Empleado
+Se registran los listeners.
+Se crea el controlador del Empleado.
+Transfiere el control al nuevo controlador
+Solicita al DAO un empleado con legajo 1032
+recupera el empleado que corresponde al legajo 1032.
+Se registra al empleado Hernandez, Maria con legajo 1032
+muestra la ventana
+Recuperar del modelo los destinos posibles
+recupera las ciudades que tienen aeropuertos.
+SQL Query: SELECT * FROM ubicaciones
+informar a la ventana los destinos posibles
+Carga los combos de ciudades con las 10 ubicaciones recuperados
+Muestra el panel de consulta/reserva de vuelos.
+Informa a la vista que puede eliminar la ventana de login.
+Eliminación de la ventana de login.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:2 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Sun Jan 02 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+La cantidad de vuelos recuperados es 3 
+Se solicita a la ventana mostrar la información de 3 vuelos para viaje de ida
+Carga la tabla de IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo 1 con fecha 2000-01-02 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo 1 .
+Se recuperaron 3 clases para el vuelo 1
+Carga el detalle tabla de detalle de solo IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo 1 con fecha 2000-01-02 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo 1 .
+Se recuperaron 3 clases para el vuelo 1
+Carga el detalle tabla de detalle de solo IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo 1 con fecha 2000-01-02 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo 1 .
+Se recuperaron 3 clases para el vuelo 1
+Carga el detalle tabla de detalle de solo IDA.
+se selecciono una clase o se cambio la seleccion de vuelo y se actualizaron las clases (deseleccion)
+Se actualiza el detalle seleccionada para un vuelo de Solo Ida.
+se selecciono una clase o se cambio la seleccion de vuelo y se actualizaron las clases (deseleccion)
+Se actualiza el detalle seleccionada para un vuelo de Solo Ida.
+se selecciono una clase o se cambio la seleccion de vuelo y se actualizaron las clases (deseleccion)
+Se actualiza el detalle seleccionada para un vuelo de Solo Ida.
+se selecciono una clase o se cambio la seleccion de vuelo y se actualizaron las clases (deseleccion)
+Se actualiza el detalle seleccionada para un vuelo de Solo Ida.
+se selecciono una clase o se cambio la seleccion de vuelo y se actualizaron las clases (deseleccion)
+Se actualiza el detalle seleccionada para un vuelo de Solo Ida.
+Saliendo de la aplicación.
+Se cierra la conexión a la BD.
+Se intenta cerrar la conexión activa
+Eliminación de la ventana.
+Se inicia la aplicación.
+Creación de la ventana de login
+Se registran los listeners.
+Se inicia la carga de parametros para conectar con la BD.
+Recuperación de los datos para la conexión con la BD
+Se intenta leer el archivo de propiedades cfg/conexionBD.properties
+se cargó exitosamente
+Parámetros de conexión: jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires
+Se inicializa la ventana de login.
+se registra el controlador.
+se muestra la ventana.
+Intenta ingresar como Empleado con legajo 1032, password 1234
+Recupera el usuario de BD para Empleado para poder conectarse con los permisos de dicho usuario.
+Ingresa a recuperar el usuarioBD y passwordBD para acceder a la BD del usuario Empleado
+usuario empleado, password empleado
+Se crea el modelo Empleado.
+Se establece la conexión a la BD.
+Parametros de conexion: url= jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires, user=empleado, pass=empleado
+Se establece la conexión con la BD
+Se intenta autenticar el legajo 1032 con password 1234
+Empleado 1032 autenticado
+Inicializacion de la ventana del Empleado
+Se registran los listeners.
+Se crea el controlador del Empleado.
+Transfiere el control al nuevo controlador
+Solicita al DAO un empleado con legajo 1032
+recupera el empleado que corresponde al legajo 1032.
+Se registra al empleado Hernandez, Maria con legajo 1032
+muestra la ventana
+Recuperar del modelo los destinos posibles
+recupera las ciudades que tienen aeropuertos.
+SQL Query: SELECT * FROM ubicaciones
+informar a la ventana los destinos posibles
+Carga los combos de ciudades con las 10 ubicaciones recuperados
+Muestra el panel de consulta/reserva de vuelos.
+Informa a la vista que puede eliminar la ventana de login.
+Eliminación de la ventana de login.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:2 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Sun Jan 02 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT nro_vuelo, fecha, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2000-01-02' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo;
+Se recuperó el item con aeropuerto de salida Adolfo Suarez Madrid-Barajas, aeropuerto de llegada Marrakech-Menara y fecha 2000-01-02
+Se recuperó el item con aeropuerto de salida Adolfo Suarez Madrid-Barajas, aeropuerto de llegada Marrakech-Menara y fecha 2000-01-02
+Se recuperó el item con aeropuerto de salida Adolfo Suarez Madrid-Barajas, aeropuerto de llegada Marrakech-Menara y fecha 2000-01-02
+La cantidad de vuelos recuperados es 3 
+Se solicita a la ventana mostrar la información de 3 vuelos para viaje de ida
+Carga la tabla de IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo 1 con fecha 1969-12-31 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo 1 .
+Se recuperaron 0 clases para el vuelo 1
+Carga el detalle tabla de detalle de solo IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo 1 con fecha 1969-12-31 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo 1 .
+Se recuperaron 0 clases para el vuelo 1
+Carga el detalle tabla de detalle de solo IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo 1 con fecha 1969-12-31 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo 1 .
+Se recuperaron 0 clases para el vuelo 1
+Carga el detalle tabla de detalle de solo IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo 1 con fecha 1969-12-31 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo 1 .
+Se recuperaron 0 clases para el vuelo 1
+Carga el detalle tabla de detalle de solo IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo 1 con fecha 1969-12-31 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo 1 .
+Se recuperaron 0 clases para el vuelo 1
+Carga el detalle tabla de detalle de solo IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo 1 con fecha 1969-12-31 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo 1 .
+Se recuperaron 0 clases para el vuelo 1
+Carga el detalle tabla de detalle de solo IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo 1 con fecha 1969-12-31 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo 1 .
+Se recuperaron 0 clases para el vuelo 1
+Carga el detalle tabla de detalle de solo IDA.
+Saliendo de la aplicación.
+Se cierra la conexión a la BD.
+Se intenta cerrar la conexión activa
+Eliminación de la ventana.
+Se inicia la aplicación.
+Creación de la ventana de login
+Se registran los listeners.
+Se inicia la carga de parametros para conectar con la BD.
+Recuperación de los datos para la conexión con la BD
+Se intenta leer el archivo de propiedades cfg/conexionBD.properties
+se cargó exitosamente
+Parámetros de conexión: jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires
+Se inicializa la ventana de login.
+se registra el controlador.
+se muestra la ventana.
+Intenta ingresar como Empleado con legajo 1032, password 1234
+Recupera el usuario de BD para Empleado para poder conectarse con los permisos de dicho usuario.
+Ingresa a recuperar el usuarioBD y passwordBD para acceder a la BD del usuario Empleado
+usuario empleado, password empleado
+Se crea el modelo Empleado.
+Se establece la conexión a la BD.
+Parametros de conexion: url= jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires, user=empleado, pass=empleado
+Se establece la conexión con la BD
+Se intenta autenticar el legajo 1032 con password 1234
+Empleado 1032 autenticado
+Inicializacion de la ventana del Empleado
+Se registran los listeners.
+Se crea el controlador del Empleado.
+Transfiere el control al nuevo controlador
+Solicita al DAO un empleado con legajo 1032
+recupera el empleado que corresponde al legajo 1032.
+Se registra al empleado Hernandez, Maria con legajo 1032
+muestra la ventana
+Recuperar del modelo los destinos posibles
+recupera las ciudades que tienen aeropuertos.
+SQL Query: SELECT * FROM ubicaciones
+informar a la ventana los destinos posibles
+Carga los combos de ciudades con las 10 ubicaciones recuperados
+Muestra el panel de consulta/reserva de vuelos.
+Informa a la vista que puede eliminar la ventana de login.
+Eliminación de la ventana de login.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:1 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Tue Feb 01 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+La cantidad de vuelos recuperados es 0 
+Se solicita a la ventana mostrar la información de 0 vuelos para viaje de ida
+Carga la tabla de IDA.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:2 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Sun Jan 02 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+La cantidad de vuelos recuperados es 3 
+Se solicita a la ventana mostrar la información de 3 vuelos para viaje de ida
+Carga la tabla de IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo 1 con fecha 2000-01-02 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo 1 .
+Se recuperaron 3 clases para el vuelo 1
+Carga el detalle tabla de detalle de solo IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo 1 con fecha 2000-01-02 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo 1 .
+Se recuperaron 3 clases para el vuelo 1
+Carga el detalle tabla de detalle de solo IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo 1 con fecha 2000-01-02 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo 1 .
+Se recuperaron 3 clases para el vuelo 1
+Carga el detalle tabla de detalle de solo IDA.
+Saliendo de la aplicación.
+Se cierra la conexión a la BD.
+Se intenta cerrar la conexión activa
+Eliminación de la ventana.
+Se inicia la aplicación.
+Creación de la ventana de login
+Se registran los listeners.
+Se inicia la carga de parametros para conectar con la BD.
+Recuperación de los datos para la conexión con la BD
+Se intenta leer el archivo de propiedades cfg/conexionBD.properties
+se cargó exitosamente
+Parámetros de conexión: jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires
+Se inicializa la ventana de login.
+se registra el controlador.
+se muestra la ventana.
+Intenta ingresar como Empleado con legajo 1032, password 1234
+Recupera el usuario de BD para Empleado para poder conectarse con los permisos de dicho usuario.
+Ingresa a recuperar el usuarioBD y passwordBD para acceder a la BD del usuario Empleado
+usuario empleado, password empleado
+Se crea el modelo Empleado.
+Se establece la conexión a la BD.
+Parametros de conexion: url= jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires, user=empleado, pass=empleado
+Se establece la conexión con la BD
+Se intenta autenticar el legajo 1032 con password 1234
+Empleado 1032 autenticado
+Inicializacion de la ventana del Empleado
+Se registran los listeners.
+Se crea el controlador del Empleado.
+Transfiere el control al nuevo controlador
+Solicita al DAO un empleado con legajo 1032
+recupera el empleado que corresponde al legajo 1032.
+Se registra al empleado Hernandez, Maria con legajo 1032
+muestra la ventana
+Recuperar del modelo los destinos posibles
+recupera las ciudades que tienen aeropuertos.
+SQL Query: SELECT * FROM ubicaciones
+informar a la ventana los destinos posibles
+Carga los combos de ciudades con las 10 ubicaciones recuperados
+Muestra el panel de consulta/reserva de vuelos.
+Informa a la vista que puede eliminar la ventana de login.
+Eliminación de la ventana de login.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:1 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Tue Feb 01 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT nro_vuelo, fecha, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2000-02-01' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo GROUP BY nro_vuelo;
+La cantidad de vuelos recuperados es 0 
+Se solicita a la ventana mostrar la información de 0 vuelos para viaje de ida
+Carga la tabla de IDA.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:2 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Sun Jan 02 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT nro_vuelo, fecha, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2000-01-02' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo GROUP BY nro_vuelo;
+Se recuperó el item con aeropuerto de salida Adolfo Suarez Madrid-Barajas, aeropuerto de llegada Marrakech-Menara y fecha 2000-01-02
+La cantidad de vuelos recuperados es 1 
+Se solicita a la ventana mostrar la información de 1 vuelos para viaje de ida
+Carga la tabla de IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo 1 con fecha 1969-12-31 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo 1 .
+Se recuperaron 0 clases para el vuelo 1
+Carga el detalle tabla de detalle de solo IDA.
+debe informar al controlador para que recupere la info del detalle
+Se deseleccionó el vuelo
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:2 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Sun Jan 02 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT nro_vuelo, fecha, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2000-01-02' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo GROUP BY nro_vuelo;
+Se recuperó el item con aeropuerto de salida Adolfo Suarez Madrid-Barajas, aeropuerto de llegada Marrakech-Menara y fecha 2000-01-02
+La cantidad de vuelos recuperados es 1 
+Se solicita a la ventana mostrar la información de 1 vuelos para viaje de ida
+Carga la tabla de IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo 1 con fecha 1969-12-31 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo 1 .
+Se recuperaron 0 clases para el vuelo 1
+Carga el detalle tabla de detalle de solo IDA.
+Se inicia la aplicación.
+Creación de la ventana de login
+Se registran los listeners.
+Se inicia la carga de parametros para conectar con la BD.
+Recuperación de los datos para la conexión con la BD
+Se intenta leer el archivo de propiedades cfg/conexionBD.properties
+se cargó exitosamente
+Parámetros de conexión: jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires
+Se inicializa la ventana de login.
+se registra el controlador.
+se muestra la ventana.
+Intenta ingresar como Empleado con legajo 1032, password 1234
+Recupera el usuario de BD para Empleado para poder conectarse con los permisos de dicho usuario.
+Ingresa a recuperar el usuarioBD y passwordBD para acceder a la BD del usuario Empleado
+usuario empleado, password empleado
+Se crea el modelo Empleado.
+Se establece la conexión a la BD.
+Parametros de conexion: url= jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires, user=empleado, pass=empleado
+Se establece la conexión con la BD
+Se intenta autenticar el legajo 1032 con password 1234
+Empleado 1032 autenticado
+Inicializacion de la ventana del Empleado
+Se registran los listeners.
+Se crea el controlador del Empleado.
+Transfiere el control al nuevo controlador
+Solicita al DAO un empleado con legajo 1032
+recupera el empleado que corresponde al legajo 1032.
+Se registra al empleado Hernandez, Maria con legajo 1032
+muestra la ventana
+Recuperar del modelo los destinos posibles
+recupera las ciudades que tienen aeropuertos.
+SQL Query: SELECT * FROM ubicaciones
+informar a la ventana los destinos posibles
+Carga los combos de ciudades con las 10 ubicaciones recuperados
+Muestra el panel de consulta/reserva de vuelos.
+Informa a la vista que puede eliminar la ventana de login.
+Eliminación de la ventana de login.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:2 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Sun Jan 02 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT nro_vuelo, fecha, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2000-01-02' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo GROUP BY nro_vuelo;
+Se recuperó el item con aeropuerto de salida Adolfo Suarez Madrid-Barajas, aeropuerto de llegada Marrakech-Menara y fecha 2000-01-02
+La cantidad de vuelos recuperados es 1 
+Se solicita a la ventana mostrar la información de 1 vuelos para viaje de ida
+Carga la tabla de IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo 1 con fecha 1969-12-31 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo 1 .
+Se recuperaron 0 clases para el vuelo 1
+Carga el detalle tabla de detalle de solo IDA.
+Saliendo de la aplicación.
+Se cierra la conexión a la BD.
+Se intenta cerrar la conexión activa
+Eliminación de la ventana.
+Se inicia la aplicación.
+Creación de la ventana de login
+Se registran los listeners.
+Se inicia la carga de parametros para conectar con la BD.
+Recuperación de los datos para la conexión con la BD
+Se intenta leer el archivo de propiedades cfg/conexionBD.properties
+se cargó exitosamente
+Parámetros de conexión: jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires
+Se inicializa la ventana de login.
+se registra el controlador.
+se muestra la ventana.
+Intenta ingresar como Empleado con legajo 1032, password 1234
+Recupera el usuario de BD para Empleado para poder conectarse con los permisos de dicho usuario.
+Ingresa a recuperar el usuarioBD y passwordBD para acceder a la BD del usuario Empleado
+usuario empleado, password empleado
+Se crea el modelo Empleado.
+Se establece la conexión a la BD.
+Parametros de conexion: url= jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires, user=empleado, pass=empleado
+Se establece la conexión con la BD
+Se intenta autenticar el legajo 1032 con password 1234
+Empleado 1032 autenticado
+Inicializacion de la ventana del Empleado
+Se registran los listeners.
+Se crea el controlador del Empleado.
+Transfiere el control al nuevo controlador
+Solicita al DAO un empleado con legajo 1032
+recupera el empleado que corresponde al legajo 1032.
+Se registra al empleado Hernandez, Maria con legajo 1032
+muestra la ventana
+Recuperar del modelo los destinos posibles
+recupera las ciudades que tienen aeropuertos.
+SQL Query: SELECT * FROM ubicaciones
+informar a la ventana los destinos posibles
+Carga los combos de ciudades con las 10 ubicaciones recuperados
+Muestra el panel de consulta/reserva de vuelos.
+Informa a la vista que puede eliminar la ventana de login.
+Eliminación de la ventana de login.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:2 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Sun Jan 02 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT nro_vuelo, fecha, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2000-01-02' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo GROUP BY nro_vuelo;
+Se recuperó el item con aeropuerto de salida Adolfo Suarez Madrid-Barajas, aeropuerto de llegada Marrakech-Menara y fecha 2000-01-02
+La cantidad de vuelos recuperados es 1 
+Se solicita a la ventana mostrar la información de 1 vuelos para viaje de ida
+Carga la tabla de IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo 1 con fecha 1969-12-31 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo 1 .
+Se recuperaron 0 clases para el vuelo 1
+Carga el detalle tabla de detalle de solo IDA.
+Saliendo de la aplicación.
+Se cierra la conexión a la BD.
+Se intenta cerrar la conexión activa
+Eliminación de la ventana.
+Se inicia la aplicación.
+Creación de la ventana de login
+Se registran los listeners.
+Se inicia la carga de parametros para conectar con la BD.
+Recuperación de los datos para la conexión con la BD
+Se intenta leer el archivo de propiedades cfg/conexionBD.properties
+se cargó exitosamente
+Parámetros de conexión: jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires
+Se inicializa la ventana de login.
+se registra el controlador.
+se muestra la ventana.
+Intenta ingresar como Empleado con legajo 1032, password 1234
+Recupera el usuario de BD para Empleado para poder conectarse con los permisos de dicho usuario.
+Ingresa a recuperar el usuarioBD y passwordBD para acceder a la BD del usuario Empleado
+usuario empleado, password empleado
+Se crea el modelo Empleado.
+Se establece la conexión a la BD.
+Parametros de conexion: url= jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires, user=empleado, pass=empleado
+Se establece la conexión con la BD
+Se intenta autenticar el legajo 1032 con password 1234
+Empleado 1032 autenticado
+Inicializacion de la ventana del Empleado
+Se registran los listeners.
+Se crea el controlador del Empleado.
+Transfiere el control al nuevo controlador
+Solicita al DAO un empleado con legajo 1032
+recupera el empleado que corresponde al legajo 1032.
+Se registra al empleado Hernandez, Maria con legajo 1032
+muestra la ventana
+Recuperar del modelo los destinos posibles
+recupera las ciudades que tienen aeropuertos.
+SQL Query: SELECT * FROM ubicaciones
+informar a la ventana los destinos posibles
+Carga los combos de ciudades con las 10 ubicaciones recuperados
+Muestra el panel de consulta/reserva de vuelos.
+Informa a la vista que puede eliminar la ventana de login.
+Eliminación de la ventana de login.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:2 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Sun Jan 02 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT nro_vuelo, fecha, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2000-01-02' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo GROUP BY nro_vuelo;
+Se recuperó el item con aeropuerto de salida Adolfo Suarez Madrid-Barajas, aeropuerto de llegada Marrakech-Menara y fecha 2000-01-02
+La cantidad de vuelos recuperados es 1 
+Se solicita a la ventana mostrar la información de 1 vuelos para viaje de ida
+Carga la tabla de IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo 1 con fecha 2000-01-02 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo 1 .
+Se recuperaron 3 clases para el vuelo 1
+Carga el detalle tabla de detalle de solo IDA.
+se selecciono una clase o se cambio la seleccion de vuelo y se actualizaron las clases (deseleccion)
+Se actualiza el detalle seleccionada para un vuelo de Solo Ida.
+Saliendo de la aplicación.
+Se cierra la conexión a la BD.
+Se intenta cerrar la conexión activa
+Eliminación de la ventana.
+Se inicia la aplicación.
+Creación de la ventana de login
+Se registran los listeners.
+Se inicia la carga de parametros para conectar con la BD.
+Recuperación de los datos para la conexión con la BD
+Se intenta leer el archivo de propiedades cfg/conexionBD.properties
+se cargó exitosamente
+Parámetros de conexión: jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires
+Se inicializa la ventana de login.
+se registra el controlador.
+se muestra la ventana.
+Intenta ingresar como Empleado con legajo 1032, password 1234
+Recupera el usuario de BD para Empleado para poder conectarse con los permisos de dicho usuario.
+Ingresa a recuperar el usuarioBD y passwordBD para acceder a la BD del usuario Empleado
+usuario empleado, password empleado
+Se crea el modelo Empleado.
+Se establece la conexión a la BD.
+Parametros de conexion: url= jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires, user=empleado, pass=empleado
+Se establece la conexión con la BD
+Se intenta autenticar el legajo 1032 con password 1234
+Empleado 1032 autenticado
+Inicializacion de la ventana del Empleado
+Se registran los listeners.
+Se crea el controlador del Empleado.
+Transfiere el control al nuevo controlador
+Solicita al DAO un empleado con legajo 1032
+recupera el empleado que corresponde al legajo 1032.
+Se registra al empleado Hernandez, Maria con legajo 1032
+muestra la ventana
+Recuperar del modelo los destinos posibles
+recupera las ciudades que tienen aeropuertos.
+SQL Query: SELECT * FROM ubicaciones
+informar a la ventana los destinos posibles
+Carga los combos de ciudades con las 10 ubicaciones recuperados
+Muestra el panel de consulta/reserva de vuelos.
+Informa a la vista que puede eliminar la ventana de login.
+Eliminación de la ventana de login.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:2 fechaHasta:null Origen:Espanya - Madrid - Madrid Destino:Marruecos - Menara - Marrakech.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Sun Jan 02 00:00:00 ARST 2000 desde Espanya - Madrid - Madrid a Marruecos - Menara - Marrakech.
+SQL Query: SELECT nro_vuelo, fecha, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2000-01-02' AND ciudad_sale='Madrid' AND estado_sale='Madrid' AND pais_sale='Espanya' AND ciudad_llega='Marrakech' AND estado_llega='Menara' AND pais_llega='Marruecos') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo GROUP BY nro_vuelo;
+Se recuperó el item con aeropuerto de salida Adolfo Suarez Madrid-Barajas, aeropuerto de llegada Marrakech-Menara y fecha 2000-01-02
+La cantidad de vuelos recuperados es 1 
+Se solicita a la ventana mostrar la información de 1 vuelos para viaje de ida
+Carga la tabla de IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo 1 con fecha 2000-01-02 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo 1 .
+Se recuperaron 3 clases para el vuelo 1
+Carga el detalle tabla de detalle de solo IDA.
+Saliendo de la aplicación.
+Se cierra la conexión a la BD.
+Se intenta cerrar la conexión activa
+Eliminación de la ventana.
