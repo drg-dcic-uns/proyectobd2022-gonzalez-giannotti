@@ -296,7 +296,7 @@ CREATE VIEW vuelos_disponibles AS
 				instancias_vuelo.dia AS dia,
 				instancias_vuelo.fecha AS fecha,
 				brinda.clase AS clase,
-				TRUNCATE(cant_asientos + cant_asientos*porcentaje - IF(reserva_vuelo_clase.clase IS NULL, 0, COUNT(*)), 0) AS asientos_disponibles 
+				round(cant_asientos + cant_asientos*porcentaje - IF(reserva_vuelo_clase.clase IS NULL, 0, COUNT(*)), 0) AS asientos_disponibles 
 			FROM
 				instancias_vuelo
 				LEFT JOIN
