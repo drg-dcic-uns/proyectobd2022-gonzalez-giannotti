@@ -49,9 +49,10 @@ public class ModeloEmpleadoImpl extends ModeloImpl implements ModeloEmpleado {
 
 		boolean autenticado = false;
 
-		String query = "SELECT EXISTS (SELECT legajo FROM empleados WHERE legajo='%s' AND password = md5('%s')) AS existe;"
-				.formatted(legajo, password);
-		
+		String query = String.format(
+				"SELECT EXISTS (SELECT legajo FROM empleados WHERE legajo='%s' AND password = md5('%s')) AS existe;",
+				legajo, password);
+
 		logger.debug("SQL Query: {}", query);
 
 		Statement select = null;
@@ -63,16 +64,16 @@ public class ModeloEmpleadoImpl extends ModeloImpl implements ModeloEmpleado {
 			try {
 				select = conexion.createStatement();
 				resultset = select.executeQuery(query);
-				
+
 				resultset.next();
 				autenticado = resultset.getBoolean("existe");
-				
+
 				if (autenticado) {
 					this.legajo = Integer.parseInt(legajo);
 				} else {
 					this.legajo = null;
 				}
-				
+
 				resultset.close();
 				select.close();
 			} catch (SQLException ex) {
@@ -140,7 +141,7 @@ public class ModeloEmpleadoImpl extends ModeloImpl implements ModeloEmpleado {
 	public ArrayList<UbicacionesBean> recuperarUbicaciones() throws Exception {
 
 		logger.info("recupera las ciudades que tienen aeropuertos.");
-		
+
 		String query = "SELECT * FROM ubicaciones";
 
 		logger.debug("SQL Query: {}", query);

@@ -36,7 +36,7 @@ public class DAOEmpleadoImpl implements DAOEmpleado {
 	public EmpleadoBean recuperarEmpleado(int legajo) throws Exception {
 		logger.info("Recupera el empleado que corresponde al legajo {}.", legajo);
 
-		String query = "SELECT * FROM empleados WHERE legajo = %d;".formatted(legajo);
+		String query = String.format("SELECT * FROM empleados WHERE legajo = %d;", legajo);
 		
 		logger.debug("SQL Query: {}", query);
 		
