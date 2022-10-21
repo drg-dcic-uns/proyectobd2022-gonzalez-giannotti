@@ -42,43 +42,66 @@ public class ModeloEmpleadoImpl extends ModeloImpl implements ModeloEmpleado {
 	@Override
 	public boolean autenticarUsuarioAplicacion(String legajo, String password) throws Exception {
 		logger.info("Se intenta autenticar el legajo {} con password {}", legajo, password);
-		/**
-		 * TODO Código que autentica que exista un legajo de empleado y que el password
-		 * corresponda a ese legajo (recuerde que el password guardado en la BD está
-		 * encriptado con MD5) En caso exitoso deberá registrar el legajo en la
-		 * propiedad legajo y retornar true. Si la autenticación no es exitosa porque el
-		 * legajo no es válido o el password es incorrecto deberá retornar falso y si
-		 * hubo algún otro error deberá producir y propagar una excepción.
-		 */
-
-		// Datos estáticos de prueba. Quitar y reemplazar por código que recupera los
-		// datos reales.
-		this.legajo = 1;
-		return true;
-		// Fin datos estáticos de prueba.
+		
+		boolean autenticar= false;
+		String sql = "SELECT EXISTS (SELECT legajo from empleados WHERE legajo = " + legajo + " AND password = md5('" + password + "')) AS existe;";
+		Statement s = null;
+		ResultSet rs=null;
+		if(legajo== null || legajo.equals("") || password==null || password.equals("")) {
+			return false;
+		}
+			try
+			{       
+				s= conexion.createStatement();
+				rs= s.executeQuery(sql);
+				rs.next();
+				autenticar = rs.getBoolean("existe");
+				if(autenticar) {
+					this.legajo= Integer.parseInt(legajo);
+				}
+				else {
+					this.legajo= null;
+				}
+				rs.close();
+				s.close();
+				return autenticar;
+			}
+			catch (SQLException ex){
+			   logger.error("SQLException: " + ex.getMessage());
+			   logger.error("SQLState: " + ex.getSQLState());
+			   logger.error("VendorError: " + ex.getErrorCode());				   
+			}	
+				
+			
+		
+		return autenticar;
 	}
 
 	@Override
 	public ArrayList<String> obtenerTiposDocumento() {
 		logger.info("recupera los tipos de documentos.");
-		/**
-		 * TODO Debe retornar una lista de strings con los tipos de documentos. Deberia
-		 * propagar una excepción si hay algún error en la consulta.
-		 */
+		ArrayList<String> tipos= new ArrayList<String>();
+		
+		String sql= "(Select doc_tipo from Empleados) UNION (Select doc_tipo from Pasajeros);";
+		try
+			{       
+				Statement s= conexion.createStatement();
+				ResultSet rs= s.executeQuery(sql);
+				while(rs.next()) {
+					tipos.add(rs.getString("doc_tipo"));
+				}
+				rs.close();
+				s.close();
+				return tipos;
+			}
+			catch (SQLException ex){
+			   logger.error("SQLException: " + ex.getMessage());
+			   logger.error("SQLState: " + ex.getSQLState());
+			   logger.error("VendorError: " + ex.getErrorCode());				   
+			}			
 
-		/*
-		 * Datos estáticos de prueba. Quitar y reemplazar por código que recupera los
-		 * datos reales.
-		 * 
-		 * Como no hay una tabla con los tipos de documento, se deberán recuperar todos
-		 * los tipos validos de la tabla de pasajeros
-		 */
-		ArrayList<String> tipos = new ArrayList<String>();
-		tipos.add("DNI");
-		tipos.add("Pasaporte");
-		// Fin datos estáticos de prueba.
-
-		return tipos;
+		
+		return tipos; 
 	}
 
 	@Override
