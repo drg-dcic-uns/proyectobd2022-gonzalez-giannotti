@@ -70,7 +70,7 @@ public class DAOVuelosImpl implements DAOVuelos {
 				+ " FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2"
 				+ " WHERE (fecha='%s' AND ciudad_sale='%s' AND estado_sale='%s' AND pais_sale='%s' AND ciudad_llega='%s' AND estado_llega='%s' AND pais_llega='%s')"
 				+ " AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo GROUP BY nro_vuelo;"
-				,fechaVuelo_StringDB, origen_ciudad, origen_estado, origen_pais, destino_ciudad,
+				, fechaVuelo_StringDB, origen_ciudad, origen_estado, origen_pais, destino_ciudad,
 						destino_estado, destino_pais);
 
 		logger.debug("SQL Query: {}", query);

@@ -92,7 +92,7 @@ public class ModeloEmpleadoImpl extends ModeloImpl implements ModeloEmpleado {
 	 */
 	@Override
 	public ArrayList<String> obtenerTiposDocumento() {
-		logger.info("recupera los tipos de documentos.");
+		logger.info("Recupera los tipos de documentos.");
 
 		ArrayList<String> tipos = new ArrayList<String>();
 
