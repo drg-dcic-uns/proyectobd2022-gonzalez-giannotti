@@ -320,6 +320,156 @@ CREATE VIEW vuelos_disponibles AS
 		brinda
 ;
 
+# Creacion de stored procedures
+
+# Defino '!' como delimitador de sentencias
+delimiter !
+
+# Procedimiento para realizar una reserva de un vuelo de ida
+CREATE PROCEDURE reservar_ida(IN numero VARCHAR(45), IN fecha DATE, IN clase VARCHAR(20),
+                              IN tipo_doc VARCHAR(3), IN nro_doc INT, IN legajo_empleado INT)
+
+BEGIN
+    DECLARE cant_reservados SMALLINT;
+    DECLARE estado_reserva VARCHAR(20);
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+		BEGIN
+			SELECT 'SQLEXCEPTION!, transaccion abortada' AS resultado;
+			ROLLBACK;
+		END;
+
+    START TRANSACTION;
+        # Se verifica que los datos sean correctos
+        IF  EXISTS (SELECT * FROM pasajeros WHERE doc_nro = nro_doc AND doc_tipo = tipo_doc)
+        THEN
+            IF EXISTS (SELECT * FROM empleados WHERE legajo = legajo_empleado)
+            THEN
+                IF  EXISTS (SELECT * FROM instancias_vuelo as iv WHERE iv.vuelo = numero AND iv.fecha = fecha) AND
+                    EXISTS (SELECT * FROM instancias_vuelo as iv JOIN brinda as b WHERE (iv.fecha = fecha) AND
+                        (iv.vuelo = numero) AND (iv.vuelo = b.vuelo) AND (iv.dia = b.dia) AND (b.clase = clase))
+
+                THEN
+                    SELECT cantidad INTO cant_reservados FROM asientos_reservados ar WHERE ar.vuelo = numero AND
+                                                        ar.fecha = fecha AND ar.clase = clase FOR UPDATE;
+                    # Se verifica que el vuelo seleccionado tenga asientos disponibles en una clase y fecha dada
+                    IF EXISTS (SELECT * FROM vuelos_disponibles as vd WHERE vd.nro_vuelo = numero AND vd.fecha = fecha AND
+                                                        vd.clase = clase AND vd.asientos_disponibles > 0)
+                    THEN
+                        # Si la capacidad fisica está colmada, la reserva queda en espera, en caso contrario queda confirmada
+
+                        #Si no hay datos cargados en asientos_resevados, cant_reservados es empty set y da falso cuando tendria
+                        # que dar verdadero
+                        SELECT IF(cant_reservados < cant_asientos, 'confirmada', 'en espera') INTO estado_reserva
+                    	FROM instancias_vuelo as iv JOIN brinda as b
+                    	WHERE (iv.fecha = fecha) AND (iv.vuelo = numero) AND (iv.vuelo = b.vuelo) AND
+                              (iv.dia = b.dia) AND (b.clase = clase);
+
+                        # Se inserta la reserva y el vuelo en las tablas correspondientes
+                        INSERT INTO reservas(fecha, vencimiento, estado, doc_tipo, doc_nro, legajo) VALUES
+                            (CURDATE(), DATE_SUB(fecha, INTERVAL 15 DAY), estado_reserva, tipo_doc, nro_doc, legajo_empleado);
+                        INSERT INTO reserva_vuelo_clase VALUES (LAST_INSERT_ID(), numero, fecha, clase);
+
+                        UPDATE asientos_reservados as ar SET cantidad = cantidad + 1 WHERE (ar.vuelo = numero) AND
+                                                                                (ar.fecha = fecha) AND (ar.clase = clase);
+
+                        SELECT 'La reserva se ha realizado con exito' as resultado;
+                    ELSE
+        	            SELECT 'No hay lugares disponibles en el vuelo y clase solicitados' as resultado;
+                    END IF;
+                ELSE
+                    SELECT 'No existe el vuelo en el dia y clase solicitados' as resultado;
+                END IF;
+            ELSE
+                SELECT 'No se encuentra el empleado' as resultado;
+            END IF;
+        ELSE
+			SELECT 'No existe el pasajero indicado' AS resultado;
+		END IF;
+	COMMIT;
+END;!
+
+# Procedimiento para realizar una reserva de un vuelo de ida y uno de vuelta
+CREATE PROCEDURE reservar_ida_vuelta(IN nro_ida VARCHAR(45),IN nro_vuelta VARCHAR(45), IN fecha_ida DATE,
+                        IN fecha_vuelta DATE, IN clase_ida VARCHAR(20),IN clase_vuelta VARCHAR(20),
+                        IN tipo_doc VARCHAR(3), IN nro_doc INT, IN legajo_empleado INT)
+
+BEGIN
+
+    DECLARE estado_reserva VARCHAR(20);
+    DECLARE cant_reservados_ida SMALLINT;
+    DECLARE cant_reservados_vuelta SMALLINT;
+    DECLARE id_reserva_vuelo INT;
+
+        START TRANSACTION;
+            # Se verifica que los datos sean correctos
+            IF  EXISTS (SELECT * FROM pasajeros WHERE doc_nro = nro_doc AND doc_tipo = tipo_doc)
+            THEN
+                IF EXISTS (SELECT * FROM empleados WHERE legajo = legajo_empleado)
+                THEN
+                    IF  EXISTS (SELECT * FROM instancias_vuelo as iv WHERE iv.vuelo = nro_ida AND iv.fecha = fecha_ida) AND
+        			    EXISTS (SELECT * FROM instancias_vuelo as iv WHERE iv.vuelo = nro_vuelta AND iv.fecha = fecha_vuelta) AND
+                        EXISTS (SELECT * FROM instancias_vuelo as iv, brinda as b WHERE iv.fecha = fecha_ida AND
+                                    iv.vuelo = nro_ida AND iv.vuelo = b.vuelo AND iv.dia = b.dia AND b.clase = clase_ida) AND
+            			EXISTS (SELECT * FROM instancias_vuelo as iv, brinda as b WHERE iv.fecha = fecha_vuelta AND
+                                    iv.vuelo = nro_vuelta AND iv.vuelo = b.vuelo AND iv.dia = b.dia AND b.clase = clase_vuelta)
+                    THEN
+                        SELECT cantidad INTO cant_reservados_ida FROM asientos_reservados as ar WHERE ar.vuelo = nro_ida AND
+                                                                            ar.fecha = fecha_ida AND ar.clase = clase_ida FOR UPDATE;
+                        SELECT cantidad INTO cant_reservados_vuelta FROM asientos_reservados as ar WHERE ar.vuelo = nro_vuelta AND
+                                                                        ar.fecha = fecha_vuelta AND ar.clase = clase_vuelta FOR UPDATE;
+
+                        # Se verifica que el vuelo de ida tenga asientos disponibles
+                        IF EXISTS (SELECT * FROM vuelos_disponibles as vd WHERE vd.nro_vuelo = nro_ida AND vd.fecha = fecha_ida AND
+                                                                        vd.clase = clase_ida AND asientos_disponibles > 0)
+                        THEN
+                            # Se verifica que el vuelo de vuelta tenga asientos disponibles
+                            IF EXISTS (SELECT * FROM vuelos_disponibles as vd WHERE vd.nro_vuelo = nro_vuelta AND vd.fecha = fecha_vuelta AND
+                                                                        vd.clase = clase_vuelta AND asientos_disponibles > 0)
+                            THEN
+                                SELECT IF(cant_reservados_ida < cant_asientos, 'confirmada', 'en espera') INTO estado_reserva
+                                FROM instancias_vuelo NATURAL JOIN brinda
+                                WHERE (vuelo = nro_ida) AND (fecha = fecha_ida) AND (clase = clase_ida);
+
+                                IF (estado_reserva = 'confirmada')
+                                THEN
+                                    SELECT IF(cant_reservados_vuelta < cant_asientos, 'confirmada', 'en espera') INTO estado_reserva
+                                    FROM instancias_vuelo NATURAL JOIN brinda
+                                    WHERE (vuelo = nro_vuelta) AND (fecha = fecha_vuelta) AND (clase = clase_vuelta);
+                                END IF;
+
+                                # Se inserta la reserva y los vuelos en las tablas correspondientes
+                                INSERT INTO reservas(fecha, vencimiento, estado, doc_tipo, doc_nro, legajo) VALUES
+                                    (CURDATE(), DATE_SUB(fecha_ida, INTERVAL 15 DAY), estado_reserva, tipo_doc, nro_doc, legajo_empleado);
+                                SET id_reserva_vuelo:= LAST_INSERT_ID();
+                                INSERT INTO reserva_vuelo_clase VALUES (LAST_INSERT_ID(), nro_ida, fecha_ida, clase_ida);
+                                INSERT INTO reserva_vuelo_clase VALUES (LAST_INSERT_ID(), nro_vuelta, fecha_vuelta, clase_vuelta);
+
+                                UPDATE asientos_reservados SET cantidad = cantidad + 1 WHERE vuelo = nro_ida AND
+                                                                            fecha = fecha_ida AND clase = clase_ida;
+                                UPDATE asientos_reservados SET cantidad = cantidad + 1 WHERE vuelo = nro_vuelta AND
+                                                                            fecha = fecha_vuelta AND clase = clase_vuelta;
+
+                                SELECT 'La reserva se ha realizado con exito' as resultado;
+                            ELSE
+                                SELECT 'No hay lugares disponibles para el vuelo de vuelta en la clase solicitada' as resultado;
+                            END IF;
+                        ELSE
+                            SELECT 'No hay lugares disponibles para el vuelo de ida en la clase solicitada' as resultado;
+                        END IF;
+                    ELSE
+                        SELECT 'Datos de vuelos incorrectos' as resultado;
+                    END IF;
+                ELSE
+                    SELECT 'No se encuentra el empleado' as resultado;
+                END IF;
+            ELSE
+    			SELECT 'No existe el pasajero indicado' AS resultado;
+    		END IF;
+    	COMMIT;
+    END;!
+
+delimiter ;
+
 
 /* usuario admin */
 CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin';
