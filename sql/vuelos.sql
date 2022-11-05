@@ -332,6 +332,7 @@ CREATE PROCEDURE reservar_ida(IN numero VARCHAR(45), IN fecha DATE, IN clase VAR
 BEGIN
     DECLARE cant_reservados SMALLINT;
     DECLARE estado_reserva VARCHAR(20);
+    DECLARE id_reserva_vuelo INT;
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
 		BEGIN
 			SELECT 'SQLEXCEPTION!, transaccion abortada' AS resultado;
@@ -367,6 +368,7 @@ BEGIN
                         # Se inserta la reserva y el vuelo en las tablas correspondientes
                         INSERT INTO reservas(fecha, vencimiento, estado, doc_tipo, doc_nro, legajo) VALUES
                             (CURDATE(), DATE_SUB(fecha, INTERVAL 15 DAY), estado_reserva, tipo_doc, nro_doc, legajo_empleado);
+			 SET id_reserva_vuelo:= LAST_INSERT_ID();
                         INSERT INTO reserva_vuelo_clase VALUES (LAST_INSERT_ID(), numero, fecha, clase);
 
                         UPDATE asientos_reservados as ar SET cantidad = cantidad + 1 WHERE (ar.vuelo = numero) AND
