@@ -469,6 +469,28 @@ BEGIN
     		END IF;
     	COMMIT;
     END;!
+	
+/* Creación del trigger que se activa cuando se inserta una instancia de vuelo. */
+/* Su propósito es inicializar automáticamente en cero la cantidad de asientos 
+reservados asociados a cada clase correspondiente a cada instancia de vuelo insertada. */
+CREATE TRIGGER asientos_reservados_init
+AFTER INSERT ON instancias_vuelo
+FOR EACH ROW
+BEGIN
+	# declaro la variable que va a almacenar cada clase que existe en la base de datos.
+	DECLARE clase_it VARCHAR(20);
+	# declaro un flag para cortar el loop.
+	DECLARE fin BOOLEAN DEFAULT FALSE;
+	DECLARE C CURSOR for SELECT nombre FROM clases;
+	DECLARE CONTINUE HANDLER FOR NOT FOUND SET fin=TRUE;
+	OPEN C;
+	FETCH C INTO clase_it;
+	WHILE NOT fin DO
+		INSERT INTO asientos_reservados (vuelo, fecha, clase, cantidad)
+		VALUES (NEW.vuelo, NEW.fecha, clase_it, 0);
+		FETCH C INTO clase_it;
+	END WHILE;
+END; !
 
 delimiter ;
 
