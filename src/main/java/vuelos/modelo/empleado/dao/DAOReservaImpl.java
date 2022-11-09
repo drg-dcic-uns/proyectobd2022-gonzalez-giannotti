@@ -1,8 +1,15 @@
 package vuelos.modelo.empleado.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Types;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.sql.CallableStatement;
 
 import vuelos.modelo.empleado.beans.DetalleVueloBean;
 import vuelos.modelo.empleado.beans.EmpleadoBean;
@@ -43,35 +50,57 @@ public class DAOReservaImpl implements DAOReserva {
 		 * 
 		 * @throws Exception. Deberá propagar la excepción si ocurre alguna. Puede capturarla para loguear los errores
 		 *		   pero luego deberá propagarla para que el controlador se encargue de manejarla.
-		 *
-		 * try (CallableStatement cstmt = conexion.prepareCall("CALL PROCEDURE reservaSoloIda(?, ?, ?, ?, ?, ?, ?)"))
-		 * {
-		 *  ...
-		 * }
-		 * catch (SQLException ex){
-		 * 			logger.debug("Error al consultar la BD. SQLException: {}. SQLState: {}. VendorError: {}.", ex.getMessage(), ex.getSQLState(), ex.getErrorCode());
-		 *  		throw ex;
-		 * } 
 		 */
 		
 		/*
-		 * Datos estaticos de prueba: Quitar y reemplazar por código que invoca al S.P.
-		 * 
-		 * - Si pasajero tiene nro_doc igual a 1 retorna 101 codigo de reserva y si se pregunta por dicha reserva como dato de prueba resultado "Reserva confirmada"
-		 * - Si pasajero tiene nro_doc igual a 2 retorna 102 codigo de reserva y si se pregunta por dicha reserva como dato de prueba resultado "Reserva en espera"
-		 * - Si pasajero tiene nro_doc igual a 3 se genera una excepción, resultado "No hay asientos disponibles"
-		 * - Si pasajero tiene nro_doc igual a 4 se genera una excepción, resultado "El empleado no es válido"
-		 * - Si pasajero tiene nro_doc igual a 5 se genera una excepción, resultado "El pasajero no está registrado"
-		 * - Si pasajero tiene nro_doc igual a 6 se genera una excepción, resultado "El vuelo no es válido"
-		 * - Si pasajero tiene nro_doc igual a 7 se genera una excepción de conexión.
+		 * reservar_ida(IN numero VARCHAR(45), IN fecha DATE, IN clase VARCHAR(20),
+                              IN tipo_doc VARCHAR(3), IN nro_doc INT, IN legajo_empleado INT)
 		 */
-		DAOReservaDatosPrueba.registrarReservaSoloIda(pasajero, vuelo, detalleVuelo, empleado);
-		ReservaBean r = DAOReservaDatosPrueba.getReserva();
-		logger.debug("Reserva: {}, {}", r.getNumero(), r.getEstado());
-		int resultado = DAOReservaDatosPrueba.getReserva().getNumero();
 		
-		return resultado;
-		// Fin datos estáticos de prueba.
+		
+		int nro_reserva = -1;		
+		String query = String.format("CALL reservar_ida(%s, %s, %s, %s, %d, %d);", vuelo.getNroVuelo(), vuelo.getFechaVuelo(), detalleVuelo.getClase(), pasajero.getTipoDocumento(), pasajero.getNroDocumento(), empleado.getLegajo());
+		
+		try {
+			CallableStatement cstmt = conexion.prepareCall(query);
+			ResultSet resultset = cstmt.executeQuery();
+			
+			while (resultset.next()) {
+				String resultado = resultset.getString("resultado");
+				//Lo veo muy hardcodeado, si no tuviéramos conocimiento de la estructura interna de los procedures entonces no sabríamos cuál es el mensaje específico con el que hay que comparar?
+				if (resultado == "La reserva se ha realizado con exito") {
+					//Si otra petición se completó justo entre medio de esta y el last_insert_id (por concurrencia) entonces se sobreescribe su valor y no sirve.
+					//Otra idea que se me ocurre es acceder a la tabla de reservas, ordenar descendentemente y rescatar el ultimo numero (es llave).
+					//También viendo el debug comentado de más abajo se me ocurre que en realidad habría que rescatar la tupla entera.
+					query = "SELECT LAST_INSERT_ID() AS nro_reserva";
+					PreparedStatement stmt = conexion.prepareStatement(query);
+					ResultSet resultset2 = stmt.executeQuery(query);
+					
+					if (resultset2.next()) {
+						nro_reserva = resultset2.getInt("nro_reserva");
+					}
+					
+					stmt.close();
+					resultset2.close();
+				}
+				else {
+					throw new Exception(resultado);
+				}
+			}
+			
+			
+			cstmt.close();
+			resultset.close();
+			
+		} catch (SQLException ex) {
+			logger.debug("Error al consultar la BD. SQLException: {}. SQLState: {}. VendorError: {}.", ex.getMessage(), ex.getSQLState(), ex.getErrorCode());
+			throw ex;
+		}
+		
+		
+		//logger.debug("Reserva: {}, {}", r.getNumero(), r.getEstado());
+		
+		return nro_reserva;
 	}
 	
 	@Override
