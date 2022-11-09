@@ -9,6 +9,7 @@ import vuelos.modelo.empleado.beans.EmpleadoBean;
 import vuelos.modelo.empleado.beans.InstanciaVueloBean;
 import vuelos.modelo.empleado.beans.PasajeroBean;
 import vuelos.modelo.empleado.beans.ReservaBean;
+import vuelos.modelo.empleado.beans.ReservaBeanImpl;
 import vuelos.modelo.empleado.dao.datosprueba.DAOReservaDatosPrueba;
 
 public class DAOReservaImpl implements DAOReserva {
@@ -141,15 +142,16 @@ public class DAOReservaImpl implements DAOReserva {
 		 *      Nota: para acceder a la B.D. utilice la propiedad "conexion" que ya tiene una conexión
 		 *      establecida con el servidor de B.D. (inicializada en el constructor DAOReservaImpl(...)).
 		 */
+		
 		/*
 		 * Importante, tenga en cuenta de setear correctamente el atributo IdaVuelta con el método setEsIdaVuelta en la ReservaBean
 		 */
-		// Datos estáticos de prueba. Quitar y reemplazar por código que recupera los datos reales.
-		ReservaBean reserva = DAOReservaDatosPrueba.getReserva();
+		
+		ReservaBean reserva = new ReservaBeanImpl();
+		
 		logger.debug("Se recuperó la reserva: {}, {}", reserva.getNumero(), reserva.getEstado());
 		
 		return reserva;
-		// Fin datos estáticos de prueba.
 	}
 	
 
