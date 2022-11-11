@@ -179,6 +179,8 @@ public class DAOReservaImpl implements DAOReserva {
 				"reserva_vuelo_clase.vuelo, " +
 				"reserva_vuelo_clase.fecha_vuelo, " +
 				"reserva_vuelo_clase.clase, " +
+				"instancias_vuelo.dia AS vuelo_dia, " +
+				"instancias_vuelo.estado AS vuelo_estado, " +
 				"reservas.doc_tipo AS pasajero_doc_tipo, " +
 				"reservas.doc_nro AS pasajero_doc_nro, " +
 				"pasajeros.apellido AS pasajero_apellido, " +
@@ -196,11 +198,14 @@ public class DAOReservaImpl implements DAOReserva {
 			"FROM " +
 				"reservas JOIN " +
 				"reserva_vuelo_clase JOIN " +
+				"instancias_vuelo JOIN " +
 				"pasajeros JOIN " +
 				"empleados " +
 			"WHERE " +
 				"reservas.numero = " + codigoReserva + " AND " +
 				"reservas.numero = reserva_vuelo_clase.numero AND " +
+				"instancias_vuelo.vuelo = reserva_vuelo_clase.vuelo AND " +
+				"instancias_vuelo.fecha = reserva_vuelo_clase.fecha_vuelo AND " +
 				"reservas.doc_nro = pasajeros.doc_nro AND " +
 				"reservas.legajo = empleados.legajo;";
 		
