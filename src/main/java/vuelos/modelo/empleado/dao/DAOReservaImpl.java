@@ -215,9 +215,10 @@ public class DAOReservaImpl implements DAOReserva {
 			while (resultset.next()) {
 				rowCount++;
 				
-				//si hay 2 filas en la tabla virtual es porque la reserva es de ida y vuelta
+				//si hay 2 filas en la tabla virtual es porque la reserva es de ida y vuelta, y ya tenemos armada la ida.
 				if (rowCount == 2) {
 					reserva.setEsIdaVuelta(true);
+					//setear el resto de cosas
 					continue;
 				}
 				
