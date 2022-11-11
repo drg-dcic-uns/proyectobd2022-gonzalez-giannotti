@@ -179,8 +179,7 @@ public class DAOReservaImpl implements DAOReserva {
 		 */
 		
 		String query = 
-				"SELECT " +
-
+			"SELECT " +
 				"reservas.numero AS nro_reserva, " +
 				"reservas.fecha AS fecha_reserva, " +
 				"reservas.vencimiento AS venc_reserva, " +
@@ -253,6 +252,7 @@ public class DAOReservaImpl implements DAOReserva {
 				"reservas.legajo = empleados.legajo;";
 		
 		ReservaBean reserva = new ReservaBeanImpl();
+		int rowCount = 0;
 		
 		try {
 			Statement stmt = this.conexion.createStatement();
@@ -261,7 +261,6 @@ public class DAOReservaImpl implements DAOReserva {
 			InstanciaVueloClaseBean insvc = new InstanciaVueloClaseBeanImpl();
 			DetalleVueloBean dv = new DetalleVueloBeanImpl();
 
-			int rowCount = 0;
 			
 			while (resultset.next()) {
 				rowCount++;
@@ -269,34 +268,35 @@ public class DAOReservaImpl implements DAOReserva {
 				//si hay 2 filas en la tabla virtual es porque la reserva es de ida y vuelta, y ya tenemos armada la ida.
 				if (rowCount == 2) {
 					reserva.setEsIdaVuelta(true);
-					
-					
 				}
 				
-				reserva.setNumero(resultset.getInt("numero_reserva"));
-				reserva.setFecha(Fechas.convertirStringADateSQL(resultset.getString("fecha_reserva")));
-				reserva.setVencimiento(Fechas.convertirStringADateSQL(resultset.getString("venc_reserva")));
-				reserva.setEstado(resultset.getString("estado_reserva"));
+				//seteamos una sola vez la información que no varía en una reserva de ida y vuelta (dos tuplas)
+				if (rowCount == 1) {
+					EmpleadoBean emp = new EmpleadoBeanImpl();
+					emp.setLegajo(resultset.getInt("empleado_legajo"));
+					emp.setApellido(resultset.getString("empleado_apellido"));
+					emp.setNombre(resultset.getString("empleado_nombre"));
+					emp.setTipoDocumento(resultset.getString("empleado_doc_tipo"));
+					emp.setNroDocumento(resultset.getInt("empleado_doc_nro"));
+					emp.setTelefono(resultset.getString("empleado_telefono"));
+					
+					PasajeroBean pas = new PasajeroBeanImpl();
+					pas.setApellido(resultset.getString("pasajero_apellido"));
+					pas.setNombre(resultset.getString("pasajero_nombre"));
+					pas.setDireccion(resultset.getString("pasajero_direccion"));
+					pas.setTelefono(resultset.getString("pasajero_telefono"));
+					pas.setNacionalidad(resultset.getString("pasajero_nacionalidad"));
+					pas.setTipoDocumento(resultset.getString("pasajero_doc_tipo"));
+					pas.setNroDocumento(resultset.getInt("pasajero_doc_nro"));
+					
+					reserva.setEmpleado(emp);
+					reserva.setPasajero(pas);
+					reserva.setNumero(resultset.getInt("numero_reserva"));
+					reserva.setFecha(Fechas.convertirStringADateSQL(resultset.getString("fecha_reserva")));
+					reserva.setVencimiento(Fechas.convertirStringADateSQL(resultset.getString("venc_reserva")));
+					reserva.setEstado(resultset.getString("estado_reserva"));
+				}
 				
-				EmpleadoBean emp = new EmpleadoBeanImpl();
-				emp.setLegajo(resultset.getInt("empleado_legajo"));
-				emp.setApellido(resultset.getString("empleado_apellido"));
-				emp.setNombre(resultset.getString("empleado_nombre"));
-				emp.setTipoDocumento(resultset.getString("empleado_doc_tipo"));
-				emp.setNroDocumento(resultset.getInt("empleado_doc_nro"));
-				emp.setTelefono(resultset.getString("empleado_telefono"));
-				
-				PasajeroBean pas = new PasajeroBeanImpl();
-				pas.setApellido(resultset.getString("pasajero_apellido"));
-				pas.setNombre(resultset.getString("pasajero_nombre"));
-				pas.setDireccion(resultset.getString("pasajero_direccion"));
-				pas.setTelefono(resultset.getString("pasajero_telefono"));
-				pas.setNacionalidad(resultset.getString("pasajero_nacionalidad"));
-				pas.setTipoDocumento(resultset.getString("pasajero_doc_tipo"));
-				pas.setNroDocumento(resultset.getInt("pasajero_doc_nro"));
-				
-				reserva.setEmpleado(emp);
-				reserva.setPasajero(pas);
 				
 				InstanciaVueloBean ins = new InstanciaVueloBeanImpl();
 				ins.setNroVuelo(resultset.getString("nro_vuelo"));
@@ -314,10 +314,10 @@ public class DAOReservaImpl implements DAOReserva {
 				as1.setNombre(resultset.getString("nombre_aero_sale"));
 				as1.setTelefono(resultset.getString("telefono_sale"));
 				UbicacionesBean uas1 = new UbicacionesBeanImpl();
-				uas1.setCiudad(resultset.getString("ciudad_llega"));
-				uas1.setEstado(resultset.getString("estado_llega"));
-				uas1.setHuso(resultset.getInt("huso_llega"));
-				uas1.setPais(resultset.getString("pais_llega"));
+				uas1.setCiudad(resultset.getString("ciudad_sale"));
+				uas1.setEstado(resultset.getString("estado_sale"));
+				uas1.setHuso(resultset.getInt("huso_sale"));
+				uas1.setPais(resultset.getString("pais_sale"));
 				as1.setUbicacion(uas1);
 				
 				//aeropuerto de llegada
@@ -355,6 +355,9 @@ public class DAOReservaImpl implements DAOReserva {
 			throw ex;
 		}
 		
+		if (rowCount == 0) {
+			throw new Exception("No se ha encontrado la reserva indicada.");
+		}
 		
 		logger.debug("Se recuperó la reserva: {}, {}", reserva.getNumero(), reserva.getEstado());
 
