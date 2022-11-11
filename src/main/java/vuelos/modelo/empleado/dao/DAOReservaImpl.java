@@ -67,7 +67,7 @@ public class DAOReservaImpl implements DAOReserva {
 
 		int nro_reserva = -1;
 		String estado_reserva = "";
-		String query = String.format("CALL reservar_ida(''%s'', ''%s'', ''%s'', ''%s'', %d, %d);", vuelo.getNroVuelo(),
+		String query = String.format("CALL reservar_ida('%s', '%s', '%s', '%s', %d, %d);", vuelo.getNroVuelo(),
 				vuelo.getFechaVuelo(), detalleVuelo.getClase(), pasajero.getTipoDocumento(), pasajero.getNroDocumento(),
 				empleado.getLegajo());
 
@@ -251,6 +251,8 @@ public class DAOReservaImpl implements DAOReserva {
 				"reservas.doc_nro = pasajeros.doc_nro AND " +
 				"reservas.legajo = empleados.legajo;";
 		
+		logger.debug(query);
+		
 		ReservaBean reserva = new ReservaBeanImpl();
 		int rowCount = 0;
 		
@@ -291,7 +293,7 @@ public class DAOReservaImpl implements DAOReserva {
 					
 					reserva.setEmpleado(emp);
 					reserva.setPasajero(pas);
-					reserva.setNumero(resultset.getInt("numero_reserva"));
+					reserva.setNumero(resultset.getInt("nro_reserva"));
 					reserva.setFecha(Fechas.convertirStringADateSQL(resultset.getString("fecha_reserva")));
 					reserva.setVencimiento(Fechas.convertirStringADateSQL(resultset.getString("venc_reserva")));
 					reserva.setEstado(resultset.getString("estado_reserva"));
