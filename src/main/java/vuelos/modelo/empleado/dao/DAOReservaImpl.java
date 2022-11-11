@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.CallableStatement;
 
+import vuelos.modelo.empleado.beans.AeropuertoBean;
+import vuelos.modelo.empleado.beans.AeropuertoBeanImpl;
 import vuelos.modelo.empleado.beans.DetalleVueloBean;
 import vuelos.modelo.empleado.beans.EmpleadoBean;
 import vuelos.modelo.empleado.beans.EmpleadoBeanImpl;
@@ -20,6 +22,8 @@ import vuelos.modelo.empleado.beans.PasajeroBean;
 import vuelos.modelo.empleado.beans.PasajeroBeanImpl;
 import vuelos.modelo.empleado.beans.ReservaBean;
 import vuelos.modelo.empleado.beans.ReservaBeanImpl;
+import vuelos.modelo.empleado.beans.UbicacionesBean;
+import vuelos.modelo.empleado.beans.UbicacionesBeanImpl;
 import vuelos.utils.Fechas;
 
 public class DAOReservaImpl implements DAOReserva {
@@ -179,8 +183,6 @@ public class DAOReservaImpl implements DAOReserva {
 				"reserva_vuelo_clase.vuelo, " +
 				"reserva_vuelo_clase.fecha_vuelo, " +
 				"reserva_vuelo_clase.clase, " +
-				"instancias_vuelo.dia AS vuelo_dia, " +
-				"instancias_vuelo.estado AS vuelo_estado, " +
 				"reservas.doc_tipo AS pasajero_doc_tipo, " +
 				"reservas.doc_nro AS pasajero_doc_nro, " +
 				"pasajeros.apellido AS pasajero_apellido, " +
@@ -198,14 +200,11 @@ public class DAOReservaImpl implements DAOReserva {
 			"FROM " +
 				"reservas JOIN " +
 				"reserva_vuelo_clase JOIN " +
-				"instancias_vuelo JOIN " +
 				"pasajeros JOIN " +
 				"empleados " +
 			"WHERE " +
 				"reservas.numero = " + codigoReserva + " AND " +
 				"reservas.numero = reserva_vuelo_clase.numero AND " +
-				"instancias_vuelo.vuelo = reserva_vuelo_clase.vuelo AND " +
-				"instancias_vuelo.fecha = reserva_vuelo_clase.fecha_vuelo AND " +
 				"reservas.doc_nro = pasajeros.doc_nro AND " +
 				"reservas.legajo = empleados.legajo;";
 		
@@ -253,6 +252,34 @@ public class DAOReservaImpl implements DAOReserva {
 				reserva.setPasajero(pas);
 				
 				InstanciaVueloBean ins = new InstanciaVueloBeanImpl();
+				//aeropuerto de salida
+				AeropuertoBean as1 = new AeropuertoBeanImpl();
+				as1.setCodigo(resultset.getString("codigo_aero_sale"));
+				as1.setDireccion(resultset.getString("direccion_sale"));
+				as1.setNombre(resultset.getString("nombre_aero_sale"));
+				as1.setTelefono(resultset.getString("telefono_sale"));
+				UbicacionesBean uas1 = new UbicacionesBeanImpl();
+				uas1.setCiudad(resultset.getString("ciudad_llega"));
+				uas1.setEstado(resultset.getString("estado_llega"));
+				uas1.setHuso(resultset.getInt("huso_llega"));
+				uas1.setPais(resultset.getString("pais_llega"));
+				as1.setUbicacion(uas1);
+				
+				//aeropuerto de llegada
+				AeropuertoBean as2 = new AeropuertoBeanImpl();
+				as2.setCodigo(resultset.getString("codigo_aero_llega"));
+				as2.setDireccion(resultset.getString("direccion_llega"));
+				as2.setNombre(resultset.getString("nombre_aero_llega"));
+				as2.setTelefono(resultset.getString("telefono_llega"));
+				UbicacionesBean uas2 = new UbicacionesBeanImpl();
+				uas2.setCiudad(resultset.getString("ciudad_llega"));
+				uas2.setEstado(resultset.getString("estado_llega"));
+				uas2.setHuso(resultset.getInt("huso_llega"));
+				uas2.setPais(resultset.getString("pais_llega"));
+				as2.setUbicacion(uas2);
+				
+				ins.setAeropuertoSalida(as1);
+				ins.setAeropuertoLlegada(as2);
 				
 			}
 		} catch (SQLException ex) {
