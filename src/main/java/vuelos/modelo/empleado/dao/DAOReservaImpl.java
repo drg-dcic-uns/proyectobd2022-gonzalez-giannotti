@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,10 +15,13 @@ import java.sql.CallableStatement;
 import vuelos.modelo.empleado.beans.AeropuertoBean;
 import vuelos.modelo.empleado.beans.AeropuertoBeanImpl;
 import vuelos.modelo.empleado.beans.DetalleVueloBean;
+import vuelos.modelo.empleado.beans.DetalleVueloBeanImpl;
 import vuelos.modelo.empleado.beans.EmpleadoBean;
 import vuelos.modelo.empleado.beans.EmpleadoBeanImpl;
 import vuelos.modelo.empleado.beans.InstanciaVueloBean;
 import vuelos.modelo.empleado.beans.InstanciaVueloBeanImpl;
+import vuelos.modelo.empleado.beans.InstanciaVueloClaseBean;
+import vuelos.modelo.empleado.beans.InstanciaVueloClaseBeanImpl;
 import vuelos.modelo.empleado.beans.PasajeroBean;
 import vuelos.modelo.empleado.beans.PasajeroBeanImpl;
 import vuelos.modelo.empleado.beans.ReservaBean;
@@ -207,6 +211,8 @@ public class DAOReservaImpl implements DAOReserva {
 				"vuelos_disponibles.pais_llega, " +
 				"vuelos_disponibles.asientos_disponibles, " +
 				"vuelos_disponibles.precio, " +
+				"vuelos_disponibles.tiempo_estimado, " +
+				"vuelos_disponibles.asientos_disponibles, " +
 				"reservas.doc_tipo AS pasajero_doc_tipo, " +
 				"reservas.doc_nro AS pasajero_doc_nro, " +
 				"pasajeros.apellido AS pasajero_apellido, " +
@@ -251,7 +257,10 @@ public class DAOReservaImpl implements DAOReserva {
 		try {
 			Statement stmt = this.conexion.createStatement();
 			ResultSet resultset = stmt.executeQuery(query);
-			
+			ArrayList<InstanciaVueloClaseBean> list = new ArrayList<InstanciaVueloClaseBean>();
+			InstanciaVueloClaseBean insvc = new InstanciaVueloClaseBeanImpl();
+			DetalleVueloBean dv = new DetalleVueloBeanImpl();
+
 			int rowCount = 0;
 			
 			while (resultset.next()) {
@@ -260,8 +269,8 @@ public class DAOReservaImpl implements DAOReserva {
 				//si hay 2 filas en la tabla virtual es porque la reserva es de ida y vuelta, y ya tenemos armada la ida.
 				if (rowCount == 2) {
 					reserva.setEsIdaVuelta(true);
-					//setear el resto de cosas
-					continue;
+					
+					
 				}
 				
 				reserva.setNumero(resultset.getInt("numero_reserva"));
@@ -290,6 +299,14 @@ public class DAOReservaImpl implements DAOReserva {
 				reserva.setPasajero(pas);
 				
 				InstanciaVueloBean ins = new InstanciaVueloBeanImpl();
+				ins.setNroVuelo(resultset.getString("nro_vuelo"));
+				ins.setModelo(resultset.getString("modelo"));
+				ins.setDiaSalida(resultset.getString("dia_sale"));
+				ins.setHoraLlegada(resultset.getTime("hora_llega"));
+				ins.setHoraSalida(resultset.getTime("hora_sale"));
+				ins.setTiempoEstimado(resultset.getTime("tiempo_estimado"));
+				ins.setFechaVuelo(resultset.getDate("fecha_vuelo"));
+				
 				//aeropuerto de salida
 				AeropuertoBean as1 = new AeropuertoBeanImpl();
 				as1.setCodigo(resultset.getString("codigo_aero_sale"));
@@ -319,6 +336,17 @@ public class DAOReservaImpl implements DAOReserva {
 				ins.setAeropuertoSalida(as1);
 				ins.setAeropuertoLlegada(as2);
 				
+				dv.setVuelo(ins);
+				dv.setClase(resultset.getString("clase"));
+				dv.setPrecio(resultset.getFloat("precio"));
+				dv.setAsientosDisponibles(resultset.getInt("asientos_disponibles"));
+				
+				insvc.setVuelo(ins);
+				insvc.setClase(dv);
+				
+				list.add(insvc);
+				
+				reserva.setVuelosClase(list);
 			}
 		} catch (SQLException ex) {
 			logger.error("SQLException: " + ex.getMessage());
@@ -328,8 +356,6 @@ public class DAOReservaImpl implements DAOReserva {
 		}
 		
 		
-
-
 		logger.debug("Se recuperó la reserva: {}, {}", reserva.getNumero(), reserva.getEstado());
 
 		return reserva;
