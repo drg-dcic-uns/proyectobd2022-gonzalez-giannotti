@@ -506,6 +506,8 @@ GRANT SELECT ON vuelos.* TO 'empleado'@'%';
 GRANT INSERT, UPDATE, DELETE ON vuelos.reservas  TO 'empleado'@'%';
 GRANT INSERT, UPDATE, DELETE ON vuelos.pasajeros TO 'empleado'@'%';
 GRANT INSERT, UPDATE, DELETE ON vuelos.reserva_vuelo_clase TO 'empleado'@'%';
+GRANT EXECUTE ON PROCEDURE vuelos.reservar_ida TO 'empleado'@'%';
+GRANT EXECUTE ON PROCEDURE vuelos.reservar_ida_vuelta TO 'empleado'@'%';
 
 /* usuario cliente */ 
 CREATE USER 'cliente'@'%' IDENTIFIED BY 'cliente';
