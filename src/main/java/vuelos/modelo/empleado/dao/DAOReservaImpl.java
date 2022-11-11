@@ -101,6 +101,32 @@ public class DAOReservaImpl implements DAOReserva {
 		//logger.debug("Reserva: {}, {}", r.getNumero(), r.getEstado());
 		
 		return nro_reserva;
+		
+		//Implementacion mia : 
+		/*
+		int nroReserva = -1;
+		 
+		 try {
+			 
+			 String sql = "CALL reservar_ida("+vuelo.getNroVuelo()+", "+vuelo.getFechaVuelo()+", "+detalleVuelo.getClase()+", "+pasajero.getTipoDocumento()+", "+pasajero.getNroDocumento()+", "+empleado.getLegajo()+");";
+			 CallableStatement cstmt = conexion.prepareCall(sql); 
+			 cstmt.executeUpdate();
+			 ResultSet rs = cstmt.getResultSet();
+			 
+			 if(rs.next()) {
+				 String s = rs.getString("resultado"); 
+				 if(s.contains("Falla"))
+					 throw new Exception(s);
+				 nroReserva = rs.getInt("nroReserva");
+			 }
+			 cstmt.close();
+			 rs.close();
+		  } catch (SQLException ex){
+		  			logger.debug("Error al consultar la BD. SQLException: {}. SQLState: {}. VendorError: {}.", ex.getMessage(), ex.getSQLState(), ex.getErrorCode());
+		   		throw ex;
+		 } 
+		return nroReserva;
+		*/
 	}
 	
 	@Override
@@ -123,33 +149,32 @@ public class DAOReservaImpl implements DAOReserva {
 		 * 
 		 * @throws Exception. Deberá propagar la excepción si ocurre alguna. Puede capturarla para loguear los errores
 		 *		   pero luego deberá propagarla para que se encargue el controlador.
-		 *
-		 * try (CallableStatement ... )
-		 * {
-		 *  ...
-		 * }
-		 * catch (SQLException ex){
-		 * 			logger.debug("Error al consultar la BD. SQLException: {}. SQLState: {}. VendorError: {}.", ex.getMessage(), ex.getSQLState(), ex.getErrorCode());
-		 *  		throw ex;
-		 * } 
-		 */
+		 **/
 		
-		/*
-		 * Datos státicos de prueba: Quitar y reemplazar por código que invoca al S.P.
-		 * 
-		 * - Si pasajero tiene nro_doc igual a 1 retorna 101 codigo de reserva y si se pregunta por dicha reserva como dato de prueba resultado "Reserva confirmada"
-		 * - Si pasajero tiene nro_doc igual a 2 retorna 102 codigo de reserva y si se pregunta por dicha reserva como dato de prueba resultado "Reserva en espera"
-		 * - Si pasajero tiene nro_doc igual a 3 se genera una excepción, resultado "No hay asientos disponibles"
-		 * - Si pasajero tiene nro_doc igual a 4 se genera una excepción, resultado "El empleado no es válido"
-		 * - Si pasajero tiene nro_doc igual a 5 se genera una excepción, resultado "El pasajero no está registrado"
-		 * - Si pasajero tiene nro_doc igual a 6 se genera una excepción, resultado "El vuelo no es válido"
-		 * - Si pasajero tiene nro_doc igual a 7 se genera una excepción de conexión.
-		 */		
-		DAOReservaDatosPrueba.registrarReservaIdaVuelta(pasajero, vueloIda, detalleVueloIda, vueloVuelta, detalleVueloVuelta, empleado);
-		int resultado = DAOReservaDatosPrueba.getReserva().getNumero();
-		
-		return resultado;
-		// Fin datos estáticos de prueba.
+		int nroReserva = -1;
+		 
+		 try {
+			 
+			 String sql = "CALL reservar_ida_vuelta("+vueloIda.getNroVuelo()+", "+vueloVuelta.getNroVuelo()+", "+vueloIda.getFechaVuelo()+", "
+			 +vueloVuelta.getFechaVuelo()+", "+detalleVueloIda.getClase()+", "+detalleVueloVuelta.getClase()+", "+pasajero.getTipoDocumento()
+			 +", "+pasajero.getNroDocumento()+", "+empleado.getLegajo()+");";
+			 CallableStatement cstmt = conexion.prepareCall(sql); 
+			 cstmt.executeUpdate();
+			 ResultSet rs = cstmt.getResultSet();
+			 
+			 if(rs.next()) {
+				 String s = rs.getString("resultado"); 
+				 if(s.contains("Falla"))
+					 throw new Exception(s);
+				 nroReserva = rs.getInt("nroReserva");
+			 }
+			 cstmt.close();
+			 rs.close();
+		  } catch (SQLException ex){
+		  			logger.debug("Error al consultar la BD. SQLException: {}. SQLState: {}. VendorError: {}.", ex.getMessage(), ex.getSQLState(), ex.getErrorCode());
+		   		throw ex;
+		 } 
+		return nroReserva;
 	}
 	
 	@Override
