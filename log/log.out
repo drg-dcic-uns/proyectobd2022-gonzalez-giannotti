@@ -6410,3 +6410,387 @@ SELECT reservas.numero AS nro_reserva, reservas.fecha AS fecha_reserva, reservas
 Se recuperó la reserva: 24, en espera
 Realizó la reserva y solicita que la ventana muestre la info
 Se solicita mostrar la reserva cuyo estado es en espera
+Se inicia la aplicación.
+Creación de la ventana de login
+Se registran los listeners.
+Se inicia la carga de parametros para conectar con la BD.
+Recuperación de los datos para la conexión con la BD
+Se intenta leer el archivo de propiedades cfg/conexionBD.properties
+se cargó exitosamente
+Parámetros de conexión: jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires
+Se inicializa la ventana de login.
+se registra el controlador.
+se muestra la ventana.
+Ejecuta el listener de buscar vuelos disponibles.
+se selecciono una clase o se cambio la seleccion de vuelo y se actualizaron las clases (deseleccion)
+Se actualiza el detalle seleccionada para un vuelo de Solo Ida.
+debe informar al controlador para que recupere la info del detalle
+Se deseleccionó el vuelo
+Solicita información de vuelos disponibles: esIdaVuelta:true fechaDesde:2 fechaHasta:12 Origen:Argentina - Buenos Aires - Buenos Aires Destino:Argentina - Cordoba - Cordoba.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida y vuelta
+Recupera la lista de vuelos disponibles para la fecha Mon Jan 02 00:00:00 ART 2023 desde Argentina - Buenos Aires - Buenos Aires a Argentina - Cordoba - Cordoba.
+SQL Query: SELECT nro_vuelo, fecha, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2023-01-02' AND ciudad_sale='Buenos Aires' AND estado_sale='Buenos Aires' AND pais_sale='Argentina' AND ciudad_llega='Cordoba' AND estado_llega='Cordoba' AND pais_llega='Argentina') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo GROUP BY nro_vuelo;
+Se recuperó el item con aeropuerto de salida Aeroparque Jorge Newbery, aeropuerto de llegada Ing.Aer.A.L.V. Taravella y fecha 2023-01-02
+Recupera la lista de vuelos disponibles para la fecha Thu Jan 12 00:00:00 ART 2023 desde Argentina - Cordoba - Cordoba a Argentina - Buenos Aires - Buenos Aires.
+SQL Query: SELECT nro_vuelo, fecha, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2023-01-12' AND ciudad_sale='Cordoba' AND estado_sale='Cordoba' AND pais_sale='Argentina' AND ciudad_llega='Buenos Aires' AND estado_llega='Buenos Aires' AND pais_llega='Argentina') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo GROUP BY nro_vuelo;
+Se recuperó el item con aeropuerto de salida Ing.Aer.A.L.V. Taravella, aeropuerto de llegada Aeroparque Jorge Newbery y fecha 2023-01-12
+La cantidad de vuelos ida es 1 y los vuelos de vuelta es 1
+Se solicita a la ventana mostrar la información de 1 vuelos para viaje de ida y vuelta
+Carga la tabla de IDA.
+Carga la tabla de IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo BC1 con fecha 2023-01-02 para ida y vuelta sobre el vuelo de ida.
+Recupera la cantidad de asientos y precio del vuelo BC1 .
+SQL Query: SELECT clase, precio, asientos_disponibles  FROM vuelos_disponibles WHERE nro_vuelo='BC1' AND fecha='2023-01-02';
+Se recuperaron 3 clases para el vuelo BC1
+Carga el detalle tabla de detalle de IDA en viaje de Ida y Vuelta.
+se selecciono una clase o se cambio la seleccion de vuelo y se actualizaron las clases (deseleccion)
+Se actualiza el detalle del vuelo de IDA seleccionado para un vuelo de Ida y Vuelta.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo CB2 con fecha 2023-01-12 para ida y vuelta sobre el vuelo de vuelta.
+Recupera la cantidad de asientos y precio del vuelo CB2 .
+SQL Query: SELECT clase, precio, asientos_disponibles  FROM vuelos_disponibles WHERE nro_vuelo='CB2' AND fecha='2023-01-12';
+Se recuperaron 2 clases para el vuelo CB2
+Carga el detalle tabla de detalle de Vuelta en viaje de Ida y Vuelta.
+se selecciono una clase o se cambio la seleccion de vuelo y se actualizaron las clases (deseleccion)
+Se actualiza el detalle del vuelo de VUELTA seleccionado para un vuelo de Ida y Vuelta.
+Valida que haya seleccionado todo e informa a la ventana que muestre la pantalla de reserva.
+Recupera los tipos de documentos.
+SQL Query: (SELECT doc_tipo FROM empleados) UNION (SELECT doc_tipo FROM pasajeros);
+El controlador solicitó que se muestre la pantalla para realizar una reserva IDA y VUELTA.
+Carga el combo con los 1 tipos de documento recuperados
+Busca al pasajero DNI 3
+Solicita al DAO un pasajero con tipo DNI y nro 3
+El DAO retorna al pasajero Garcia Diego
+La ventana muestra al pasajero.
+Se muestra al pasajero en el panel de ida y vuelta
+Se solicita comenzar el proceso de reserva.
+Se solicita al modelo realizar una reserva de ida y vuelta
+Solicita al DAO un empleado con legajo 102
+Recupera el empleado que corresponde al legajo 102.
+SQL Query: SELECT * FROM empleados WHERE legajo = 102;
+Realiza la reserva de ida y vuelta con pasajero 3
+Solicita recuperar información de la reserva con codigo 25
+SELECT reservas.numero AS nro_reserva, reservas.fecha AS fecha_reserva, reservas.vencimiento AS venc_reserva, reservas.estado AS estado_reserva, reserva_vuelo_clase.vuelo, reserva_vuelo_clase.fecha_vuelo, reserva_vuelo_clase.clase, vuelos_disponibles.nro_vuelo, vuelos_disponibles.modelo, vuelos_disponibles.codigo_aero_sale, vuelos_disponibles.nombre_aero_sale, vuelos_disponibles.dia_sale, vuelos_disponibles.hora_sale, vuelos_disponibles.ciudad_sale, vuelos_disponibles.estado_sale, vuelos_disponibles.pais_sale, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega, u1.huso AS huso_sale, u2.huso AS huso_llega, vuelos_disponibles.codigo_aero_llega, vuelos_disponibles.nombre_aero_llega, vuelos_disponibles.hora_llega, vuelos_disponibles.ciudad_llega, vuelos_disponibles.estado_llega, vuelos_disponibles.pais_llega, vuelos_disponibles.asientos_disponibles, vuelos_disponibles.precio, vuelos_disponibles.tiempo_estimado, vuelos_disponibles.asientos_disponibles, reservas.doc_tipo AS pasajero_doc_tipo, reservas.doc_nro AS pasajero_doc_nro, pasajeros.apellido AS pasajero_apellido, pasajeros.nombre AS pasajero_nombre, pasajeros.direccion AS pasajero_direccion, pasajeros.telefono AS pasajero_telefono, pasajeros.nacionalidad AS pasajero_nacionalidad, reservas.legajo AS empleado_legajo, empleados.apellido AS empleado_apellido, empleados.nombre AS empleado_nombre, empleados.doc_tipo AS empleado_doc_tipo, empleados.doc_nro AS empleado_doc_nro, empleados.direccion AS empleado_direccion, empleados.telefono AS empleado_telefono  FROM reservas JOIN reserva_vuelo_clase JOIN vuelos_disponibles JOIN aeropuertos a1, aeropuertos a2 JOIN ubicaciones u1, ubicaciones u2 JOIN pasajeros JOIN empleados  WHERE reservas.numero = 25 AND reservas.numero = reserva_vuelo_clase.numero AND vuelos_disponibles.nro_vuelo = reserva_vuelo_clase.vuelo AND vuelos_disponibles.clase = reserva_vuelo_clase.clase AND vuelos_disponibles.fecha = reserva_vuelo_clase.fecha_vuelo AND vuelos_disponibles.codigo_aero_sale = a1.codigo AND vuelos_disponibles.codigo_aero_llega = a2.codigo AND vuelos_disponibles.pais_sale = u1.pais AND vuelos_disponibles.estado_sale = u1.estado AND vuelos_disponibles.ciudad_sale = u1.ciudad AND vuelos_disponibles.pais_llega = u2.pais AND vuelos_disponibles.estado_llega = u2.estado AND vuelos_disponibles.ciudad_llega = u2.ciudad AND reservas.doc_nro = pasajeros.doc_nro AND reservas.legajo = empleados.legajo;
+Se recuperó la reserva: 25, confirmada
+Realizó la reserva y solicita que la ventana muestre la info
+Se solicita mostrar la reserva cuyo estado es confirmada
+Se inicia la aplicación.
+Creación de la ventana de login
+Se registran los listeners.
+Se inicia la carga de parametros para conectar con la BD.
+Recuperación de los datos para la conexión con la BD
+Se intenta leer el archivo de propiedades cfg/conexionBD.properties
+se cargó exitosamente
+Parámetros de conexión: jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires
+Se inicializa la ventana de login.
+se registra el controlador.
+se muestra la ventana.
+Intenta ingresar como Empleado con legajo 102, password emp102
+Recupera el usuario de BD para Empleado para poder conectarse con los permisos de dicho usuario.
+Ingresa a recuperar el usuarioBD y passwordBD para acceder a la BD del usuario Empleado
+usuario empleado, password empleado
+Se crea el modelo Empleado.
+Se establece la conexión a la BD.
+Parametros de conexion: url= jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires, user=empleado, pass=empleado
+Se establece la conexión con la BD
+Se intenta autenticar el legajo 102 con password emp102
+SQL Query: SELECT EXISTS (SELECT legajo FROM empleados WHERE legajo='102' AND password = md5('emp102')) AS existe;
+Empleado 102 autenticado
+Inicializacion de la ventana del Empleado
+Se registran los listeners.
+Se crea el controlador del Empleado.
+Transfiere el control al nuevo controlador
+Solicita al DAO un empleado con legajo 102
+Recupera el empleado que corresponde al legajo 102.
+SQL Query: SELECT * FROM empleados WHERE legajo = 102;
+Se registra al empleado Apellido_Emp102, Nombre_Emp102 con legajo 102
+muestra la ventana
+Recuperar del modelo los destinos posibles
+recupera las ciudades que tienen aeropuertos.
+SQL Query: SELECT * FROM ubicaciones
+informar a la ventana los destinos posibles
+Carga los combos de ciudades con las 5 ubicaciones recuperados
+Muestra el panel de consulta/reserva de vuelos.
+Informa a la vista que puede eliminar la ventana de login.
+Eliminación de la ventana de login.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:2 fechaHasta:12 Origen:Argentina - Buenos Aires - Buenos Aires Destino:Argentina - Cordoba - Cordoba.
+Se solicita quitar todas las selecciones.
+La fecha hasta debe estar vacía.
+Crea una ventana modal informando sobre el mensaje.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:true fechaDesde:2 fechaHasta:12 Origen:Argentina - Buenos Aires - Buenos Aires Destino:Argentina - Cordoba - Cordoba.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida y vuelta
+Recupera la lista de vuelos disponibles para la fecha Mon Jan 02 00:00:00 ART 2023 desde Argentina - Buenos Aires - Buenos Aires a Argentina - Cordoba - Cordoba.
+SQL Query: SELECT nro_vuelo, fecha, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2023-01-02' AND ciudad_sale='Buenos Aires' AND estado_sale='Buenos Aires' AND pais_sale='Argentina' AND ciudad_llega='Cordoba' AND estado_llega='Cordoba' AND pais_llega='Argentina') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo GROUP BY nro_vuelo;
+Se recuperó el item con aeropuerto de salida Aeroparque Jorge Newbery, aeropuerto de llegada Ing.Aer.A.L.V. Taravella y fecha 2023-01-02
+Recupera la lista de vuelos disponibles para la fecha Thu Jan 12 00:00:00 ART 2023 desde Argentina - Cordoba - Cordoba a Argentina - Buenos Aires - Buenos Aires.
+SQL Query: SELECT nro_vuelo, fecha, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2023-01-12' AND ciudad_sale='Cordoba' AND estado_sale='Cordoba' AND pais_sale='Argentina' AND ciudad_llega='Buenos Aires' AND estado_llega='Buenos Aires' AND pais_llega='Argentina') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo GROUP BY nro_vuelo;
+Se recuperó el item con aeropuerto de salida Ing.Aer.A.L.V. Taravella, aeropuerto de llegada Aeroparque Jorge Newbery y fecha 2023-01-12
+La cantidad de vuelos ida es 1 y los vuelos de vuelta es 1
+Se solicita a la ventana mostrar la información de 1 vuelos para viaje de ida y vuelta
+Carga la tabla de IDA.
+Carga la tabla de IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo BC1 con fecha 2023-01-02 para ida y vuelta sobre el vuelo de ida.
+Recupera la cantidad de asientos y precio del vuelo BC1 .
+SQL Query: SELECT clase, precio, asientos_disponibles  FROM vuelos_disponibles WHERE nro_vuelo='BC1' AND fecha='2023-01-02';
+Se recuperaron 3 clases para el vuelo BC1
+Carga el detalle tabla de detalle de IDA en viaje de Ida y Vuelta.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo CB2 con fecha 2023-01-12 para ida y vuelta sobre el vuelo de vuelta.
+Recupera la cantidad de asientos y precio del vuelo CB2 .
+SQL Query: SELECT clase, precio, asientos_disponibles  FROM vuelos_disponibles WHERE nro_vuelo='CB2' AND fecha='2023-01-12';
+Se recuperaron 2 clases para el vuelo CB2
+Carga el detalle tabla de detalle de Vuelta en viaje de Ida y Vuelta.
+se selecciono una clase o se cambio la seleccion de vuelo y se actualizaron las clases (deseleccion)
+Se actualiza el detalle del vuelo de IDA seleccionado para un vuelo de Ida y Vuelta.
+se selecciono una clase o se cambio la seleccion de vuelo y se actualizaron las clases (deseleccion)
+Se actualiza el detalle del vuelo de VUELTA seleccionado para un vuelo de Ida y Vuelta.
+Valida que haya seleccionado todo e informa a la ventana que muestre la pantalla de reserva.
+Recupera los tipos de documentos.
+SQL Query: (SELECT doc_tipo FROM empleados) UNION (SELECT doc_tipo FROM pasajeros);
+El controlador solicitó que se muestre la pantalla para realizar una reserva IDA y VUELTA.
+Carga el combo con los 1 tipos de documento recuperados
+Busca al pasajero DNI 
+Crea una ventana modal informando sobre el mensaje.
+Busca al pasajero DNI 4
+Solicita al DAO un pasajero con tipo DNI y nro 4
+El DAO retorna al pasajero Perez Juan
+La ventana muestra al pasajero.
+Se muestra al pasajero en el panel de ida y vuelta
+Se solicita comenzar el proceso de reserva.
+Se solicita al modelo realizar una reserva de ida y vuelta
+Solicita al DAO un empleado con legajo 102
+Recupera el empleado que corresponde al legajo 102.
+SQL Query: SELECT * FROM empleados WHERE legajo = 102;
+Realiza la reserva de ida y vuelta con pasajero 4
+Solicita recuperar información de la reserva con codigo 24
+SELECT reservas.numero AS nro_reserva, reservas.fecha AS fecha_reserva, reservas.vencimiento AS venc_reserva, reservas.estado AS estado_reserva, reserva_vuelo_clase.vuelo, reserva_vuelo_clase.fecha_vuelo, reserva_vuelo_clase.clase, vuelos_disponibles.nro_vuelo, vuelos_disponibles.modelo, vuelos_disponibles.codigo_aero_sale, vuelos_disponibles.nombre_aero_sale, vuelos_disponibles.dia_sale, vuelos_disponibles.hora_sale, vuelos_disponibles.ciudad_sale, vuelos_disponibles.estado_sale, vuelos_disponibles.pais_sale, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega, u1.huso AS huso_sale, u2.huso AS huso_llega, vuelos_disponibles.codigo_aero_llega, vuelos_disponibles.nombre_aero_llega, vuelos_disponibles.hora_llega, vuelos_disponibles.ciudad_llega, vuelos_disponibles.estado_llega, vuelos_disponibles.pais_llega, vuelos_disponibles.asientos_disponibles, vuelos_disponibles.precio, vuelos_disponibles.tiempo_estimado, vuelos_disponibles.asientos_disponibles, reservas.doc_tipo AS pasajero_doc_tipo, reservas.doc_nro AS pasajero_doc_nro, pasajeros.apellido AS pasajero_apellido, pasajeros.nombre AS pasajero_nombre, pasajeros.direccion AS pasajero_direccion, pasajeros.telefono AS pasajero_telefono, pasajeros.nacionalidad AS pasajero_nacionalidad, reservas.legajo AS empleado_legajo, empleados.apellido AS empleado_apellido, empleados.nombre AS empleado_nombre, empleados.doc_tipo AS empleado_doc_tipo, empleados.doc_nro AS empleado_doc_nro, empleados.direccion AS empleado_direccion, empleados.telefono AS empleado_telefono  FROM reservas JOIN reserva_vuelo_clase JOIN vuelos_disponibles JOIN aeropuertos a1, aeropuertos a2 JOIN ubicaciones u1, ubicaciones u2 JOIN pasajeros JOIN empleados  WHERE reservas.numero = 24 AND reservas.numero = reserva_vuelo_clase.numero AND vuelos_disponibles.nro_vuelo = reserva_vuelo_clase.vuelo AND vuelos_disponibles.clase = reserva_vuelo_clase.clase AND vuelos_disponibles.fecha = reserva_vuelo_clase.fecha_vuelo AND vuelos_disponibles.codigo_aero_sale = a1.codigo AND vuelos_disponibles.codigo_aero_llega = a2.codigo AND vuelos_disponibles.pais_sale = u1.pais AND vuelos_disponibles.estado_sale = u1.estado AND vuelos_disponibles.ciudad_sale = u1.ciudad AND vuelos_disponibles.pais_llega = u2.pais AND vuelos_disponibles.estado_llega = u2.estado AND vuelos_disponibles.ciudad_llega = u2.ciudad AND reservas.doc_nro = pasajeros.doc_nro AND reservas.legajo = empleados.legajo;
+Se recuperó la reserva: 24, en espera
+Realizó la reserva y solicita que la ventana muestre la info
+Se solicita mostrar la reserva cuyo estado es en espera
+Se inicia la aplicación.
+Creación de la ventana de login
+Se registran los listeners.
+Se inicia la carga de parametros para conectar con la BD.
+Recuperación de los datos para la conexión con la BD
+Se intenta leer el archivo de propiedades cfg/conexionBD.properties
+se cargó exitosamente
+Parámetros de conexión: jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires
+Se inicializa la ventana de login.
+se registra el controlador.
+se muestra la ventana.
+Intenta ingresar como Empleado con legajo 102, password emp102
+Recupera el usuario de BD para Empleado para poder conectarse con los permisos de dicho usuario.
+Ingresa a recuperar el usuarioBD y passwordBD para acceder a la BD del usuario Empleado
+usuario empleado, password empleado
+Se crea el modelo Empleado.
+Se establece la conexión a la BD.
+Parametros de conexion: url= jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires, user=empleado, pass=empleado
+Se establece la conexión con la BD
+Se intenta autenticar el legajo 102 con password emp102
+SQL Query: SELECT EXISTS (SELECT legajo FROM empleados WHERE legajo='102' AND password = md5('emp102')) AS existe;
+Empleado 102 autenticado
+Inicializacion de la ventana del Empleado
+Se registran los listeners.
+Se crea el controlador del Empleado.
+Transfiere el control al nuevo controlador
+Solicita al DAO un empleado con legajo 102
+Recupera el empleado que corresponde al legajo 102.
+SQL Query: SELECT * FROM empleados WHERE legajo = 102;
+Se registra al empleado Apellido_Emp102, Nombre_Emp102 con legajo 102
+muestra la ventana
+Recuperar del modelo los destinos posibles
+recupera las ciudades que tienen aeropuertos.
+SQL Query: SELECT * FROM ubicaciones
+informar a la ventana los destinos posibles
+Carga los combos de ciudades con las 5 ubicaciones recuperados
+Muestra el panel de consulta/reserva de vuelos.
+Informa a la vista que puede eliminar la ventana de login.
+Eliminación de la ventana de login.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:2 fechaHasta:null Origen:Argentina - Buenos Aires - Buenos Aires Destino:Argentina - Cordoba - Cordoba.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Mon Jan 02 00:00:00 ART 2023 desde Argentina - Buenos Aires - Buenos Aires a Argentina - Cordoba - Cordoba.
+SQL Query: SELECT nro_vuelo, fecha, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2023-01-02' AND ciudad_sale='Buenos Aires' AND estado_sale='Buenos Aires' AND pais_sale='Argentina' AND ciudad_llega='Cordoba' AND estado_llega='Cordoba' AND pais_llega='Argentina') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo GROUP BY nro_vuelo;
+Se recuperó el item con aeropuerto de salida Aeroparque Jorge Newbery, aeropuerto de llegada Ing.Aer.A.L.V. Taravella y fecha 2023-01-02
+La cantidad de vuelos recuperados es 1 
+Se solicita a la ventana mostrar la información de 1 vuelos para viaje de ida
+Carga la tabla de IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo BC1 con fecha 2023-01-02 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo BC1 .
+SQL Query: SELECT clase, precio, asientos_disponibles  FROM vuelos_disponibles WHERE nro_vuelo='BC1' AND fecha='2023-01-02';
+Se recuperaron 3 clases para el vuelo BC1
+Carga el detalle tabla de detalle de solo IDA.
+se selecciono una clase o se cambio la seleccion de vuelo y se actualizaron las clases (deseleccion)
+Se actualiza el detalle seleccionada para un vuelo de Solo Ida.
+Valida que haya seleccionado todo e informa a la ventana que muestre la pantalla de reserva.
+Recupera los tipos de documentos.
+SQL Query: (SELECT doc_tipo FROM empleados) UNION (SELECT doc_tipo FROM pasajeros);
+El controlador solicitó que se muestre la pantalla para realizar una reserva.
+Carga el combo con los 1 tipos de documento recuperados
+Busca al pasajero DNI 2
+Solicita al DAO un pasajero con tipo DNI y nro 2
+El DAO retorna al pasajero Tamargo Luciano
+La ventana muestra al pasajero.
+Se muestra al pasajero en el panel de solo ida
+Se solicita comenzar el proceso de reserva.
+Se solicita al modelo realizar una reserva solo ida
+Solicita al DAO un empleado con legajo 102
+Recupera el empleado que corresponde al legajo 102.
+SQL Query: SELECT * FROM empleados WHERE legajo = 102;
+Realiza la reserva de solo ida con pasajero 2
+Reserva: 25, confirmada
+Solicita recuperar información de la reserva con codigo 25
+SELECT reservas.numero AS nro_reserva, reservas.fecha AS fecha_reserva, reservas.vencimiento AS venc_reserva, reservas.estado AS estado_reserva, reserva_vuelo_clase.vuelo, reserva_vuelo_clase.fecha_vuelo, reserva_vuelo_clase.clase, vuelos_disponibles.nro_vuelo, vuelos_disponibles.modelo, vuelos_disponibles.codigo_aero_sale, vuelos_disponibles.nombre_aero_sale, vuelos_disponibles.dia_sale, vuelos_disponibles.hora_sale, vuelos_disponibles.ciudad_sale, vuelos_disponibles.estado_sale, vuelos_disponibles.pais_sale, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega, u1.huso AS huso_sale, u2.huso AS huso_llega, vuelos_disponibles.codigo_aero_llega, vuelos_disponibles.nombre_aero_llega, vuelos_disponibles.hora_llega, vuelos_disponibles.ciudad_llega, vuelos_disponibles.estado_llega, vuelos_disponibles.pais_llega, vuelos_disponibles.asientos_disponibles, vuelos_disponibles.precio, vuelos_disponibles.tiempo_estimado, vuelos_disponibles.asientos_disponibles, reservas.doc_tipo AS pasajero_doc_tipo, reservas.doc_nro AS pasajero_doc_nro, pasajeros.apellido AS pasajero_apellido, pasajeros.nombre AS pasajero_nombre, pasajeros.direccion AS pasajero_direccion, pasajeros.telefono AS pasajero_telefono, pasajeros.nacionalidad AS pasajero_nacionalidad, reservas.legajo AS empleado_legajo, empleados.apellido AS empleado_apellido, empleados.nombre AS empleado_nombre, empleados.doc_tipo AS empleado_doc_tipo, empleados.doc_nro AS empleado_doc_nro, empleados.direccion AS empleado_direccion, empleados.telefono AS empleado_telefono  FROM reservas JOIN reserva_vuelo_clase JOIN vuelos_disponibles JOIN aeropuertos a1, aeropuertos a2 JOIN ubicaciones u1, ubicaciones u2 JOIN pasajeros JOIN empleados  WHERE reservas.numero = 25 AND reservas.numero = reserva_vuelo_clase.numero AND vuelos_disponibles.nro_vuelo = reserva_vuelo_clase.vuelo AND vuelos_disponibles.clase = reserva_vuelo_clase.clase AND vuelos_disponibles.fecha = reserva_vuelo_clase.fecha_vuelo AND vuelos_disponibles.codigo_aero_sale = a1.codigo AND vuelos_disponibles.codigo_aero_llega = a2.codigo AND vuelos_disponibles.pais_sale = u1.pais AND vuelos_disponibles.estado_sale = u1.estado AND vuelos_disponibles.ciudad_sale = u1.ciudad AND vuelos_disponibles.pais_llega = u2.pais AND vuelos_disponibles.estado_llega = u2.estado AND vuelos_disponibles.ciudad_llega = u2.ciudad AND reservas.doc_nro = pasajeros.doc_nro AND reservas.legajo = empleados.legajo;
+Se recuperó la reserva: 25, confirmada
+Realizó la reserva y solicita que la ventana muestre la info
+Se solicita mostrar la reserva cuyo estado es confirmada
+Saliendo de la aplicación.
+Se cierra la conexión a la BD.
+Se intenta cerrar la conexión activa
+Eliminación de la ventana.
+Se inicia la aplicación.
+Creación de la ventana de login
+Se registran los listeners.
+Se inicia la carga de parametros para conectar con la BD.
+Recuperación de los datos para la conexión con la BD
+Se intenta leer el archivo de propiedades cfg/conexionBD.properties
+se cargó exitosamente
+Parámetros de conexión: jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires
+Se inicializa la ventana de login.
+se registra el controlador.
+se muestra la ventana.
+Intenta ingresar como Empleado con legajo 102, password emp102
+Recupera el usuario de BD para Empleado para poder conectarse con los permisos de dicho usuario.
+Ingresa a recuperar el usuarioBD y passwordBD para acceder a la BD del usuario Empleado
+usuario empleado, password empleado
+Se crea el modelo Empleado.
+Se establece la conexión a la BD.
+Parametros de conexion: url= jdbc:mysql://localhost:3306/vuelos?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires, user=empleado, pass=empleado
+Se establece la conexión con la BD
+Se intenta autenticar el legajo 102 con password emp102
+SQL Query: SELECT EXISTS (SELECT legajo FROM empleados WHERE legajo='102' AND password = md5('emp102')) AS existe;
+Empleado 102 autenticado
+Inicializacion de la ventana del Empleado
+Se registran los listeners.
+Se crea el controlador del Empleado.
+Transfiere el control al nuevo controlador
+Solicita al DAO un empleado con legajo 102
+Recupera el empleado que corresponde al legajo 102.
+SQL Query: SELECT * FROM empleados WHERE legajo = 102;
+Se registra al empleado Apellido_Emp102, Nombre_Emp102 con legajo 102
+muestra la ventana
+Recuperar del modelo los destinos posibles
+recupera las ciudades que tienen aeropuertos.
+SQL Query: SELECT * FROM ubicaciones
+informar a la ventana los destinos posibles
+Carga los combos de ciudades con las 5 ubicaciones recuperados
+Muestra el panel de consulta/reserva de vuelos.
+Informa a la vista que puede eliminar la ventana de login.
+Eliminación de la ventana de login.
+Ejecuta el listener de buscar vuelos disponibles.
+Solicita información de vuelos disponibles: esIdaVuelta:false fechaDesde:2 fechaHasta:null Origen:Argentina - Buenos Aires - Buenos Aires Destino:Argentina - Cordoba - Cordoba.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida
+Recupera la lista de vuelos disponibles para la fecha Mon Jan 02 00:00:00 ART 2023 desde Argentina - Buenos Aires - Buenos Aires a Argentina - Cordoba - Cordoba.
+SQL Query: SELECT nro_vuelo, fecha, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2023-01-02' AND ciudad_sale='Buenos Aires' AND estado_sale='Buenos Aires' AND pais_sale='Argentina' AND ciudad_llega='Cordoba' AND estado_llega='Cordoba' AND pais_llega='Argentina') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo GROUP BY nro_vuelo;
+Se recuperó el item con aeropuerto de salida Aeroparque Jorge Newbery, aeropuerto de llegada Ing.Aer.A.L.V. Taravella y fecha 2023-01-02
+La cantidad de vuelos recuperados es 1 
+Se solicita a la ventana mostrar la información de 1 vuelos para viaje de ida
+Carga la tabla de IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo BC1 con fecha 2023-01-02 para un viaje de ida.
+Recupera la cantidad de asientos y precio del vuelo BC1 .
+SQL Query: SELECT clase, precio, asientos_disponibles  FROM vuelos_disponibles WHERE nro_vuelo='BC1' AND fecha='2023-01-02';
+Se recuperaron 3 clases para el vuelo BC1
+Carga el detalle tabla de detalle de solo IDA.
+se selecciono una clase o se cambio la seleccion de vuelo y se actualizaron las clases (deseleccion)
+Se actualiza el detalle seleccionada para un vuelo de Solo Ida.
+Valida que haya seleccionado todo e informa a la ventana que muestre la pantalla de reserva.
+Recupera los tipos de documentos.
+SQL Query: (SELECT doc_tipo FROM empleados) UNION (SELECT doc_tipo FROM pasajeros);
+El controlador solicitó que se muestre la pantalla para realizar una reserva.
+Carga el combo con los 1 tipos de documento recuperados
+Busca al pasajero DNI 1
+Solicita al DAO un pasajero con tipo DNI y nro 1
+El DAO retorna al pasajero Marcos Julieta
+La ventana muestra al pasajero.
+Se muestra al pasajero en el panel de solo ida
+Se solicita comenzar el proceso de reserva.
+Se solicita al modelo realizar una reserva solo ida
+Solicita al DAO un empleado con legajo 102
+Recupera el empleado que corresponde al legajo 102.
+SQL Query: SELECT * FROM empleados WHERE legajo = 102;
+Realiza la reserva de solo ida con pasajero 1
+Reserva: 26, confirmada
+Solicita recuperar información de la reserva con codigo 26
+SELECT reservas.numero AS nro_reserva, reservas.fecha AS fecha_reserva, reservas.vencimiento AS venc_reserva, reservas.estado AS estado_reserva, reserva_vuelo_clase.vuelo, reserva_vuelo_clase.fecha_vuelo, reserva_vuelo_clase.clase, vuelos_disponibles.nro_vuelo, vuelos_disponibles.modelo, vuelos_disponibles.codigo_aero_sale, vuelos_disponibles.nombre_aero_sale, vuelos_disponibles.dia_sale, vuelos_disponibles.hora_sale, vuelos_disponibles.ciudad_sale, vuelos_disponibles.estado_sale, vuelos_disponibles.pais_sale, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega, u1.huso AS huso_sale, u2.huso AS huso_llega, vuelos_disponibles.codigo_aero_llega, vuelos_disponibles.nombre_aero_llega, vuelos_disponibles.hora_llega, vuelos_disponibles.ciudad_llega, vuelos_disponibles.estado_llega, vuelos_disponibles.pais_llega, vuelos_disponibles.asientos_disponibles, vuelos_disponibles.precio, vuelos_disponibles.tiempo_estimado, vuelos_disponibles.asientos_disponibles, reservas.doc_tipo AS pasajero_doc_tipo, reservas.doc_nro AS pasajero_doc_nro, pasajeros.apellido AS pasajero_apellido, pasajeros.nombre AS pasajero_nombre, pasajeros.direccion AS pasajero_direccion, pasajeros.telefono AS pasajero_telefono, pasajeros.nacionalidad AS pasajero_nacionalidad, reservas.legajo AS empleado_legajo, empleados.apellido AS empleado_apellido, empleados.nombre AS empleado_nombre, empleados.doc_tipo AS empleado_doc_tipo, empleados.doc_nro AS empleado_doc_nro, empleados.direccion AS empleado_direccion, empleados.telefono AS empleado_telefono  FROM reservas JOIN reserva_vuelo_clase JOIN vuelos_disponibles JOIN aeropuertos a1, aeropuertos a2 JOIN ubicaciones u1, ubicaciones u2 JOIN pasajeros JOIN empleados  WHERE reservas.numero = 26 AND reservas.numero = reserva_vuelo_clase.numero AND vuelos_disponibles.nro_vuelo = reserva_vuelo_clase.vuelo AND vuelos_disponibles.clase = reserva_vuelo_clase.clase AND vuelos_disponibles.fecha = reserva_vuelo_clase.fecha_vuelo AND vuelos_disponibles.codigo_aero_sale = a1.codigo AND vuelos_disponibles.codigo_aero_llega = a2.codigo AND vuelos_disponibles.pais_sale = u1.pais AND vuelos_disponibles.estado_sale = u1.estado AND vuelos_disponibles.ciudad_sale = u1.ciudad AND vuelos_disponibles.pais_llega = u2.pais AND vuelos_disponibles.estado_llega = u2.estado AND vuelos_disponibles.ciudad_llega = u2.ciudad AND reservas.doc_nro = pasajeros.doc_nro AND reservas.legajo = empleados.legajo;
+Se recuperó la reserva: 26, confirmada
+Realizó la reserva y solicita que la ventana muestre la info
+Se solicita mostrar la reserva cuyo estado es confirmada
+Ejecuta el listener de buscar vuelos disponibles.
+se selecciono una clase o se cambio la seleccion de vuelo y se actualizaron las clases (deseleccion)
+Se actualiza el detalle seleccionada para un vuelo de Solo Ida.
+debe informar al controlador para que recupere la info del detalle
+Se deseleccionó el vuelo
+Solicita información de vuelos disponibles: esIdaVuelta:true fechaDesde:2 fechaHasta:12 Origen:Argentina - Buenos Aires - Buenos Aires Destino:Argentina - Cordoba - Cordoba.
+Se solicita quitar todas las selecciones.
+Solicita información de vuelos disponibles de ida y vuelta
+Recupera la lista de vuelos disponibles para la fecha Mon Jan 02 00:00:00 ART 2023 desde Argentina - Buenos Aires - Buenos Aires a Argentina - Cordoba - Cordoba.
+SQL Query: SELECT nro_vuelo, fecha, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2023-01-02' AND ciudad_sale='Buenos Aires' AND estado_sale='Buenos Aires' AND pais_sale='Argentina' AND ciudad_llega='Cordoba' AND estado_llega='Cordoba' AND pais_llega='Argentina') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo GROUP BY nro_vuelo;
+Se recuperó el item con aeropuerto de salida Aeroparque Jorge Newbery, aeropuerto de llegada Ing.Aer.A.L.V. Taravella y fecha 2023-01-02
+Recupera la lista de vuelos disponibles para la fecha Thu Jan 12 00:00:00 ART 2023 desde Argentina - Cordoba - Cordoba a Argentina - Buenos Aires - Buenos Aires.
+SQL Query: SELECT nro_vuelo, fecha, codigo_aero_sale, nombre_aero_sale, dia_sale, ciudad_sale, estado_sale, pais_sale, hora_sale, codigo_aero_llega, nombre_aero_llega, ciudad_llega, estado_llega, pais_llega, hora_llega, modelo, tiempo_estimado, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega FROM vuelos_disponibles, aeropuertos a1, aeropuertos a2 WHERE (fecha='2023-01-12' AND ciudad_sale='Cordoba' AND estado_sale='Cordoba' AND pais_sale='Argentina' AND ciudad_llega='Buenos Aires' AND estado_llega='Buenos Aires' AND pais_llega='Argentina') AND codigo_aero_sale=a1.codigo AND codigo_aero_llega=a2.codigo GROUP BY nro_vuelo;
+Se recuperó el item con aeropuerto de salida Ing.Aer.A.L.V. Taravella, aeropuerto de llegada Aeroparque Jorge Newbery y fecha 2023-01-12
+La cantidad de vuelos ida es 1 y los vuelos de vuelta es 1
+Se solicita a la ventana mostrar la información de 1 vuelos para viaje de ida y vuelta
+Carga la tabla de IDA.
+Carga la tabla de IDA.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo CB2 con fecha 2023-01-12 para ida y vuelta sobre el vuelo de vuelta.
+Recupera la cantidad de asientos y precio del vuelo CB2 .
+SQL Query: SELECT clase, precio, asientos_disponibles  FROM vuelos_disponibles WHERE nro_vuelo='CB2' AND fecha='2023-01-12';
+Se recuperaron 2 clases para el vuelo CB2
+Carga el detalle tabla de detalle de Vuelta en viaje de Ida y Vuelta.
+debe informar al controlador para que recupere la info del detalle
+Solicita detalle del vuelo BC1 con fecha 2023-01-02 para ida y vuelta sobre el vuelo de ida.
+Recupera la cantidad de asientos y precio del vuelo BC1 .
+SQL Query: SELECT clase, precio, asientos_disponibles  FROM vuelos_disponibles WHERE nro_vuelo='BC1' AND fecha='2023-01-02';
+Se recuperaron 3 clases para el vuelo BC1
+Carga el detalle tabla de detalle de IDA en viaje de Ida y Vuelta.
+se selecciono una clase o se cambio la seleccion de vuelo y se actualizaron las clases (deseleccion)
+Se actualiza el detalle del vuelo de VUELTA seleccionado para un vuelo de Ida y Vuelta.
+se selecciono una clase o se cambio la seleccion de vuelo y se actualizaron las clases (deseleccion)
+Se actualiza el detalle del vuelo de IDA seleccionado para un vuelo de Ida y Vuelta.
+Valida que haya seleccionado todo e informa a la ventana que muestre la pantalla de reserva.
+Recupera los tipos de documentos.
+SQL Query: (SELECT doc_tipo FROM empleados) UNION (SELECT doc_tipo FROM pasajeros);
+El controlador solicitó que se muestre la pantalla para realizar una reserva IDA y VUELTA.
+Carga el combo con los 1 tipos de documento recuperados
+Busca al pasajero DNI 4
+Solicita al DAO un pasajero con tipo DNI y nro 4
+El DAO retorna al pasajero Perez Juan
+La ventana muestra al pasajero.
+Se muestra al pasajero en el panel de ida y vuelta
+Se solicita comenzar el proceso de reserva.
+Se solicita al modelo realizar una reserva de ida y vuelta
+Solicita al DAO un empleado con legajo 102
+Recupera el empleado que corresponde al legajo 102.
+SQL Query: SELECT * FROM empleados WHERE legajo = 102;
+Realiza la reserva de ida y vuelta con pasajero 4
+Solicita recuperar información de la reserva con codigo 27
+SELECT reservas.numero AS nro_reserva, reservas.fecha AS fecha_reserva, reservas.vencimiento AS venc_reserva, reservas.estado AS estado_reserva, reserva_vuelo_clase.vuelo, reserva_vuelo_clase.fecha_vuelo, reserva_vuelo_clase.clase, vuelos_disponibles.nro_vuelo, vuelos_disponibles.modelo, vuelos_disponibles.codigo_aero_sale, vuelos_disponibles.nombre_aero_sale, vuelos_disponibles.dia_sale, vuelos_disponibles.hora_sale, vuelos_disponibles.ciudad_sale, vuelos_disponibles.estado_sale, vuelos_disponibles.pais_sale, a1.direccion AS direccion_sale, a1.telefono AS telefono_sale, a2.direccion AS direccion_llega, a2.telefono AS telefono_llega, u1.huso AS huso_sale, u2.huso AS huso_llega, vuelos_disponibles.codigo_aero_llega, vuelos_disponibles.nombre_aero_llega, vuelos_disponibles.hora_llega, vuelos_disponibles.ciudad_llega, vuelos_disponibles.estado_llega, vuelos_disponibles.pais_llega, vuelos_disponibles.asientos_disponibles, vuelos_disponibles.precio, vuelos_disponibles.tiempo_estimado, vuelos_disponibles.asientos_disponibles, reservas.doc_tipo AS pasajero_doc_tipo, reservas.doc_nro AS pasajero_doc_nro, pasajeros.apellido AS pasajero_apellido, pasajeros.nombre AS pasajero_nombre, pasajeros.direccion AS pasajero_direccion, pasajeros.telefono AS pasajero_telefono, pasajeros.nacionalidad AS pasajero_nacionalidad, reservas.legajo AS empleado_legajo, empleados.apellido AS empleado_apellido, empleados.nombre AS empleado_nombre, empleados.doc_tipo AS empleado_doc_tipo, empleados.doc_nro AS empleado_doc_nro, empleados.direccion AS empleado_direccion, empleados.telefono AS empleado_telefono  FROM reservas JOIN reserva_vuelo_clase JOIN vuelos_disponibles JOIN aeropuertos a1, aeropuertos a2 JOIN ubicaciones u1, ubicaciones u2 JOIN pasajeros JOIN empleados  WHERE reservas.numero = 27 AND reservas.numero = reserva_vuelo_clase.numero AND vuelos_disponibles.nro_vuelo = reserva_vuelo_clase.vuelo AND vuelos_disponibles.clase = reserva_vuelo_clase.clase AND vuelos_disponibles.fecha = reserva_vuelo_clase.fecha_vuelo AND vuelos_disponibles.codigo_aero_sale = a1.codigo AND vuelos_disponibles.codigo_aero_llega = a2.codigo AND vuelos_disponibles.pais_sale = u1.pais AND vuelos_disponibles.estado_sale = u1.estado AND vuelos_disponibles.ciudad_sale = u1.ciudad AND vuelos_disponibles.pais_llega = u2.pais AND vuelos_disponibles.estado_llega = u2.estado AND vuelos_disponibles.ciudad_llega = u2.ciudad AND reservas.doc_nro = pasajeros.doc_nro AND reservas.legajo = empleados.legajo;
+Se recuperó la reserva: 27, en espera
+Realizó la reserva y solicita que la ventana muestre la info
+Se solicita mostrar la reserva cuyo estado es en espera
+Saliendo de la aplicación.
+Se cierra la conexión a la BD.
+Se intenta cerrar la conexión activa
+Eliminación de la ventana.
