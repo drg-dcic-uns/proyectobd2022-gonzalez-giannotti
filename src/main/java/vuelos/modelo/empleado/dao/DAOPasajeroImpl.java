@@ -40,22 +40,22 @@ public class DAOPasajeroImpl implements DAOPasajero {
 
 		PasajeroBean pasajero = null;
 		try {
-			String sql = String.format("SELECT * FROM pasajeros WHERE doc_tipo='%s' AND doc_nro=%d;", 
+			String query = String.format("SELECT * FROM pasajeros WHERE doc_tipo='%s' AND doc_nro=%d;", 
 							tipoDoc, nroDoc);
-			Statement s = this.conexion.createStatement();
-			ResultSet rs = s.executeQuery(sql);
-			if (rs.next()) {
+			Statement stmt = this.conexion.createStatement();
+			ResultSet resultset = stmt.executeQuery(query);
+			if (resultset.next()) {
 				pasajero = new PasajeroBeanImpl();
-				pasajero.setApellido(rs.getString("apellido"));
-				pasajero.setDireccion(rs.getString("direccion"));
-				pasajero.setNacionalidad(rs.getString("nacionalidad"));
-				pasajero.setNombre(rs.getString("nombre"));
-				pasajero.setNroDocumento(rs.getInt("doc_nro"));
-				pasajero.setTelefono(rs.getString("telefono"));
-				pasajero.setTipoDocumento(rs.getString("doc_tipo"));
+				pasajero.setApellido(resultset.getString("apellido"));
+				pasajero.setDireccion(resultset.getString("direccion"));
+				pasajero.setNacionalidad(resultset.getString("nacionalidad"));
+				pasajero.setNombre(resultset.getString("nombre"));
+				pasajero.setNroDocumento(resultset.getInt("doc_nro"));
+				pasajero.setTelefono(resultset.getString("telefono"));
+				pasajero.setTipoDocumento(resultset.getString("doc_tipo"));
 
-				s.close();
-				rs.close();
+				stmt.close();
+				resultset.close();
 
 				logger.info("El DAO retorna al pasajero {} {}", pasajero.getApellido(), pasajero.getNombre());
 			}
@@ -63,6 +63,7 @@ public class DAOPasajeroImpl implements DAOPasajero {
 			logger.error("SQLException: " + ex.getMessage());
 			logger.error("SQLState: " + ex.getSQLState());
 			logger.error("VendorError: " + ex.getErrorCode());
+			throw ex;
 		}
 
 		return pasajero;

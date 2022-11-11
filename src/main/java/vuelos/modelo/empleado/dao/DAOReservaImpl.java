@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,10 +13,14 @@ import java.sql.CallableStatement;
 
 import vuelos.modelo.empleado.beans.DetalleVueloBean;
 import vuelos.modelo.empleado.beans.EmpleadoBean;
+import vuelos.modelo.empleado.beans.EmpleadoBeanImpl;
 import vuelos.modelo.empleado.beans.InstanciaVueloBean;
+import vuelos.modelo.empleado.beans.InstanciaVueloBeanImpl;
 import vuelos.modelo.empleado.beans.PasajeroBean;
+import vuelos.modelo.empleado.beans.PasajeroBeanImpl;
 import vuelos.modelo.empleado.beans.ReservaBean;
 import vuelos.modelo.empleado.beans.ReservaBeanImpl;
+import vuelos.utils.Fechas;
 
 public class DAOReservaImpl implements DAOReserva {
 
@@ -198,9 +204,60 @@ public class DAOReservaImpl implements DAOReserva {
 				"reservas.doc_nro = pasajeros.doc_nro AND " +
 				"reservas.legajo = empleados.legajo;";
 		
+		ReservaBean reserva = new ReservaBeanImpl();
+		
+		try {
+			Statement stmt = this.conexion.createStatement();
+			ResultSet resultset = stmt.executeQuery(query);
+			
+			int rowCount = 0;
+			
+			while (resultset.next()) {
+				rowCount++;
+				
+				//si hay 2 filas en la tabla virtual es porque la reserva es de ida y vuelta
+				if (rowCount == 2) {
+					reserva.setEsIdaVuelta(true);
+					continue;
+				}
+				
+				reserva.setNumero(resultset.getInt("numero_reserva"));
+				reserva.setFecha(Fechas.convertirStringADateSQL(resultset.getString("fecha_reserva")));
+				reserva.setVencimiento(Fechas.convertirStringADateSQL(resultset.getString("venc_reserva")));
+				reserva.setEstado(resultset.getString("estado_reserva"));
+				
+				EmpleadoBean emp = new EmpleadoBeanImpl();
+				emp.setLegajo(resultset.getInt("empleado_legajo"));
+				emp.setApellido(resultset.getString("empleado_apellido"));
+				emp.setNombre(resultset.getString("empleado_nombre"));
+				emp.setTipoDocumento(resultset.getString("empleado_doc_tipo"));
+				emp.setNroDocumento(resultset.getInt("empleado_doc_nro"));
+				emp.setTelefono(resultset.getString("empleado_telefono"));
+				
+				PasajeroBean pas = new PasajeroBeanImpl();
+				pas.setApellido(resultset.getString("pasajero_apellido"));
+				pas.setNombre(resultset.getString("pasajero_nombre"));
+				pas.setDireccion(resultset.getString("pasajero_direccion"));
+				pas.setTelefono(resultset.getString("pasajero_telefono"));
+				pas.setNacionalidad(resultset.getString("pasajero_nacionalidad"));
+				pas.setTipoDocumento(resultset.getString("pasajero_doc_tipo"));
+				pas.setNroDocumento(resultset.getInt("pasajero_doc_nro"));
+				
+				reserva.setEmpleado(emp);
+				reserva.setPasajero(pas);
+				
+				InstanciaVueloBean ins = new InstanciaVueloBeanImpl();
+				
+			}
+		} catch (SQLException ex) {
+			logger.error("SQLException: " + ex.getMessage());
+			logger.error("SQLState: " + ex.getSQLState());
+			logger.error("VendorError: " + ex.getErrorCode());
+			throw ex;
+		}
+		
 		
 
-		ReservaBean reserva = new ReservaBeanImpl();
 
 		logger.debug("Se recuperó la reserva: {}, {}", reserva.getNumero(), reserva.getEstado());
 

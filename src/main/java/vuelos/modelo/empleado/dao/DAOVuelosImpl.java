@@ -161,6 +161,7 @@ public class DAOVuelosImpl implements DAOVuelos {
 			logger.error("SQLException: " + ex.getMessage());
 			logger.error("SQLState: " + ex.getSQLState());
 			logger.error("VendorError: " + ex.getErrorCode());
+			throw ex;
 		}
 
 		return resultado;
