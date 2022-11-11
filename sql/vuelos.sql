@@ -374,7 +374,7 @@ BEGIN
                         UPDATE asientos_reservados as ar SET cantidad = cantidad + 1 WHERE (ar.vuelo = numero) AND
                                                                                 (ar.fecha = fecha) AND (ar.clase = clase);
 
-                        SELECT 'La reserva se ha realizado con exito' as resultado;
+                        SELECT 'La reserva se ha realizado con exito' as resultado, id_reserva_vuelo AS nroReserva;
                     ELSE
         	            SELECT 'Falla : No hay lugares disponibles en el vuelo y clase solicitados' as resultado;
                     END IF;
@@ -451,7 +451,7 @@ BEGIN
                                 UPDATE asientos_reservados SET cantidad = cantidad + 1 WHERE vuelo = nro_vuelta AND
                                                                             fecha = fecha_vuelta AND clase = clase_vuelta;
 
-                                SELECT 'La reserva se ha realizado con exito' as resultado;
+                                SELECT 'La reserva se ha realizado con exito' as resultado, id_reserva_vuelo AS nroReserva;
                             ELSE
                                 SELECT 'Falla : No hay lugares disponibles para el vuelo de vuelta en la clase solicitada' as resultado;
                             END IF;
@@ -502,6 +502,7 @@ GRANT ALL PRIVILEGES ON vuelos.* TO 'admin'@'localhost' WITH GRANT OPTION;
 /* usuario empleado */
 CREATE USER 'empleado'@'%' IDENTIFIED BY 'empleado';
 GRANT SELECT ON vuelos.* TO 'empleado'@'%';
+
 
 GRANT INSERT, UPDATE, DELETE ON vuelos.reservas  TO 'empleado'@'%';
 GRANT INSERT, UPDATE, DELETE ON vuelos.pasajeros TO 'empleado'@'%';
