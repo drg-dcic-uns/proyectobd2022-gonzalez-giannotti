@@ -175,7 +175,8 @@ public class DAOReservaImpl implements DAOReserva {
 		 */
 		
 		String query = 
-			"SELECT " +
+				"SELECT " +
+
 				"reservas.numero AS nro_reserva, " +
 				"reservas.fecha AS fecha_reserva, " +
 				"reservas.vencimiento AS venc_reserva, " +
@@ -183,6 +184,29 @@ public class DAOReservaImpl implements DAOReserva {
 				"reserva_vuelo_clase.vuelo, " +
 				"reserva_vuelo_clase.fecha_vuelo, " +
 				"reserva_vuelo_clase.clase, " +
+				"vuelos_disponibles.nro_vuelo, " +
+				"vuelos_disponibles.modelo, " +
+				"vuelos_disponibles.codigo_aero_sale, " +
+				"vuelos_disponibles.nombre_aero_sale, " +
+				"vuelos_disponibles.dia_sale, " +
+				"vuelos_disponibles.hora_sale, " +
+				"vuelos_disponibles.ciudad_sale, " +
+				"vuelos_disponibles.estado_sale, " +
+				"vuelos_disponibles.pais_sale, " +
+				"a1.direccion AS direccion_sale, " +
+				"a1.telefono AS telefono_sale, " +
+				"a2.direccion AS direccion_llega, " +
+				"a2.telefono AS telefono_llega, " +
+				"u1.huso AS huso_sale, " +
+				"u2.huso AS huso_llega, " +
+				"vuelos_disponibles.codigo_aero_llega, " +
+				"vuelos_disponibles.nombre_aero_llega, " +
+				"vuelos_disponibles.hora_llega, " +
+				"vuelos_disponibles.ciudad_llega, " +
+				"vuelos_disponibles.estado_llega, " +
+				"vuelos_disponibles.pais_llega, " +
+				"vuelos_disponibles.asientos_disponibles, " +
+				"vuelos_disponibles.precio, " +
 				"reservas.doc_tipo AS pasajero_doc_tipo, " +
 				"reservas.doc_nro AS pasajero_doc_nro, " +
 				"pasajeros.apellido AS pasajero_apellido, " +
@@ -196,15 +220,29 @@ public class DAOReservaImpl implements DAOReserva {
 				"empleados.doc_tipo AS empleado_doc_tipo, " +
 				"empleados.doc_nro AS empleado_doc_nro, " +
 				"empleados.direccion AS empleado_direccion, " +
-				"empleados.telefono AS empleado_telefono" + 
-			"FROM " +
+				"empleados.telefono AS empleado_telefono " +
+			" FROM " +
 				"reservas JOIN " +
 				"reserva_vuelo_clase JOIN " +
+				"vuelos_disponibles JOIN " +
+				"aeropuertos a1, aeropuertos a2 JOIN " +
+				"ubicaciones u1, ubicaciones u2 JOIN " +
 				"pasajeros JOIN " +
 				"empleados " +
-			"WHERE " +
-				"reservas.numero = " + codigoReserva + " AND " +
+			" WHERE " +
+				"reservas.numero = 25 AND " +
 				"reservas.numero = reserva_vuelo_clase.numero AND " +
+				"vuelos_disponibles.nro_vuelo = reserva_vuelo_clase.vuelo AND " +
+				"vuelos_disponibles.clase = reserva_vuelo_clase.clase AND " +
+				"vuelos_disponibles.fecha = reserva_vuelo_clase.fecha_vuelo AND " +
+				"vuelos_disponibles.codigo_aero_sale = a1.codigo AND " +
+				"vuelos_disponibles.codigo_aero_llega = a2.codigo AND " +
+				"vuelos_disponibles.pais_sale = u1.pais AND " +
+				"vuelos_disponibles.estado_sale = u1.estado AND " +
+				"vuelos_disponibles.ciudad_sale = u1.ciudad AND " +
+				"vuelos_disponibles.pais_llega = u2.pais AND " +
+				"vuelos_disponibles.estado_llega = u2.estado AND " +
+				"vuelos_disponibles.ciudad_llega = u2.ciudad AND " +
 				"reservas.doc_nro = pasajeros.doc_nro AND " +
 				"reservas.legajo = empleados.legajo;";
 		
