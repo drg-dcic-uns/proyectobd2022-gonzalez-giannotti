@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Types;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,7 +15,6 @@ import vuelos.modelo.empleado.beans.InstanciaVueloBean;
 import vuelos.modelo.empleado.beans.PasajeroBean;
 import vuelos.modelo.empleado.beans.ReservaBean;
 import vuelos.modelo.empleado.beans.ReservaBeanImpl;
-import vuelos.modelo.empleado.dao.datosprueba.DAOReservaDatosPrueba;
 
 public class DAOReservaImpl implements DAOReserva {
 
@@ -52,81 +49,35 @@ public class DAOReservaImpl implements DAOReserva {
 		 *		   pero luego deberá propagarla para que el controlador se encargue de manejarla.
 		 */
 		
-		/*
-		 * reservar_ida(IN numero VARCHAR(45), IN fecha DATE, IN clase VARCHAR(20),
-                              IN tipo_doc VARCHAR(3), IN nro_doc INT, IN legajo_empleado INT)
-		 */
-		
-		
-		int nro_reserva = -1;		
-		String query = String.format("CALL reservar_ida(%s, %s, %s, %s, %d, %d);", vuelo.getNroVuelo(), vuelo.getFechaVuelo(), detalleVuelo.getClase(), pasajero.getTipoDocumento(), pasajero.getNroDocumento(), empleado.getLegajo());
+		int nro_reserva = -1;
+		String estado_reserva = "";
+		String query = String.format("CALL reservar_ida(''%s'', ''%s'', ''%s'', ''%s'', %d, %d);", vuelo.getNroVuelo(), vuelo.getFechaVuelo(), detalleVuelo.getClase(), pasajero.getTipoDocumento(), pasajero.getNroDocumento(), empleado.getLegajo());
 		
 		try {
 			CallableStatement cstmt = conexion.prepareCall(query);
-			ResultSet resultset = cstmt.executeQuery();
+			cstmt.executeUpdate();
+			ResultSet resultset = cstmt.getResultSet();
 			
-			while (resultset.next()) {
-				String resultado = resultset.getString("resultado");
-				//Lo veo muy hardcodeado, si no tuviéramos conocimiento de la estructura interna de los procedures entonces no sabríamos cuál es el mensaje específico con el que hay que comparar?
-				if (resultado == "La reserva se ha realizado con exito") {
-					//Si otra petición se completó justo entre medio de esta y el last_insert_id (por concurrencia) entonces se sobreescribe su valor y no sirve.
-					//Otra idea que se me ocurre es acceder a la tabla de reservas, ordenar descendentemente y rescatar el ultimo numero (es llave).
-					//También viendo el debug comentado de más abajo se me ocurre que en realidad habría que rescatar la tupla entera.
-					query = "SELECT LAST_INSERT_ID() AS nro_reserva";
-					PreparedStatement stmt = conexion.prepareStatement(query);
-					ResultSet resultset2 = stmt.executeQuery(query);
-					
-					if (resultset2.next()) {
-						nro_reserva = resultset2.getInt("nro_reserva");
-					}
-					
-					stmt.close();
-					resultset2.close();
-				}
-				else {
-					throw new Exception(resultado);
-				}
-			}
-			
-			
+				 if(resultset.next()) {
+					 String s = resultset.getString("resultado"); 
+					 if(s.contains("Falla")) {
+						 throw new Exception(s);						 
+					 }
+					 nro_reserva = resultset.getInt("nroReserva");
+					 estado_reserva = resultset.getString("estado_reserva");
+				 }
 			cstmt.close();
 			resultset.close();
+			
 			
 		} catch (SQLException ex) {
 			logger.debug("Error al consultar la BD. SQLException: {}. SQLState: {}. VendorError: {}.", ex.getMessage(), ex.getSQLState(), ex.getErrorCode());
 			throw ex;
 		}
 		
-		
-		//logger.debug("Reserva: {}, {}", r.getNumero(), r.getEstado());
+		logger.debug("Reserva: {}, {}", nro_reserva, estado_reserva);
 		
 		return nro_reserva;
-		
-		//Implementacion mia : 
-		/*
-		int nroReserva = -1;
-		 
-		 try {
-			 
-			 String sql = "CALL reservar_ida("+vuelo.getNroVuelo()+", "+vuelo.getFechaVuelo()+", "+detalleVuelo.getClase()+", "+pasajero.getTipoDocumento()+", "+pasajero.getNroDocumento()+", "+empleado.getLegajo()+");";
-			 CallableStatement cstmt = conexion.prepareCall(sql); 
-			 cstmt.executeUpdate();
-			 ResultSet rs = cstmt.getResultSet();
-			 
-			 if(rs.next()) {
-				 String s = rs.getString("resultado"); 
-				 if(s.contains("Falla"))
-					 throw new Exception(s);
-				 nroReserva = rs.getInt("nroReserva");
-			 }
-			 cstmt.close();
-			 rs.close();
-		  } catch (SQLException ex){
-		  			logger.debug("Error al consultar la BD. SQLException: {}. SQLState: {}. VendorError: {}.", ex.getMessage(), ex.getSQLState(), ex.getErrorCode());
-		   		throw ex;
-		 } 
-		return nroReserva;
-		*/
 	}
 	
 	@Override
@@ -155,21 +106,21 @@ public class DAOReservaImpl implements DAOReserva {
 		 
 		 try {
 			 
-			 String sql = "CALL reservar_ida_vuelta("+vueloIda.getNroVuelo()+", "+vueloVuelta.getNroVuelo()+", "+vueloIda.getFechaVuelo()+", "
-			 +vueloVuelta.getFechaVuelo()+", "+detalleVueloIda.getClase()+", "+detalleVueloVuelta.getClase()+", "+pasajero.getTipoDocumento()
-			 +", "+pasajero.getNroDocumento()+", "+empleado.getLegajo()+");";
-			 CallableStatement cstmt = conexion.prepareCall(sql); 
-			 cstmt.executeUpdate();
-			 ResultSet rs = cstmt.getResultSet();
+			 String query = String.format("CALL reservar_ida_vuelta('%s', '%s', '%s', '%s', '%s', '%s', '%s', %d, %d);",
+					 		vueloIda.getNroVuelo(), vueloVuelta.getNroVuelo(), vueloIda.getFechaVuelo(), vueloVuelta.getFechaVuelo(), detalleVueloIda.getClase(), detalleVueloVuelta.getClase(), pasajero.getTipoDocumento(), pasajero.getNroDocumento(), empleado.getLegajo());
 			 
-			 if(rs.next()) {
-				 String s = rs.getString("resultado"); 
+			 CallableStatement cstmt = conexion.prepareCall(query); 
+			 cstmt.executeUpdate();
+			 ResultSet resultset = cstmt.getResultSet();
+			 
+			 if(resultset.next()) {
+				 String s = resultset.getString("resultado"); 
 				 if(s.contains("Falla"))
 					 throw new Exception(s);
-				 nroReserva = rs.getInt("nroReserva");
+				 nroReserva = resultset.getInt("nroReserva");
 			 }
 			 cstmt.close();
-			 rs.close();
+			 resultset.close();
 		  } catch (SQLException ex){
 		  			logger.debug("Error al consultar la BD. SQLException: {}. SQLState: {}. VendorError: {}.", ex.getMessage(), ex.getSQLState(), ex.getErrorCode());
 		   		throw ex;

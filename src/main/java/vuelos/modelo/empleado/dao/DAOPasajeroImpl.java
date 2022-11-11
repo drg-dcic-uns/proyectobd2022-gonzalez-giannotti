@@ -40,7 +40,8 @@ public class DAOPasajeroImpl implements DAOPasajero {
 
 		PasajeroBean pasajero = null;
 		try {
-			String sql = "SELECT * FROM pasajeros WHERE doc_tipo= '" + tipoDoc + "' AND doc_nro=" + nroDoc + ";";
+			String sql = String.format("SELECT * FROM pasajeros WHERE doc_tipo='%s' AND doc_nro=%d;", 
+							tipoDoc, nroDoc);
 			Statement s = this.conexion.createStatement();
 			ResultSet rs = s.executeQuery(sql);
 			if (rs.next()) {
@@ -52,10 +53,11 @@ public class DAOPasajeroImpl implements DAOPasajero {
 				pasajero.setNroDocumento(rs.getInt("doc_nro"));
 				pasajero.setTelefono(rs.getString("telefono"));
 				pasajero.setTipoDocumento(rs.getString("doc_tipo"));
+
 				s.close();
 				rs.close();
-			} else {
-				throw new Exception("No se encontro al pasajero.");
+
+				logger.info("El DAO retorna al pasajero {} {}", pasajero.getApellido(), pasajero.getNombre());
 			}
 		} catch (SQLException ex) {
 			logger.error("SQLException: " + ex.getMessage());
@@ -63,10 +65,7 @@ public class DAOPasajeroImpl implements DAOPasajero {
 			logger.error("VendorError: " + ex.getErrorCode());
 		}
 
-		logger.info("El DAO retorna al pasajero {} {}", pasajero.getApellido(), pasajero.getNombre());
-
 		return pasajero;
-
 	}
 
 }

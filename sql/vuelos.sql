@@ -368,13 +368,13 @@ BEGIN
                         # Se inserta la reserva y el vuelo en las tablas correspondientes
                         INSERT INTO reservas(fecha, vencimiento, estado, doc_tipo, doc_nro, legajo) VALUES
                             (CURDATE(), DATE_SUB(fecha, INTERVAL 15 DAY), estado_reserva, tipo_doc, nro_doc, legajo_empleado);
-			 SET id_reserva_vuelo:= LAST_INSERT_ID();
-                        INSERT INTO reserva_vuelo_clase VALUES (LAST_INSERT_ID(), numero, fecha, clase);
+						SET id_reserva_vuelo:= LAST_INSERT_ID();
+                        INSERT INTO reserva_vuelo_clase VALUES (id_reserva_vuelo, numero, fecha, clase);
 
                         UPDATE asientos_reservados as ar SET cantidad = cantidad + 1 WHERE (ar.vuelo = numero) AND
                                                                                 (ar.fecha = fecha) AND (ar.clase = clase);
 
-                        SELECT 'La reserva se ha realizado con exito' as resultado, id_reserva_vuelo AS nroReserva;
+                        SELECT 'La reserva se ha realizado con exito' as resultado, id_reserva_vuelo AS nroReserva, estado_reserva;
                     ELSE
         	            SELECT 'Falla : No hay lugares disponibles en el vuelo y clase solicitados' as resultado;
                     END IF;
