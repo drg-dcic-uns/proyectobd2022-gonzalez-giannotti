@@ -235,7 +235,7 @@ public class DAOReservaImpl implements DAOReserva {
 				"pasajeros JOIN " +
 				"empleados " +
 			" WHERE " +
-				"reservas.numero = 25 AND " +
+				"reservas.numero = " + codigoReserva + " AND " +
 				"reservas.numero = reserva_vuelo_clase.numero AND " +
 				"vuelos_disponibles.nro_vuelo = reserva_vuelo_clase.vuelo AND " +
 				"vuelos_disponibles.clase = reserva_vuelo_clase.clase AND " +
