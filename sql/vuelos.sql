@@ -335,7 +335,7 @@ BEGIN
     DECLARE id_reserva_vuelo INT;
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
 		BEGIN
-			SELECT 'SQLEXCEPTION!, transaccion abortada' AS resultado;
+			SELECT 'Falla : SQLEXCEPTION!, transaccion abortada' AS resultado;
 			ROLLBACK;
 		END;
 
@@ -376,16 +376,16 @@ BEGIN
 
                         SELECT 'La reserva se ha realizado con exito' as resultado;
                     ELSE
-        	            SELECT 'No hay lugares disponibles en el vuelo y clase solicitados' as resultado;
+        	            SELECT 'Falla : No hay lugares disponibles en el vuelo y clase solicitados' as resultado;
                     END IF;
                 ELSE
-                    SELECT 'No existe el vuelo en el dia y clase solicitados' as resultado;
+                    SELECT 'Falla : No existe el vuelo en el dia y clase solicitados' as resultado;
                 END IF;
             ELSE
-                SELECT 'No se encuentra el empleado' as resultado;
+                SELECT 'Falla : No se encuentra el empleado' as resultado;
             END IF;
         ELSE
-			SELECT 'No existe el pasajero indicado' AS resultado;
+			SELECT 'Falla : No existe el pasajero indicado' AS resultado;
 		END IF;
 	COMMIT;
 END;!
@@ -453,19 +453,19 @@ BEGIN
 
                                 SELECT 'La reserva se ha realizado con exito' as resultado;
                             ELSE
-                                SELECT 'No hay lugares disponibles para el vuelo de vuelta en la clase solicitada' as resultado;
+                                SELECT 'Falla : No hay lugares disponibles para el vuelo de vuelta en la clase solicitada' as resultado;
                             END IF;
                         ELSE
-                            SELECT 'No hay lugares disponibles para el vuelo de ida en la clase solicitada' as resultado;
+                            SELECT 'Falla : No hay lugares disponibles para el vuelo de ida en la clase solicitada' as resultado;
                         END IF;
                     ELSE
-                        SELECT 'Datos de vuelos incorrectos' as resultado;
+                        SELECT 'Falla : Datos de vuelos incorrectos' as resultado;
                     END IF;
                 ELSE
-                    SELECT 'No se encuentra el empleado' as resultado;
+                    SELECT 'Falla : No se encuentra el empleado' as resultado;
                 END IF;
             ELSE
-    			SELECT 'No existe el pasajero indicado' AS resultado;
+    			SELECT 'Falla : No existe el pasajero indicado' AS resultado;
     		END IF;
     	COMMIT;
     END;!
