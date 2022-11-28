@@ -333,9 +333,17 @@ BEGIN
     DECLARE cant_reservados SMALLINT;
     DECLARE estado_reserva VARCHAR(20);
     DECLARE id_reserva_vuelo INT;
+	#https://dev.mysql.com/doc/refman/8.0/en/get-diagnostics.html
+	DECLARE errno INT;
+	DECLARE estado CHAR(5);
+	DECLARE mensaje TEXT;
+	DECLARE throw TEXT;
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
 		BEGIN
-			SELECT 'Falla : SQLEXCEPTION!, transaccion abortada' AS resultado;
+			GET DIAGNOSTICS CONDITION 1
+			errno = MYSQL_ERRNO, estado = RETURNED_SQLSTATE, mensaje = MESSAGE_TEXT;
+			SET throw = CONCAT('Falla : SQLEXCEPTION!, transaccion abortada. Error = ', estado, ', Mensaje = ', mensaje); 
+			SELECT throw, errno;
 			ROLLBACK;
 		END;
 
@@ -401,6 +409,20 @@ BEGIN
     DECLARE cant_reservados_ida SMALLINT;
     DECLARE cant_reservados_vuelta SMALLINT;
     DECLARE id_reserva_vuelo INT;
+	#https://dev.mysql.com/doc/refman/8.0/en/get-diagnostics.html
+	DECLARE errno INT;
+	DECLARE estado CHAR(5);
+	DECLARE mensaje TEXT;
+	DECLARE throw TEXT;
+	
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION
+		BEGIN
+			GET DIAGNOSTICS CONDITION 1
+			errno = MYSQL_ERRNO, estado = RETURNED_SQLSTATE, mensaje = MESSAGE_TEXT;
+			SET throw = CONCAT('Falla : SQLEXCEPTION!, transaccion abortada. Error = ', estado, ', Mensaje = ', mensaje); 
+			SELECT throw, errno;
+			ROLLBACK;
+		END;
 
         START TRANSACTION;
             # Se verifica que los datos sean correctos
