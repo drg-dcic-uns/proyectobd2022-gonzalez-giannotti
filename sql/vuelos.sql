@@ -503,7 +503,7 @@ BEGIN
 	DECLARE clase_it VARCHAR(20);
 	# declaro un flag para cortar el loop.
 	DECLARE fin BOOLEAN DEFAULT FALSE;
-	DECLARE C CURSOR for SELECT nombre FROM clases;
+	DECLARE C CURSOR for SELECT nombre FROM brinda b WHERE b.dia=NEW.dia and b.vuelo= NEW.vuelo;
 	DECLARE CONTINUE HANDLER FOR NOT FOUND SET fin=TRUE;
 	OPEN C;
 	FETCH C INTO clase_it;
